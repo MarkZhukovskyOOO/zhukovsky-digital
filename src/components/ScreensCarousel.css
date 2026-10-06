@@ -10,13 +10,8 @@
 .shots__track {
   display: flex;
   width: max-content;
-  animation: shots-scroll 80s linear infinite;
+  animation: shots-scroll 56s linear infinite;
   will-change: transform;
-}
-
-/* Пауза при наведении */
-.shots:hover .shots__track {
-  animation-play-state: paused;
 }
 
 .shots__group {
@@ -30,6 +25,7 @@
    шаг 848 при ширине 880) — лента выглядит сплошной, без просветов. */
 .shots__card {
   flex: 0 0 auto;
+  position: relative;
   width: min(880px, 72vw);
   aspect-ratio: 880 / 560;
   margin-right: -32px;
@@ -41,10 +37,20 @@
 /* Показываем верх скриншота */
 .shots__card img {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 48px);
   object-fit: cover;
   object-position: top;
   user-select: none;
+}
+
+.shots__caption {
+  display: flex;
+  height: 48px;
+  align-items: center;
+  padding-inline: 20px;
+  color: #1d1d1f;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 @keyframes shots-scroll {

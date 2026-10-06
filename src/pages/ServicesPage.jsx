@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs.jsx";
 import Footer from "../components/Footer.jsx";
-import energoImg from "../assets/figma/case-card-energo.png";
-import wawImg from "../assets/figma/case-card-waw.png";
+import adonisImg from "../assets/figma/case-energo-cover.png";
+import olympImg from "../assets/figma/case-olymp-cover.png";
 import "./ServicesPage.css";
 
 const openContactModal = () =>
@@ -172,15 +172,16 @@ const PLANS = [
 
 const CASES = [
   {
-    img: energoImg,
-    title: "EnerGO: приложение для аренды пауэрбанков",
-    desc: "IoT, Чаты, Apple Pay и Google Pay, 1 млн. активных пользователей, 6,6к оценок в App Store и Google Play",
-    to: "/case/energo",
+    img: adonisImg,
+    title: "Адонис: сайт и приложение для аптечной сети",
+    desc: "Каталог, наличие в аптеках, бронирование и карта лояльности с интеграцией в аптечную систему.",
+    to: "/case/adonis",
   },
   {
-    img: wawImg,
-    title: "WAW: приложение со скидочными купонами и лотереями для рынка Египта",
-    desc: "E-commerce, Карты и GPS, 130k активных пользователей",
+    img: olympImg,
+    title: "Олимп Клиник: сайт и личный кабинет для сети клиник",
+    desc: "Пересборка сайта, интеграция с 1С-Битрикс и запуск примерно за три месяца.",
+    to: "/case/olymp-clinic",
   },
 ];
 

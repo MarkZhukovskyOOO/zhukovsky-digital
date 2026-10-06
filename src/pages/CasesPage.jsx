@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs.jsx";
 import Footer from "../components/Footer.jsx";
-import energoImg from "../assets/figma/case-card-energo.png";
-import motivatorsImg from "../assets/figma/case-card-motivators.png";
-import kemImg from "../assets/figma/case-card-kem.png";
-import wawImg from "../assets/figma/case-card-waw.png";
+import adonisImg from "../assets/figma/case-energo-cover.png";
+import olympImg from "../assets/figma/case-olymp-cover.png";
+import { useState } from "react";
 import "./CasesPage.css";
 
 const FILTERS = [
@@ -17,30 +16,27 @@ const FILTERS = [
 
 const CASES = [
   {
-    img: energoImg,
-    title: "EnerGO: приложение для аренды пауэрбанков",
-    desc: "IoT, Чаты, Apple Pay и Google Pay, 1 млн. активных пользователей, 6,6к оценок в App Store и Google Play",
-    to: "/case/energo",
+    img: adonisImg,
+    title: "Адонис: сайт и приложение для аптечной сети",
+    desc: "Каталог, наличие в аптеках, бронирование и карта лояльности. Сайт и приложение для iOS и Android с интеграцией в аптечную систему.",
+    to: "/case/adonis",
+    categories: ["Мобильные приложения", "Сайты и веб-сервисы", "Личные кабинеты"],
   },
   {
-    img: motivatorsImg,
-    title:
-      "Мотиваторы: приложение для трекинга полезных привычек от звезд шоу «Импровизаторы»",
-    desc: "Лайфстайл, Видео, 200к активных пользователей",
-  },
-  {
-    img: kemImg,
-    title: "KEM: платформа мобильных платежей в Кувейте",
-    desc: "Финтех, Привязка банковских карт, QR-коды, $1 млн инвестиций",
-  },
-  {
-    img: wawImg,
-    title: "WAW: приложение со скидочными купонами и лотереями для рынка Египта",
-    desc: "E-commerce, Карты и GPS, 130k активных пользователей",
+    img: olympImg,
+    title: "Олимп Клиник: сайт и личный кабинет для сети клиник",
+    desc: "Полная пересборка сайта, доработка готовых макетов и интеграция с 1С-Битрикс. От подключения к проекту до запуска — около трёх месяцев.",
+    to: "/case/olymp-clinic",
+    categories: ["Сайты и веб-сервисы", "Личные кабинеты"],
   },
 ];
 
 export default function CasesPage() {
+  const [activeFilter, setActiveFilter] = useState(FILTERS[0]);
+  const visibleCases = activeFilter === FILTERS[0]
+    ? CASES
+    : CASES.filter((item) => item.categories?.includes(activeFilter));
+
   return (
     <>
       <main className="cases-page">
@@ -65,14 +61,15 @@ export default function CasesPage() {
         <section className="cases-list">
           <div className="container">
             <div className="cases-filters" aria-label="Фильтры кейсов">
-              {FILTERS.map((label, i) => (
+              {FILTERS.map((label) => (
                 <button
                   type="button"
                   key={label}
                   className={
-                    "cases-chip" + (i === 0 ? " cases-chip--active" : "")
+                    "cases-chip" + (activeFilter === label ? " cases-chip--active" : "")
                   }
-                  aria-pressed={i === 0}
+                  aria-pressed={activeFilter === label}
+                  onClick={() => setActiveFilter(label)}
                 >
                   {label}
                 </button>
@@ -80,7 +77,7 @@ export default function CasesPage() {
             </div>
 
             <div className="cases-grid">
-              {CASES.map((c) => {
+              {visibleCases.map((c) => {
                 const inner = (
                   <>
                     <div className="cases-card__media">

@@ -1,32 +1,20 @@
 import { Link } from "react-router-dom";
-import energoImg from "../assets/figma/case-card-energo.png";
-import motivatorsImg from "../assets/figma/case-card-motivators.png";
-import kemImg from "../assets/figma/case-card-kem.png";
-import wawImg from "../assets/figma/case-card-waw.png";
+import adonisImg from "../assets/figma/case-energo-cover.png";
+import olympImg from "../assets/figma/case-olymp-cover.png";
 import "./Products.css";
 
 const PRODUCTS = [
   {
-    img: energoImg,
-    title: "EnerGO: приложение для аренды пауэрбанков",
-    desc: "IoT, Чаты, Apple Pay и Google Pay, 1 млн. активных пользователей, 6,6к оценок в App Store и Google Play",
-    to: "/case/energo",
+    img: adonisImg,
+    title: "Адонис: сайт и приложение для аптечной сети",
+    desc: "Каталог, наличие в аптеках, бронирование и карта лояльности. Сайт и приложение для iOS и Android с интеграцией в аптечную систему.",
+    to: "/case/adonis",
   },
   {
-    img: motivatorsImg,
-    title:
-      "Мотиваторы: приложение для трекинга полезных привычек от звезд шоу «Импровизаторы»",
-    desc: "Лайфстайл, Видео, 200к активных пользователей",
-  },
-  {
-    img: kemImg,
-    title: "KEM: платформа мобильных платежей в Кувейте",
-    desc: "Финтех, Привязка банковских карт, QR-коды, $1 млн инвестиций",
-  },
-  {
-    img: wawImg,
-    title: "WAW: приложение со скидочными купонами и лотереями для рынка Египта",
-    desc: "E-commerce, Карты и GPS, 130k активных пользователей",
+    img: olympImg,
+    title: "Олимп Клиник: сайт и личный кабинет для сети клиник",
+    desc: "Полная пересборка сайта, доработка готовых макетов и интеграция с 1С-Битрикс. От подключения к проекту до запуска — около трёх месяцев.",
+    to: "/case/olymp-clinic",
   },
 ];
 
