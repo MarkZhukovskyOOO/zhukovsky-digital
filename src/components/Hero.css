@@ -1,0 +1,116 @@
+/* Hero — новый макет: контент по центру, фон «Wrangle Motion»:
+   белый верх → лавандовая дымка → голубое облако у нижней кромки */
+.hero {
+  position: relative;
+  background: var(--color-bg-page);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* базовый градиент (статичный слой) */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(52% 42% at 16% 92%, #cad3e8 0%, rgba(202, 211, 232, 0) 70%),
+    radial-gradient(46% 36% at 40% 84%, rgba(182, 197, 222, 0.65) 0%, rgba(182, 197, 222, 0) 74%),
+    radial-gradient(62% 46% at 58% 102%, #cbe0fe 0%, rgba(203, 224, 254, 0) 72%),
+    radial-gradient(48% 40% at 88% 96%, #c6d7f2 0%, rgba(198, 215, 242, 0) 70%),
+    linear-gradient(180deg, #f9f9fa 0%, #f8f7fa 42%, #efeef5 62%, #e2e6f2 82%, #d8e0f1 100%);
+}
+
+/* медленный дрейф двух бликов, как у анимированного GIF в макете */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: -12% 0;
+  background:
+    radial-gradient(40% 30% at 30% 88%, rgba(203, 224, 254, 0.9) 0%, rgba(203, 224, 254, 0) 70%),
+    radial-gradient(36% 28% at 74% 92%, rgba(166, 205, 247, 0.7) 0%, rgba(166, 205, 247, 0) 72%);
+  animation: hero-drift 16s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes hero-drift {
+  from {
+    transform: translateX(-6%) scale(1);
+  }
+  to {
+    transform: translateX(6%) scale(1.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::after {
+    animation: none;
+  }
+}
+
+/* тёмная тема: тот же рисунок, но глубокие синие свечения на тёмном фоне */
+[data-theme="dark"] .hero::before {
+  background:
+    radial-gradient(52% 42% at 16% 92%, rgba(0, 87, 174, 0.35) 0%, rgba(0, 87, 174, 0) 70%),
+    radial-gradient(62% 46% at 58% 102%, rgba(0, 113, 227, 0.45) 0%, rgba(0, 113, 227, 0) 72%),
+    radial-gradient(48% 40% at 88% 96%, rgba(65, 150, 236, 0.3) 0%, rgba(65, 150, 236, 0) 70%),
+    linear-gradient(180deg, var(--color-bg-page) 0%, var(--color-bg-page) 48%, rgba(0, 96, 192, 0.12) 100%);
+}
+
+[data-theme="dark"] .hero::after {
+  background:
+    radial-gradient(40% 30% at 30% 88%, rgba(0, 113, 227, 0.28) 0%, rgba(0, 113, 227, 0) 70%),
+    radial-gradient(36% 28% at 74% 92%, rgba(65, 150, 236, 0.22) 0%, rgba(65, 150, 236, 0) 72%);
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  min-height: min(800px, calc(100vh - 100px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-block: 120px;
+}
+
+.hero__title {
+  font-size: clamp(28px, 5.2vw, 48px);
+  line-height: 1.125;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  max-width: 800px;
+}
+
+.hero__sub {
+  margin-top: 24px;
+  max-width: 724px;
+  color: var(--muted-2);
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.hero__cta {
+  margin-top: 44px;
+}
+
+@media (max-width: 860px) {
+  .hero__inner {
+    min-height: min(700px, calc(100vh - 80px));
+    padding-block: 96px;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero__inner {
+    min-height: 560px;
+    padding-block: 80px;
+  }
+  .hero__sub {
+    margin-top: 20px;
+    font-size: 16px;
+  }
+  .hero__cta {
+    margin-top: 32px;
+  }
+}

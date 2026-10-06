@@ -1,0 +1,707 @@
+/* ============================================================
+   Services — «Мобильные приложения» (по макету service-mobile-*)
+   ============================================================ */
+
+/* ---------- Общие элементы страницы ---------- */
+.svc-overline {
+  display: block;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.svc-overline--brand {
+  color: var(--color-text-brand);
+}
+
+.svc-title {
+  font-size: clamp(28px, 3.6vw, 48px);
+  line-height: 1.125;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+
+.svc-lead {
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--muted-2);
+}
+
+.svc-head {
+  margin-bottom: 48px;
+}
+
+.svc-head .svc-title {
+  margin-top: 16px;
+}
+
+.svc-head .svc-lead {
+  margin-top: 16px;
+}
+
+.svc-action {
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--color-text-brand);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.svc-action:hover {
+  text-decoration: underline;
+}
+
+.svc-section {
+  padding-block: 80px;
+}
+
+/* ---------- Hero ---------- */
+.svc-hero {
+  padding-top: 40px;
+}
+
+.svc-hero__head {
+  margin-top: 48px;
+}
+
+.svc-hero__title {
+  margin-top: 16px;
+  max-width: 1000px;
+  font-size: clamp(34px, 6vw, 72px);
+  line-height: 1.06;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.svc-hero__lead {
+  margin-top: 32px;
+  max-width: 720px;
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--muted-2);
+}
+
+.svc-hero__actions {
+  margin-top: 60px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.svc-btn-lg {
+  height: 56px;
+  padding-inline: 32px;
+}
+
+/* ---------- Meta ---------- */
+.svc-meta {
+  margin-top: 40px;
+  padding-bottom: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.svc-meta__item {
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+  padding-right: 24px;
+}
+
+.svc-meta__value {
+  margin-top: 8px;
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--ink);
+}
+
+/* ---------- Кому подходит ---------- */
+.svc-fit {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.svc-fit__card {
+  background: var(--bg-soft);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+}
+
+.svc-fit__card h3 {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.svc-fit__card p {
+  margin-top: 12px;
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--muted-2);
+}
+
+/* ---------- Что входит ---------- */
+.svc-included {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.svc-included__item {
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+}
+
+.svc-included__n {
+  display: block;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-text-brand);
+}
+
+.svc-included__item h3 {
+  margin-top: 12px;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.svc-included__item p {
+  margin-top: 12px;
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--muted-2);
+}
+
+/* ---------- Как мы работаем ---------- */
+.svc-process {
+  background: var(--bg-soft);
+  border-radius: var(--radius-xl);
+  padding: 48px 40px;
+}
+
+.svc-process .svc-head {
+  max-width: 1030px;
+}
+
+.svc-process__steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+
+.svc-step {
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-md);
+  padding: 24px 20px;
+}
+
+.svc-step__n {
+  display: inline-flex;
+  padding: 4px 8px;
+  border-radius: var(--radius-pill);
+  background: rgba(0, 113, 227, 0.1);
+  color: var(--color-text-brand);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.svc-step h3 {
+  margin-top: 12px;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.svc-step p {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--muted-2);
+}
+
+/* ---------- На выходе ---------- */
+.svc-deliver {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 350px 350px;
+  gap: 48px 40px;
+  align-items: start;
+}
+
+.svc-deliver .svc-head {
+  margin-bottom: 0;
+}
+
+.svc-deliver__col {
+  margin: 0;
+}
+
+.svc-deliver__item {
+  display: flex;
+  gap: 12px;
+  padding-block: 16px;
+  border-top: 1px solid var(--color-border-subtle);
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--ink);
+}
+
+.svc-deliver__col .svc-deliver__item:last-child {
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.svc-deliver__dot {
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  margin-top: 9px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+/* ---------- Стек ---------- */
+.svc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.svc-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding-inline: 20px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-soft);
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--muted-2);
+}
+
+/* ---------- Стоимость ---------- */
+.svc-pricing {
+  background: var(--bg-soft);
+  border-radius: clamp(24px, 4.5vw, 64px);
+  padding-block: 80px;
+}
+
+.svc-pricing__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 48px 80px;
+  margin-bottom: 48px;
+}
+
+.svc-pricing__desc {
+  max-width: 650px;
+}
+
+.svc-plans {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  align-items: stretch;
+}
+
+.svc-plan {
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+}
+
+.svc-plan--featured {
+  border: 8px solid transparent;
+  border-radius: var(--radius-xl);
+  background:
+    linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(120deg, #b0e0f4 0%, #96b6ff 55%, #c8c1fa 100%) border-box;
+}
+
+.svc-plan__eyebrow {
+  line-height: 16px;
+}
+
+.svc-plan--featured .svc-plan__eyebrow {
+  color: var(--color-text-brand);
+}
+
+.svc-plan__price {
+  margin-top: 20px;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.svc-plan__divider {
+  margin: 20px 0 0;
+  border: none;
+  border-top: 1px solid var(--line);
+}
+
+.svc-plan--featured .svc-plan__divider {
+  border-top-color: var(--color-brand-200);
+}
+
+.svc-plan__term,
+.svc-plan__lead {
+  margin-top: 20px;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.svc-plan__features {
+  margin-top: 20px;
+  display: grid;
+  gap: 12px;
+}
+
+.svc-plan__features li {
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--muted-2);
+}
+
+.svc-plan__example {
+  margin-top: 20px;
+  margin-bottom: 32px;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.svc-plan__btn {
+  margin-top: auto;
+}
+
+/* ---------- Кейсы ---------- */
+.svc-cases__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.svc-cases {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.svc-case {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.svc-case__media {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-soft);
+}
+
+.svc-case__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 600 / 340;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.svc-case:hover .svc-case__media img {
+  transform: scale(1.02);
+}
+
+.svc-case__title {
+  margin-top: 20px;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+.svc-case__desc {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--muted-2);
+}
+
+/* ---------- FAQ ---------- */
+.svc-faq {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+  gap: 48px 60px;
+  align-items: start;
+}
+
+.svc-faq .svc-head {
+  margin-bottom: 0;
+}
+
+.svc-faq__item {
+  border-bottom: 1px solid var(--line);
+}
+
+.svc-faq__q {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding-block: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--ink);
+}
+
+.svc-faq__icon {
+  position: relative;
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  transition: transform 0.25s ease;
+}
+
+.svc-faq__icon::before,
+.svc-faq__icon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  background: var(--color-icon-brand);
+  border-radius: 2px;
+}
+
+.svc-faq__icon::before {
+  width: 14px;
+  height: 2px;
+}
+
+.svc-faq__icon::after {
+  width: 2px;
+  height: 14px;
+}
+
+.svc-faq__item.is-open .svc-faq__icon {
+  transform: rotate(45deg);
+}
+
+.svc-faq__a-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.svc-faq__a-inner {
+  overflow: hidden;
+}
+
+.svc-faq__item.is-open .svc-faq__a-wrap {
+  grid-template-rows: 1fr;
+}
+
+.svc-faq__a {
+  padding-bottom: 24px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--muted-2);
+}
+
+/* ============================================================
+   Адаптив
+   ============================================================ */
+@media (max-width: 1100px) {
+  .svc-process__steps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .svc-deliver {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+/* --- Планшет (макет 768) --- */
+@media (max-width: 860px) {
+  .svc-section {
+    padding-block: 64px;
+  }
+
+  .svc-hero__actions {
+    margin-top: 48px;
+  }
+
+  .svc-meta {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 24px;
+  }
+
+  .svc-fit {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .svc-fit__card:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .svc-included {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 32px;
+  }
+
+  .svc-process {
+    padding: 40px 24px;
+  }
+
+  .svc-process__steps {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .svc-deliver {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .svc-deliver .svc-head {
+    grid-column: 1 / -1;
+  }
+
+  .svc-pricing {
+    padding-block: 64px;
+  }
+
+  .svc-pricing__head {
+    flex-direction: column;
+  }
+
+  .svc-plans {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .svc-cases {
+    grid-template-columns: 1fr;
+  }
+
+  .svc-faq {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Мобилка (макет 375) --- */
+@media (max-width: 560px) {
+  .svc-hero__head {
+    margin-top: 40px;
+  }
+
+  .svc-hero__lead {
+    margin-top: 24px;
+  }
+
+  .svc-hero__actions {
+    margin-top: 40px;
+  }
+
+  .svc-hero__actions .btn {
+    width: 100%;
+  }
+
+  .svc-head {
+    margin-bottom: 36px;
+  }
+
+  /* Meta остаётся в 2 колонки — как на макете 375 */
+  .svc-meta {
+    gap: 24px 16px;
+  }
+
+  .svc-meta__item {
+    padding-right: 0;
+  }
+
+  .svc-fit {
+    grid-template-columns: 1fr;
+  }
+
+  .svc-included {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .svc-process {
+    padding: 32px 20px;
+    border-radius: var(--radius-lg);
+  }
+
+  .svc-process__steps {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .svc-deliver {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .svc-deliver .svc-head {
+    margin-bottom: 36px;
+  }
+
+  .svc-deliver__col:first-child .svc-deliver__item:last-child {
+    border-bottom: none;
+  }
+
+  .svc-plans {
+    grid-template-columns: 1fr;
+  }
+
+  .svc-plan {
+    padding: 24px;
+  }
+
+  .svc-cases__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+
+  .svc-cases {
+    gap: 32px;
+  }
+
+  .svc-case__title {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}

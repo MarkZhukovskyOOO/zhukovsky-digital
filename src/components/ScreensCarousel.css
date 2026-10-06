@@ -1,0 +1,69 @@
+/* Карусель скриншотов — фрейм «Карусель — 3 макета» (1440x810).
+   Градиент и белые карточки одинаковы в обеих темах (это «фото»-секция). */
+
+.shots {
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffff61 0%, #94c924 100%);
+  padding-block: clamp(48px, 8.7vw, 125px);
+}
+
+.shots__track {
+  display: flex;
+  width: max-content;
+  animation: shots-scroll 80s linear infinite;
+  will-change: transform;
+}
+
+/* Пауза при наведении */
+.shots:hover .shots__track {
+  animation-play-state: paused;
+}
+
+.shots__group {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Карточка 880x560, r20; карточки идут внахлёст на 32px (по макету
+   шаг 848 при ширине 880) — лента выглядит сплошной, без просветов. */
+.shots__card {
+  flex: 0 0 auto;
+  width: min(880px, 72vw);
+  aspect-ratio: 880 / 560;
+  margin-right: -32px;
+  border-radius: 20px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* Показываем верх скриншота */
+.shots__card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  user-select: none;
+}
+
+@keyframes shots-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 560px) {
+  .shots__card {
+    width: 84vw;
+    margin-right: -16px;
+    border-radius: 14px;
+  }
+}
+
+/* Уважаем «уменьшить движение»: статичная лента */
+@media (prefers-reduced-motion: reduce) {
+  .shots__track {
+    animation: none;
+  }
+}

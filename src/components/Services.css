@@ -1,0 +1,95 @@
+/* Services — заголовок слева, описание справа, 6 строк-услуг */
+.services__head {
+  display: grid;
+  grid-template-columns: minmax(0, 488fr) minmax(0, 672fr);
+  gap: 80px;
+  align-items: start;
+  margin-bottom: 48px;
+}
+
+.services__link {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--color-text-brand);
+  font-size: 15px;
+  font-weight: 500;
+}
+.services__link:hover {
+  text-decoration: underline;
+}
+
+.services__intro {
+  color: var(--muted-2);
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+/* Строка услуги: [номер | заголовок | описание] */
+.service-row {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 460fr) minmax(0, 672fr);
+  gap: 32px;
+  align-items: start;
+  padding: 32px 0;
+  border-top: 1px solid var(--line);
+}
+.service-row:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.service-row__n {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  padding-top: 6px;
+}
+.service-row__title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.33;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.service-row__desc {
+  color: var(--muted-2);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Планшет (768): шапка стекуется, строка сервиса остаётся тройной */
+@media (max-width: 860px) {
+  .services__head {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .services__link {
+    margin-top: 8px;
+  }
+  .service-row {
+    grid-template-columns: 44px minmax(0, 0.9fr) minmax(0, 1.2fr);
+    gap: 24px;
+  }
+}
+
+/* Мобайл (~560 и уже): номер, заголовок и описание в столбик */
+@media (max-width: 560px) {
+  .services__intro {
+    font-size: 16px;
+  }
+  .service-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 24px 0;
+  }
+  .service-row__n {
+    padding-top: 0;
+  }
+  .service-row__title {
+    margin-top: 8px;
+    font-size: 20px;
+    line-height: 1.3;
+  }
+  .service-row__desc {
+    margin-top: 10px;
+  }
+}

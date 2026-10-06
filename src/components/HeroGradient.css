@@ -1,0 +1,62 @@
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  /* Базовая мягкая подложка */
+  background: linear-gradient(165deg, #eaf4fe 0%, #f6fbff 55%, #ffffff 100%);
+}
+.hero-gradient[data-theme-layer="dark"] {
+  background: linear-gradient(165deg, #12233a 0%, #0d1626 55%, #0b0b0d 100%);
+}
+
+/* Слой с мягкими цветными «блобами», которые медленно дрейфуют */
+.hero-gradient__blobs {
+  position: absolute;
+  inset: -30%;
+  display: block;
+  background:
+    radial-gradient(38% 46% at 22% 28%, rgba(122, 178, 246, 0.75), transparent 70%),
+    radial-gradient(32% 40% at 80% 20%, rgba(166, 205, 247, 0.62), transparent 72%),
+    radial-gradient(48% 54% at 60% 82%, rgba(198, 224, 252, 0.6), transparent 70%),
+    radial-gradient(30% 36% at 88% 72%, rgba(140, 190, 248, 0.5), transparent 72%);
+  filter: blur(24px);
+  will-change: transform;
+  animation: hero-drift 24s ease-in-out infinite alternate;
+}
+.hero-gradient[data-theme-layer="dark"] .hero-gradient__blobs {
+  background:
+    radial-gradient(38% 46% at 22% 28%, rgba(43, 95, 158, 0.62), transparent 70%),
+    radial-gradient(32% 40% at 80% 20%, rgba(31, 66, 112, 0.55), transparent 72%),
+    radial-gradient(48% 54% at 60% 82%, rgba(22, 41, 61, 0.6), transparent 70%),
+    radial-gradient(30% 36% at 88% 72%, rgba(37, 84, 140, 0.45), transparent 72%);
+  filter: blur(28px);
+}
+
+@keyframes hero-drift {
+  0% {
+    transform: translate3d(-3%, -2%, 0) scale(1.05) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(2%, 3%, 0) scale(1.12) rotate(4deg);
+  }
+  100% {
+    transform: translate3d(4%, -3%, 0) scale(1.08) rotate(-3deg);
+  }
+}
+
+/* Мягкое затухание к низу — плавный стык со следующей секцией */
+.hero-gradient::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, var(--color-bg-page) 100%);
+}
+
+/* Уважаем настройку «уменьшить движение» — оставляем статичный градиент */
+@media (prefers-reduced-motion: reduce) {
+  .hero-gradient__blobs {
+    animation: none;
+  }
+}

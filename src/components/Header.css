@@ -1,0 +1,291 @@
+/* ============================================================
+   Header — по макету landing-1440 (100px, пилюли по центру)
+   Планшет ≤860: инлайн-меню (как dropdown-768), мобилка ≤560: бургер
+   ============================================================ */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--color-bg-page) 82%, transparent);
+  backdrop-filter: saturate(180%) blur(20px);
+  transition: background 0.3s ease, box-shadow 0.2s ease;
+}
+.header.is-scrolled {
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.07);
+}
+
+.header__inner {
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+/* --- Логотип --- */
+.logo {
+  font-weight: 600;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+.logo__accent {
+  color: var(--color-icon-brand);
+}
+.logo__short {
+  display: none;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+/* --- Навигация по центру --- */
+.header__nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.header__nav-item {
+  display: flex;
+}
+.header__nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding-inline: 12px;
+  border-radius: var(--radius-pill);
+  color: var(--color-text-secondary);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.header__nav-link:hover {
+  color: var(--color-text-primary);
+  background: var(--color-state-hover);
+}
+.header__nav-link.is-current {
+  color: var(--color-text-brand);
+}
+.header__nav-icon {
+  display: inline-flex;
+  color: var(--color-icon-secondary);
+}
+.header__nav-link:hover .header__nav-icon {
+  color: var(--color-icon-primary);
+}
+.header__nav-link.is-current .header__nav-icon {
+  color: var(--color-icon-brand);
+}
+
+/* --- Дропдаун «Услуги» ---
+   Десктоп: .header__nav позиционирован (absolute), поэтому дропдаун
+   считается от него: 50% = центр навигации = центр вьюпорта.
+   top: 40px = отступ до низа хедера (32) + зазор 8. */
+.nav-drop {
+  position: absolute;
+  top: calc(100% + 40px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  width: max-content;
+  min-width: 751px;
+  max-width: calc(100vw - 2 * var(--gutter));
+  background: var(--color-bg-elevated);
+  border-radius: 20px;
+  box-shadow: var(--shadow-elevated);
+  padding: 12px 25px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+}
+/* невидимый «мостик» между пунктом меню и карточкой — чтобы hover не рвался */
+.nav-drop::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -44px;
+  height: 44px;
+}
+.nav-drop.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.nav-drop__cols {
+  display: grid;
+  grid-template-columns: minmax(291px, 1fr) auto;
+  gap: 0 32px;
+}
+.nav-drop__label {
+  white-space: nowrap;
+}
+.nav-drop__col {
+  margin: 0;
+}
+.nav-drop__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 46px;
+  color: var(--color-text-secondary);
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+.nav-drop__col li + li .nav-drop__item {
+  border-top: 1px solid var(--color-border-subtle);
+}
+.nav-drop__index {
+  flex: none;
+  width: 20px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+.nav-drop__item:hover .nav-drop__label {
+  color: var(--color-text-primary);
+}
+
+/* --- Правый блок --- */
+.header__actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.header__tg {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  font-size: 15px;
+  transition: color 0.15s ease;
+}
+.header__tg:hover {
+  color: var(--color-text-primary);
+}
+.header__cta {
+  height: 44px;
+  padding-inline: 24px;
+  font-size: 16px;
+}
+
+/* --- Бургер (только ≤560) --- */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+}
+.burger span {
+  width: 22px;
+  height: 2px;
+  background: var(--color-icon-primary);
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.burger.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.burger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.burger.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ============================================================
+   Планшет ≤860 — хедер 72px, меню инлайн после логотипа
+   (как во фрейме dropdown-768: «Жуковский», без иконок и Telegram)
+   ============================================================ */
+@media (max-width: 860px) {
+  .header__inner {
+    height: 72px;
+  }
+  .logo__full {
+    display: none;
+  }
+  .logo__short {
+    display: inline;
+  }
+  .header__nav {
+    position: static;
+    transform: none;
+    margin-left: 20px;
+    gap: 4px;
+  }
+  .header__nav-link {
+    padding-inline: 8px;
+  }
+  .header__nav-icon {
+    display: none;
+  }
+  .header__tg {
+    display: none;
+  }
+  .header__actions {
+    gap: 12px;
+  }
+  .header__cta {
+    height: 40px;
+    padding-inline: 18px;
+    font-size: 14px;
+  }
+
+  /* Дропдаун: одна колонка, слева под навигацией.
+     Навигация здесь статична, поэтому дропдаун считается от .header. */
+  .nav-drop {
+    top: calc(100% + 8px);
+    left: calc(var(--gutter) + 156px);
+    transform: translateY(-8px);
+    width: max-content;
+    min-width: 387px;
+    max-width: calc(100vw - var(--gutter) - 156px - 20px);
+    border-radius: var(--radius-md);
+    padding: 8px 17px;
+  }
+  .nav-drop::before {
+    top: -10px;
+    height: 10px;
+  }
+  .nav-drop.is-open {
+    transform: translateY(0);
+  }
+  .nav-drop__cols {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .nav-drop__col:last-child li:first-child .nav-drop__item {
+    border-top: 1px solid var(--color-border-subtle);
+  }
+  .nav-drop__item {
+    height: 44px;
+  }
+}
+
+/* ============================================================
+   Мобилка ≤560 — бургер + полноэкранное меню (MobileMenu)
+   ============================================================ */
+@media (max-width: 560px) {
+  .header__inner {
+    height: 60px;
+  }
+  .header__nav,
+  .header__cta {
+    display: none;
+  }
+  .header__actions {
+    gap: 4px;
+  }
+  .burger {
+    display: flex;
+  }
+}

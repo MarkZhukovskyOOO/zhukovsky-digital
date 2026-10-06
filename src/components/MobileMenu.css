@@ -1,0 +1,129 @@
+/* ============================================================
+   Мобильное меню — фреймы menu-mobile-collapsed / expanded (375)
+   ============================================================ */
+.mmenu {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: none;
+  flex-direction: column;
+  background: var(--color-bg-page);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+.mmenu.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+}
+
+.mmenu__top {
+  flex: none;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: var(--gutter);
+}
+.mmenu__logo {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+.mmenu__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -12px;
+  border-radius: var(--radius-pill);
+  color: var(--color-icon-primary);
+  transition: background 0.15s ease;
+}
+.mmenu__close:hover {
+  background: var(--color-state-hover);
+}
+
+.mmenu__nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px var(--gutter) 24px;
+}
+.mmenu__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  text-align: left;
+}
+.mmenu__chevron {
+  color: var(--color-icon-secondary);
+  transition: transform 0.2s ease;
+}
+.mmenu__acc.is-open .mmenu__chevron {
+  transform: rotate(180deg);
+}
+
+.mmenu__sub {
+  padding-block: 2px;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+.mmenu__sub-link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+.mmenu__sub-link:active,
+.mmenu__sub-link:hover {
+  color: var(--color-text-primary);
+}
+
+.mmenu__bottom {
+  flex: none;
+  padding: 16px var(--gutter) max(24px, env(safe-area-inset-bottom));
+}
+.mmenu__contacts {
+  display: grid;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+.mmenu__contact {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.mmenu__contact-label {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+.mmenu__contact a {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+.mmenu__cta {
+  height: 52px;
+}
+
+/* Меню существует только на мобилке */
+@media (max-width: 560px) {
+  .mmenu {
+    display: flex;
+  }
+}

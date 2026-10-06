@@ -1,0 +1,370 @@
+/* ============================================================
+   Страница «О студии» — по фреймам Company 1440 / 768 / 375
+   Секции: Hero → Numbers → Principles → Team → Industries → Contacts
+   ============================================================ */
+
+/* ===== Общее для секций ===== */
+
+.company-overline {
+  display: block;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.company-overline--brand {
+  color: var(--color-text-brand);
+}
+
+.company-section {
+  padding-block: 80px;
+}
+
+.company-section__title {
+  margin-top: 16px;
+  font-size: clamp(30px, 3.6vw, 48px);
+  line-height: 1.125;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--color-text-primary);
+}
+
+/* Заголовок секции со ссылкой-действием справа (Team) */
+.company-section__head--row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+.company-section__action {
+  flex: none;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--color-text-brand);
+  transition: color 0.15s ease;
+}
+.company-section__action:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ===== Hero ===== */
+
+.company-hero {
+  padding-top: 40px;
+}
+.company-hero__intro {
+  margin-top: 48px;
+}
+.company-hero__title {
+  margin-top: 16px;
+  max-width: 1080px;
+  font-size: clamp(38px, 5vw, 72px);
+  line-height: 1.06;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+}
+.company-hero__lead {
+  margin-top: 32px;
+  max-width: 760px;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+}
+.company-hero__photo {
+  display: block;
+  width: 100%;
+  height: 480px;
+  margin-top: 48px;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+}
+
+/* ===== Numbers (4 стата) ===== */
+
+.company-numbers {
+  padding-block: 80px;
+}
+.company-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.company-stat {
+  border-top: 1px solid var(--color-border-default);
+  padding: 24px 24px 0 0;
+}
+.company-stat__num {
+  font-size: clamp(40px, 4vw, 56px);
+  line-height: 1.07;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-text-brand);
+}
+.company-stat__label {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--color-text-secondary);
+}
+
+/* ===== Principles (сетка 2x2) ===== */
+
+.company-principles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 48px;
+}
+.company-principle {
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-subtle);
+}
+.company-principle__title {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--color-text-primary);
+}
+.company-principle__desc {
+  margin-top: 12px;
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--color-text-secondary);
+}
+
+/* ===== Team (сетка 3 колонки, карточки-заглушки) ===== */
+
+.company-team {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+}
+.company-member__photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 392 / 431;
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-subtle);
+  border: 1px dashed var(--color-border-default);
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--color-text-muted);
+}
+.company-member__name {
+  margin-top: 16px;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+.company-member__role {
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--color-text-secondary);
+}
+
+/* ===== Industries (заголовок слева, чипы справа) ===== */
+
+.company-industries {
+  display: grid;
+  grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+  gap: 80px;
+  align-items: start;
+}
+.company-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 8px;
+}
+.company-chip {
+  padding: 9px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-subtle);
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--color-text-secondary);
+}
+
+/* ===== Contacts (реквизиты + карта слева, форма справа) ===== */
+
+.company-contacts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 40px;
+  margin-top: 48px;
+  align-items: start;
+}
+.company-contact-row {
+  display: grid;
+  grid-template-columns: 145px 1fr;
+  align-items: baseline;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--color-border-default);
+}
+.company-contact-row:first-child {
+  padding-top: 0;
+}
+.company-contact-row__label {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.company-contact-row__value {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  transition: color 0.15s ease;
+}
+a.company-contact-row__value:hover {
+  color: var(--color-text-brand);
+}
+
+.company-contacts__map {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  margin-top: 24px;
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-subtle);
+  border: 1px dashed var(--color-border-default);
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--color-text-muted);
+}
+.company-contacts__legal {
+  margin-top: 24px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--color-text-muted);
+}
+
+/* ============================================================
+   Планшет (по фрейму Company 768): двухколоночность сохраняется,
+   статы — в столбик с короткими линиями, контакты — в столбик
+   ============================================================ */
+@media (max-width: 860px) {
+  .company-hero__intro {
+    margin-top: 40px;
+  }
+
+  .company-stats {
+    grid-template-columns: 1fr;
+    row-gap: 12px;
+  }
+  .company-stat {
+    max-width: calc(50% - 16px);
+    padding-right: 0;
+  }
+
+  .company-team {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .company-industries {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .company-chips {
+    padding-top: 0;
+  }
+
+  .company-contacts {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+/* ============================================================
+   Мобилка (по фрейму Company 375): всё стекуется,
+   команда остаётся в 2 колонки — как в макете
+   ============================================================ */
+@media (max-width: 560px) {
+  .company-section,
+  .company-numbers {
+    padding-block: 64px;
+  }
+
+  .company-hero {
+    padding-top: 24px;
+  }
+  .company-hero__intro {
+    margin-top: 32px;
+  }
+  .company-hero__lead {
+    margin-top: 24px;
+    font-size: 16px;
+  }
+  .company-hero__photo {
+    margin-top: 32px;
+    height: 420px;
+  }
+
+  .company-stat {
+    max-width: calc(50% - 12px);
+  }
+
+  .company-principles {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .company-principle {
+    padding: 24px;
+  }
+  .company-principle__title {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .company-section__head--row {
+    display: block;
+  }
+  .company-section__action {
+    display: inline-block;
+    margin-top: 12px;
+  }
+
+  .company-team {
+    gap: 32px 20px;
+    margin-top: 40px;
+  }
+  .company-member__name {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .company-industries {
+    gap: 40px;
+  }
+
+  .company-contacts {
+    margin-top: 40px;
+  }
+  .company-contact-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 16px 0;
+  }
+  .company-contact-row__value {
+    font-size: 18px;
+    line-height: 26px;
+  }
+  .company-contacts__map {
+    height: 240px;
+  }
+}

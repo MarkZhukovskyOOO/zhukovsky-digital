@@ -1,0 +1,178 @@
+/* Тёмный футер: графит #1d1d1f (одинаков в обеих темах), текстура Wrangle Motion,
+   мягкие синие блобы, крупный CTA, контакты строками, нижняя строка */
+.footer {
+  position: relative;
+  overflow: hidden;
+  background: #1d1d1f;
+  color: #f5f5f7;
+  padding-block: 80px 56px;
+}
+
+/* Фоновые слои */
+.footer__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.footer__texture {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.footer__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+}
+.footer__blob--1 {
+  left: -180px;
+  top: -220px;
+  width: 760px;
+  height: 560px;
+  background: radial-gradient(closest-side, rgba(0, 96, 192, 0.4), transparent 70%);
+}
+.footer__blob--2 {
+  right: -100px;
+  top: -160px;
+  width: 640px;
+  height: 520px;
+  background: radial-gradient(closest-side, rgba(0, 87, 174, 0.28), transparent 70%);
+}
+.footer__blob--3 {
+  left: 50%;
+  bottom: -260px;
+  width: 700px;
+  height: 520px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(65, 150, 236, 0.22), transparent 70%);
+}
+
+.footer__inner {
+  position: relative;
+}
+
+.footer__eyebrow {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 247, 0.8);
+}
+
+.footer__title {
+  margin-top: 24px;
+  max-width: 900px;
+  color: #f5f5f7;
+  font-size: clamp(36px, 6.2vw, 72px);
+  line-height: 1.06;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Контакты: строки «подпись — значение» с верхней линией */
+.footer__contacts {
+  margin-top: 48px;
+}
+.footer__contact {
+  display: grid;
+  grid-template-columns: 348px auto;
+  align-items: center;
+  width: max-content;
+  max-width: 100%;
+  padding: 24px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+.footer__contact-label {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 247, 0.8);
+}
+.footer__contact-value {
+  font-size: 24px;
+  font-weight: 500;
+  color: #f5f5f7;
+  transition: color 0.15s ease;
+}
+.footer__contact-value:hover {
+  color: #6faef1;
+}
+
+/* Нижняя строка: логотип — ссылки — © */
+.footer__bottom {
+  margin-top: 48px;
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.footer__bottom--slim {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.footer__brand {
+  font-size: 15px;
+  font-weight: 500;
+  color: #f5f5f7;
+}
+.footer__nav {
+  display: flex;
+  gap: 24px;
+  margin-inline: auto;
+}
+.footer__nav a {
+  font-size: 15px;
+  font-weight: 500;
+  color: #f5f5f7;
+  transition: color 0.15s ease;
+}
+.footer__nav a:hover {
+  color: #6faef1;
+}
+.footer__copy {
+  font-size: 15px;
+  font-weight: 500;
+  color: #f5f5f7;
+}
+
+@media (max-width: 860px) {
+  .footer {
+    padding-block: 64px 48px;
+  }
+  /* Планшет (768): строки те же, но подпись уже */
+  .footer__contact {
+    grid-template-columns: 220px auto;
+  }
+}
+
+/* Мобайл (375): контакты в столбик — подпись над значением */
+@media (max-width: 560px) {
+  .footer__contacts {
+    margin-top: 40px;
+  }
+  .footer__contact {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    width: 100%;
+    padding: 20px 0;
+  }
+  .footer__contact-value {
+    font-size: 20px;
+  }
+  .footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .footer__nav {
+    margin-inline: 0;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}

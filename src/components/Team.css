@@ -1,0 +1,96 @@
+/* Секция Studio: заголовок + описание, фото команды, статистика */
+.team {
+  background: var(--bg-soft);
+  padding-block: 80px;
+}
+
+.team__head {
+  display: grid;
+  grid-template-columns: minmax(0, 488px) minmax(0, 672px);
+  justify-content: space-between;
+  gap: 40px;
+  align-items: start;
+}
+
+.team__link {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-brand);
+  transition: opacity 0.15s ease;
+}
+.team__link:hover {
+  opacity: 0.75;
+}
+
+.team__desc {
+  color: var(--color-text-secondary);
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.team__photo {
+  width: 100%;
+  margin-top: 48px;
+  aspect-ratio: 1240 / 440;
+  object-fit: cover;
+  border-radius: 22px;
+}
+
+.team__stats {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.stat {
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+}
+.stat__num {
+  font-size: 56px;
+  line-height: 1.07;
+  font-weight: 600;
+  color: var(--color-text-brand);
+  letter-spacing: -0.02em;
+}
+.stat__label {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 860px) {
+  .team {
+    padding-block: 64px;
+  }
+  .team__head {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  /* Планшет (768): статистика остаётся строкой из трёх — как во фрейме Tablet 768 */
+  .team__stats {
+    gap: 20px;
+  }
+  .stat__num {
+    font-size: 44px;
+  }
+}
+
+/* Мобайл (375): фото выше, статы в 2 колонки — как во фрейме Mobile 375 */
+@media (max-width: 560px) {
+  .team__photo {
+    margin-top: 32px;
+    aspect-ratio: 335 / 195;
+    border-radius: var(--radius-md);
+  }
+  .team__stats {
+    margin-top: 32px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 20px;
+  }
+  .stat__num {
+    font-size: 36px;
+  }
+}

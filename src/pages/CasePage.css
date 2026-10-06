@@ -1,0 +1,489 @@
+/* ============================================================
+   Case — EnerGO (по фрейму «Case — EnerGO / Desktop 1440»)
+   ============================================================ */
+
+/* --- Общие элементы страницы --- */
+.case-section {
+  padding-block: 80px;
+}
+
+.case-overline {
+  display: block;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.case-overline--brand {
+  color: var(--color-text-brand);
+}
+
+.case-h2 {
+  margin-top: 16px;
+  font-size: clamp(28px, 3.6vw, 48px);
+  line-height: 1.125;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--color-text-primary);
+}
+
+.case-head {
+  margin-bottom: 48px;
+}
+.case-head--row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.case-head--row .case-h2 {
+  margin-top: 0;
+}
+.case-head__action {
+  flex-shrink: 0;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--color-text-brand);
+}
+.case-head__action:hover {
+  text-decoration: underline;
+}
+
+/* Чипы (теги в hero и стек) */
+.case-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.case-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding-inline: 20px;
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-subtle);
+  color: var(--color-text-secondary);
+  font-size: 16px;
+  line-height: 26px;
+}
+
+/* --- Case Hero --- */
+.case-hero {
+  padding-block: 40px;
+}
+.case-hero__body {
+  margin-top: 48px;
+}
+.case-hero__title {
+  margin-top: 16px;
+  max-width: 1100px;
+  font-size: clamp(34px, 6vw, 72px);
+  line-height: 1.06;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+}
+.case-hero__lead {
+  margin-top: 32px;
+  max-width: 760px;
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--color-text-secondary);
+}
+.case-hero .case-chips {
+  margin-top: 32px;
+}
+
+/* --- Обложка (image 4) --- */
+.case-cover {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* --- Facts — 4 метрики --- */
+.case-facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding-block: 24px;
+}
+.case-fact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 24px;
+  padding-right: 24px;
+  border-top: 1px solid var(--color-border-default);
+}
+.case-fact__value {
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--color-text-primary);
+}
+
+/* --- Results --- */
+.case-results {
+  background: var(--color-bg-subtle);
+  border-radius: var(--radius-xl);
+  padding: 64px;
+}
+.case-results__metrics {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.case-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 24px;
+  padding-right: 24px;
+  border-top: 1px solid var(--color-border-default);
+}
+.case-stat__num {
+  font-size: clamp(40px, 4.2vw, 56px);
+  line-height: 1.07;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--color-text-brand);
+}
+.case-stat__label {
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--color-text-secondary);
+}
+
+/* --- Context --- */
+.case-context {
+  display: grid;
+  /* 520 + 80 + 640 = 1240; fr-доли держат пропорцию и умеют сжиматься */
+  grid-template-columns: minmax(0, 520fr) minmax(0, 640fr);
+  gap: 48px 80px;
+  align-items: start;
+}
+.case-context__lead {
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--color-text-secondary);
+}
+.case-problems {
+  margin: 32px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.case-problem {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 24px;
+  padding-block: 20px;
+  border-top: 1px solid var(--color-border-subtle);
+}
+.case-problem__n {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-text-muted);
+  padding-top: 3px;
+}
+.case-problem__text {
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--color-text-primary);
+}
+.case-task {
+  margin-top: 32px;
+  border-radius: var(--radius-md);
+  padding: 24px 32px;
+  /* Голубая плашка: лёгкая примесь бренда к фону — работает в обеих темах */
+  background: color-mix(in srgb, var(--color-brand-500) 9%, var(--color-bg-page));
+}
+.case-task p {
+  margin-top: 12px;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+}
+
+/* --- Solution — шаги --- */
+.case-steps {
+  display: flex;
+  flex-direction: column;
+}
+.case-step {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 400px) 1fr;
+  gap: 32px;
+  padding-block: 32px;
+  border-top: 1px solid var(--color-border-subtle);
+}
+.case-step:last-child {
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+.case-step__n {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-text-muted);
+  padding-top: 6px;
+}
+.case-step__title {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--color-text-primary);
+}
+.case-step__desc {
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--color-text-secondary);
+}
+
+/* --- Stack --- */
+.case-stack {
+  display: grid;
+  grid-template-columns: minmax(0, 400fr) minmax(0, 760fr);
+  gap: 48px 80px;
+  align-items: start;
+}
+.case-stack .case-head {
+  margin-bottom: 0;
+}
+.case-stack__chips {
+  padding-top: 8px;
+}
+
+/* --- Quote --- */
+.case-quote {
+  margin: 0;
+  background: #1d1d1f; /* тёмная карточка — одинаковая в обеих темах */
+  border-radius: var(--radius-xl);
+  padding: 64px;
+}
+.case-quote blockquote {
+  margin: 0;
+  max-width: 900px;
+  font-size: clamp(22px, 2.6vw, 32px);
+  line-height: 1.25;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #f5f5f7;
+}
+.case-quote__author {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.case-quote__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #f5f5f7;
+  flex-shrink: 0;
+}
+.case-quote__who {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.case-quote__name {
+  font-size: 16px;
+  line-height: 26px;
+  color: #f5f5f7;
+}
+.case-quote__role {
+  font-size: 14px;
+  line-height: 22px;
+  color: #aeaeb2;
+}
+
+/* --- Другие кейсы --- */
+.case-others {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.case-other__media {
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-subtle);
+  overflow: hidden;
+}
+.case-other__media img {
+  width: 100%;
+  aspect-ratio: 600 / 340;
+  object-fit: cover;
+  object-position: left center;
+}
+.case-other__title {
+  margin-top: 20px;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--color-text-primary);
+}
+.case-other__desc {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--color-text-secondary);
+}
+
+/* ============================================================
+   Планшет (по фрейму Tablet 768)
+   ============================================================ */
+@media (max-width: 860px) {
+  .case-section {
+    padding-block: 64px;
+  }
+  .case-hero__body {
+    margin-top: 40px;
+  }
+
+  /* Facts: 2x2, как на 768 */
+  .case-facts {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 24px;
+  }
+
+  .case-results {
+    padding: 48px 40px;
+  }
+  .case-results__metrics {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 24px;
+  }
+
+  /* Context: заголовок сверху, тело снизу */
+  .case-context {
+    grid-template-columns: 1fr;
+  }
+
+  /* Шаги: номер + колонка заголовка + описание, теснее */
+  .case-step {
+    grid-template-columns: 32px minmax(0, 1fr) 1.4fr;
+    gap: 24px;
+  }
+
+  .case-stack {
+    grid-template-columns: 1fr;
+  }
+  .case-stack__chips {
+    padding-top: 0;
+  }
+
+  .case-quote {
+    padding: 48px 40px;
+  }
+
+  .case-others {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+/* ============================================================
+   Мобильный (по фрейму Mobile 375)
+   ============================================================ */
+@media (max-width: 560px) {
+  .case-section {
+    padding-block: 48px;
+  }
+
+  .case-hero {
+    padding-block: 24px 32px;
+  }
+  .case-hero__body {
+    margin-top: 32px;
+  }
+  .case-hero__lead {
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 26px;
+  }
+  .case-chip {
+    height: 38px;
+    padding-inline: 16px;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .case-facts {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .case-fact {
+    padding-top: 20px;
+    padding-right: 0;
+  }
+
+  .case-results {
+    padding: 32px 24px;
+    border-radius: var(--radius-lg);
+  }
+  .case-results__metrics {
+    margin-top: 32px;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .case-stat {
+    padding-right: 0;
+  }
+
+  .case-context__lead {
+    font-size: 16px;
+    line-height: 26px;
+  }
+  .case-problem {
+    grid-template-columns: 28px 1fr;
+    gap: 16px;
+  }
+  .case-task {
+    padding: 20px 24px;
+  }
+  .case-task p {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  /* Шаги в столбик */
+  .case-step {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding-block: 24px;
+  }
+  .case-step__n {
+    padding-top: 0;
+  }
+  .case-step__title {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .case-quote {
+    padding: 32px 24px;
+    border-radius: var(--radius-lg);
+  }
+
+  .case-others {
+    gap: 40px;
+  }
+  .case-other__media {
+    border-radius: var(--radius-md);
+  }
+  .case-other__title {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}

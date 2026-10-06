@@ -1,0 +1,191 @@
+/* Секция Reviews: одна горизонтальная карточка отзыва на градиентной подложке */
+.reviews {
+  padding-block: 80px;
+}
+
+.reviews__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+.reviews__sub {
+  margin-top: 16px;
+  color: var(--color-text-secondary);
+  font-size: 18px;
+  line-height: 1.55;
+}
+.reviews__link {
+  flex: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-brand);
+  transition: opacity 0.15s ease;
+}
+.reviews__link:hover {
+  opacity: 0.75;
+}
+
+/* Карточка на голубой градиентной подложке — как карточка формы в Contact */
+.review-card {
+  display: grid;
+  grid-template-columns: 413px minmax(0, 1fr);
+  gap: 24px;
+  padding: 16px;
+  border-radius: var(--radius-lg);
+  /* Голубой градиентный кант — одинаков в обеих темах (декоративный) */
+  background: linear-gradient(120deg, #a6cdf7 0%, #6faef1 50%, #a6cdf7 100%);
+}
+
+/* Заглушка «Фото команды клиента» */
+.review-card__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 480px;
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--color-border-default);
+  background: var(--color-bg-subtle);
+  color: var(--color-text-muted);
+  font-size: 14px;
+  text-align: center;
+}
+
+.review-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 40px 48px;
+  border-radius: var(--radius-md);
+  background: var(--color-bg-surface);
+}
+
+.review-card__logo {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 20px;
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--color-border-default);
+  background: var(--color-bg-subtle);
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.review-card__quote {
+  margin: 32px 0 0;
+  max-width: 680px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+}
+
+.review-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 48px;
+}
+.review-card__name {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+.review-card__role {
+  margin-top: 4px;
+  font-size: 16px;
+  color: var(--color-text-muted);
+}
+
+/* Декоративная навигация карусели */
+.review-card__nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.review-card__dashes {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.review-card__dashes i {
+  width: 24px;
+  height: 3px;
+  border-radius: var(--radius-pill);
+  background: var(--color-border-strong);
+}
+.review-card__dashes i.is-active {
+  width: 28px;
+  background: var(--color-text-primary);
+}
+.review-card__arrows {
+  display: flex;
+  gap: 8px;
+}
+.review-card__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border-default);
+  background: var(--color-bg-subtle);
+  color: var(--color-icon-primary);
+}
+
+/* Планшет (768): карточка в столбик, фото сверху */
+@media (max-width: 860px) {
+  .reviews {
+    padding-block: 64px;
+  }
+  .review-card {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .review-card__media {
+    min-height: 320px;
+  }
+  .review-card__body {
+    padding: 32px;
+  }
+  .review-card__footer {
+    padding-top: 40px;
+  }
+}
+
+/* Мобайл (375) */
+@media (max-width: 560px) {
+  .reviews__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .reviews__link {
+    order: 3;
+  }
+  .review-card {
+    padding: 12px;
+  }
+  .review-card__media {
+    min-height: 220px;
+  }
+  .review-card__body {
+    padding: 24px 20px;
+  }
+  .review-card__quote {
+    font-size: 20px;
+  }
+  .review-card__footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding-top: 32px;
+  }
+}
