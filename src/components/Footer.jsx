@@ -11,8 +11,8 @@ const CONTACTS = [
   { label: "Телефон", value: "+7 495 120-14-08", href: "tel:+74951201408" },
   {
     label: "Telegram",
-    value: "@zhukovsky_studio",
-    href: "https://t.me/zhukovsky_studio",
+    value: "@Mark_Zhukovskiy",
+    href: "https://t.me/Mark_Zhukovskiy",
   },
 ];
 

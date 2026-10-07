@@ -106,12 +106,12 @@ export default function MobileMenu({ open, services, onClose, onContact }) {
           <div className="mmenu__contact">
             <span className="mmenu__contact-label">Telegram</span>
             <a
-              href="https://t.me/zhukovsky_studio"
+              href="https://t.me/Mark_Zhukovskiy"
               target="_blank"
               rel="noreferrer"
               tabIndex={open ? 0 : -1}
             >
-              @zhukovsky_studio
+              @Mark_Zhukovskiy
             </a>
           </div>
         </div>

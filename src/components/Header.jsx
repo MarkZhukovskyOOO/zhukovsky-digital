@@ -181,7 +181,7 @@ export default function Header() {
 
         <div className="header__actions">
           <a
-            href="https://t.me/zhukovsky_studio"
+            href="https://t.me/Mark_Zhukovskiy"
             className="header__tg"
             target="_blank"
             rel="noreferrer"

@@ -61,8 +61,8 @@ const CONTACTS = [
   { label: "Телефон", value: "+7 495 120-14-08", href: "tel:+74951201408" },
   {
     label: "Telegram",
-    value: "@zhukovsky_studio",
-    href: "https://t.me/zhukovsky_studio",
+    value: "@Mark_Zhukovskiy",
+    href: "https://t.me/Mark_Zhukovskiy",
   },
   { label: "Адрес", value: "Москва, ул. Примерная, 1, офис 200" },
   { label: "Часы", value: "Пн–Пт, 10:00–19:00 по Москве" },
