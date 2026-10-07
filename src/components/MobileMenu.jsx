@@ -95,8 +95,8 @@ export default function MobileMenu({ open, services, onClose, onContact }) {
         <div className="mmenu__contacts">
           <div className="mmenu__contact">
             <span className="mmenu__contact-label">Почта</span>
-            <a href="mailto:hello@zhukovsky.studio" tabIndex={open ? 0 : -1}>
-              hello@zhukovsky.studio
+            <a href="mailto:sales@zhukovsky-digital.com" tabIndex={open ? 0 : -1}>
+              sales@zhukovsky-digital.com
             </a>
           </div>
           <div className="mmenu__contact">

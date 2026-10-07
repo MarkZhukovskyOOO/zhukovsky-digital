@@ -55,8 +55,8 @@ const INDUSTRIES = [
 const CONTACTS = [
   {
     label: "Почта",
-    value: "hello@zhukovsky.studio",
-    href: "mailto:hello@zhukovsky.studio",
+    value: "sales@zhukovsky-digital.com",
+    href: "mailto:sales@zhukovsky-digital.com",
   },
   { label: "Телефон", value: "+7 495 120-14-08", href: "tel:+74951201408" },
   {
@@ -146,7 +146,7 @@ export default function CompanyPage() {
               </div>
               <a
                 className="company-section__action"
-                href="mailto:hello@zhukovsky.studio"
+                href="mailto:sales@zhukovsky-digital.com"
               >
                 Вакансии →
               </a>
