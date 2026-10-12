@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
+import { useLeadForm } from "../lib/useLeadForm.js";
 import "./ContactModal.css";
 
 /* Модалка «Обсудить проект» — фреймы modal-1440/768/375.
    Открывается по window-событию `open-contact-modal`. */
 export default function ContactModal() {
   const [open, setOpen] = useState(false);
-  const [need, setNeed] = useState("new");
+  const form = useLeadForm();
   const lastFocusRef = useRef(null);
   const closeBtnRef = useRef(null);
 
@@ -54,7 +55,7 @@ export default function ContactModal() {
       }}
     >
       <div className="cmodal__frame">
-        <form className="cmodal__card" onSubmit={(e) => e.preventDefault()}>
+        <form className="cmodal__card" onSubmit={form.onSubmit}>
           <button
             type="button"
             ref={closeBtnRef}
@@ -74,34 +75,54 @@ export default function ContactModal() {
           </p>
 
           <div className="cmodal__row">
-            <input type="text" placeholder="Имя" aria-label="Имя" />
-            <input type="text" placeholder="Компания" aria-label="Компания" />
+            <input
+              type="text"
+              name="name"
+              autoComplete="name"
+              placeholder="Имя"
+              aria-label="Имя"
+              value={form.name}
+              onChange={(event) => form.setName(event.target.value)}
+            />
+            <input
+              type="text"
+              name="organization"
+              autoComplete="organization"
+              placeholder="Компания"
+              aria-label="Компания"
+              value={form.company}
+              onChange={(event) => form.setCompany(event.target.value)}
+            />
           </div>
           <input
             type="text"
             className="cmodal__input"
+            name="contact"
+            autoComplete="on"
             placeholder="Телефон, почта или Telegram"
             aria-label="Телефон, почта или Telegram"
+            value={form.contact}
+            onChange={(event) => form.setContact(event.target.value)}
           />
 
           <div className="cmodal__label">Что нужно?</div>
           <div className="cmodal__options">
-            <label className={`cmodal-option ${need === "new" ? "is-active" : ""}`}>
+            <label className={`cmodal-option ${form.need === "new" ? "is-active" : ""}`}>
               <input
                 type="radio"
                 name="cmodal-need"
-                checked={need === "new"}
-                onChange={() => setNeed("new")}
+                checked={form.need === "new"}
+                onChange={() => form.setNeed("new")}
               />
               <i className="cmodal-option__dot" aria-hidden="true" />
               <span>Новый продукт с нуля</span>
             </label>
-            <label className={`cmodal-option ${need === "dev" ? "is-active" : ""}`}>
+            <label className={`cmodal-option ${form.need === "dev" ? "is-active" : ""}`}>
               <input
                 type="radio"
                 name="cmodal-need"
-                checked={need === "dev"}
-                onChange={() => setNeed("dev")}
+                checked={form.need === "dev"}
+                onChange={() => form.setNeed("dev")}
               />
               <i className="cmodal-option__dot" aria-hidden="true" />
               <span>Развитие или аудит существующего</span>
@@ -110,13 +131,30 @@ export default function ContactModal() {
 
           <textarea
             rows="4"
+            name="message"
             placeholder="Коротко о задаче: продукт, сроки, что уже есть"
             aria-label="Расскажите о задаче"
+            value={form.message}
+            onChange={(event) => form.setMessage(event.target.value)}
           />
 
-          <button type="submit" className="btn btn-primary cmodal__submit">
-            Отправить заявку
+          <button
+            type="submit"
+            className="btn btn-primary cmodal__submit"
+            disabled={form.status === "sending"}
+          >
+            {form.status === "sending" ? "Отправляем…" : "Отправить заявку"}
           </button>
+          {form.status === "success" && (
+            <p className="cmodal__status cmodal__status--ok" role="status">
+              Заявка отправлена. Ответим в течение рабочего дня.
+            </p>
+          )}
+          {form.status === "error" && (
+            <p className="cmodal__status cmodal__status--err" role="alert">
+              {form.error}
+            </p>
+          )}
           <p className="cmodal__note">
             Нажимая кнопку, вы соглашаетесь с{" "}
             <Link to="/policy" className="cmodal__policy" onClick={close}>

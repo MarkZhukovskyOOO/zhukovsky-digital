@@ -191,6 +191,18 @@
   height: var(--control-xl);
   padding-inline: 32px;
 }
+.cmodal__status {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.cmodal__status--ok {
+  color: var(--color-text-success);
+}
+.cmodal__status--err {
+  color: var(--color-text-danger);
+}
 
 .cmodal__note {
   margin-top: 20px;

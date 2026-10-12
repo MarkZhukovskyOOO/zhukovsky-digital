@@ -230,6 +230,18 @@
   height: var(--control-xl);
   padding-inline: 32px;
 }
+.contact-form__status {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.contact-form__status--ok {
+  color: var(--color-text-success);
+}
+.contact-form__status--err {
+  color: var(--color-text-danger);
+}
 
 .contact-form__note {
   margin-top: 20px;
