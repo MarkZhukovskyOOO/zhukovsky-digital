@@ -1,3 +1,11 @@
+.case-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #b2c7f6;
+}
+
 .project-case__cover {
   position: relative;
   display: flex;

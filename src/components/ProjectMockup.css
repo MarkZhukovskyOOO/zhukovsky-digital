@@ -1,0 +1,110 @@
+/* Сцена проекта: экраны прокручиваются внутри устройств
+   на синем фоне, как в прототипе макета. */
+
+.mockup {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #b2c7f6;
+  pointer-events: none;
+}
+
+.mockup__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: #b2c7f6;
+}
+
+.mockup__video::-webkit-media-controls {
+  display: none !important;
+}
+
+.mockup--live {
+  background: linear-gradient(
+    180deg,
+    #b2c7f6 0%,
+    #b2c7f6 40%,
+    #98b4e5 62%,
+    #637dc0 84%,
+    #3f5fa7 100%
+  );
+}
+
+.mockup__scene {
+  position: absolute;
+  inset: 0;
+}
+
+.mockup__window {
+  position: absolute;
+  overflow: hidden;
+  background: #ffffff;
+  border-radius: clamp(18px, 2.2vw, 36px);
+  box-shadow:
+    0 24px 60px rgba(24, 48, 112, 0.22),
+    0 2px 0 rgba(255, 255, 255, 0.7) inset;
+}
+
+.mockup__window--center {
+  z-index: 2;
+  left: 18%;
+  top: 14%;
+  width: 64%;
+  height: 96%;
+}
+
+.mockup__window--left,
+.mockup__window--right {
+  z-index: 1;
+  top: 21%;
+  width: 42%;
+  height: 90%;
+}
+
+.mockup__window--left {
+  left: -26%;
+}
+
+.mockup__window--right {
+  left: 83%;
+}
+
+.mockup__shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  animation-name: mockup-yoyo;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-play-state: paused;
+  will-change: transform;
+}
+
+.mockup__shot.is-ready {
+  animation-play-state: running;
+}
+
+@keyframes mockup-yoyo {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, calc(var(--shift, 0px) * -1), 0);
+  }
+}
+
+@media (max-width: 560px) {
+  .mockup__window {
+    border-radius: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mockup__shot {
+    animation: none;
+  }
+}

@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs.jsx";
 import Footer from "../components/Footer.jsx";
-import ScreensCarousel from "../components/ScreensCarousel.jsx";
-import adonisCover from "../assets/figma/case-energo-cover.png";
-import olympCover from "../assets/figma/case-olymp-cover.png";
+import { AdonisMockup, OlympBrowsers, OlympPhones } from "../components/ProjectMockup.jsx";
 import "./CasePage.css";
 import "./ProjectCasePage.css";
 
@@ -14,7 +12,7 @@ const PROJECTS = {
     title: "Адонис — от поиска лекарства до бронирования в аптеке",
     lead: "Разработали сайт и мобильное приложение для аптечной сети: каталог товаров, поиск, выбор аптеки, бронирование и личный кабинет. Связали цифровые сервисы с аптечной системой через API.",
     tags: ["Сайт", "Мобильное приложение", "Личный кабинет", "Интеграции"],
-    cover: adonisCover,
+    media: <AdonisMockup />,
     coverAlt: "Сайт и мобильное приложение аптечной сети «Адонис»",
     facts: [
       ["Клиент", "Аптечная сеть «Адонис»"],
@@ -61,7 +59,8 @@ const PROJECTS = {
     title: "Олимп Клиник — пересборка сайта медицинской сети",
     lead: "Подключились к обновлению сайта, доработали предоставленные макеты и реализовали клиентскую и серверную части, интеграцию с 1С-Битрикс и личный кабинет. Довели проект до запуска примерно за три месяца.",
     tags: ["Сайт", "Личный кабинет", "1С-Битрикс", "Перенос сайта"],
-    cover: olympCover,
+    media: <OlympPhones />,
+    screens: <OlympBrowsers />,
     coverAlt: "Сайт «Олимп Клиник»",
     facts: [
       ["Клиент", "Олимп Клиник"],
@@ -130,7 +129,9 @@ export default function ProjectCasePage({ project }) {
           </div>
         </section>
 
-        <img className="case-cover" src={data.cover} alt={data.coverAlt} />
+        <div className="case-stage" aria-label={data.coverAlt}>
+          {data.media}
+        </div>
 
         <section className="container case-facts" aria-label="Факты о проекте">
           {data.facts.map(([label, value]) => (
@@ -141,7 +142,9 @@ export default function ProjectCasePage({ project }) {
           ))}
         </section>
 
-        <ScreensCarousel project={project} />
+        {data.screens && (
+          <div className="case-stage case-stage--follow">{data.screens}</div>
+        )}
 
         <section className="case-section">
           <div className="container">

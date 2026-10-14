@@ -94,8 +94,8 @@
 .cases-card__media {
   position: relative;
   border-radius: var(--radius-lg);
-  background: var(--bg-soft);
-  height: 340px;
+  background: #b2c7f6;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
 }
 

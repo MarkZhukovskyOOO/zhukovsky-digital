@@ -1,14 +1,13 @@
-import mainShot from "../assets/figma/case-shot-main.png";
-import catalogShot from "../assets/figma/case-shot-catalog.png";
-import cabinetShot from "../assets/figma/case-shot-cabinet.png";
-import bookingShot from "../assets/figma/case-energo-cover.png";
+import productShot from "../assets/figma/adonis-shot-product.png";
+import cartShot from "../assets/figma/adonis-shot-cart.png";
+import loginShot from "../assets/figma/adonis-shot-login.png";
 import olympShot from "../assets/figma/case-olymp-cover.png";
 import "./ScreensCarousel.css";
 
 const ADONIS_SHOTS = [
-  { src: catalogShot, alt: "Поиск товара и информация о наличии", caption: "Каталог" },
-  { src: bookingShot, alt: "Выбор аптеки для получения заказа", caption: "Бронирование" },
-  { src: cabinetShot, alt: "Заказы и карта лояльности", caption: "Личный кабинет" },
+  { src: productShot, alt: "Карточка товара: цена и наличие в аптеках", caption: "Карточка товара" },
+  { src: cartShot, alt: "Корзина с составом заказа и переходом к оформлению", caption: "Корзина" },
+  { src: loginShot, alt: "Вход в личный кабинет: брони и история заказов", caption: "Вход" },
 ];
 const OLYMP_SHOTS = [
   { src: olympShot, alt: "Адаптивные страницы сайта Олимп Клиник", caption: "Сайт клиники" },

@@ -1,17 +1,16 @@
 import { Link } from "react-router-dom";
-import adonisImg from "../assets/figma/case-energo-cover.png";
-import olympImg from "../assets/figma/case-olymp-cover.png";
+import { AdonisMockup, OlympPhones } from "./ProjectMockup.jsx";
 import "./Products.css";
 
 const PRODUCTS = [
   {
-    img: adonisImg,
+    media: <AdonisMockup />,
     title: "Адонис: сайт и приложение для аптечной сети",
     desc: "Каталог, наличие в аптеках, бронирование и карта лояльности. Сайт и приложение для iOS и Android с интеграцией в аптечную систему.",
     to: "/case/adonis",
   },
   {
-    img: olympImg,
+    media: <OlympPhones />,
     title: "Олимп Клиник: сайт и личный кабинет для сети клиник",
     desc: "Полная пересборка сайта, доработка готовых макетов и интеграция с 1С-Битрикс. От подключения к проекту до запуска — около трёх месяцев.",
     to: "/case/olymp-clinic",
@@ -39,14 +38,7 @@ export default function Products() {
           {PRODUCTS.map((p) => {
             const inner = (
               <>
-                <div className="product-card__media">
-                  <img
-                    src={p.img}
-                    alt={p.title}
-                    className="product-card__img"
-                    loading="lazy"
-                  />
-                </div>
+                <div className="product-card__media">{p.media}</div>
                 <h3 className="product-card__title">{p.title}</h3>
                 <p className="product-card__desc">{p.desc}</p>
               </>

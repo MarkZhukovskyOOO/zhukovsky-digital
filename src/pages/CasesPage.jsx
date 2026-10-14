@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs.jsx";
 import Footer from "../components/Footer.jsx";
-import adonisImg from "../assets/figma/case-energo-cover.png";
-import olympImg from "../assets/figma/case-olymp-cover.png";
 import { useState } from "react";
+import { AdonisMockup, OlympPhones } from "../components/ProjectMockup.jsx";
 import "./CasesPage.css";
 
 const FILTERS = [
@@ -16,14 +15,14 @@ const FILTERS = [
 
 const CASES = [
   {
-    img: adonisImg,
+    media: <AdonisMockup />,
     title: "Адонис: сайт и приложение для аптечной сети",
     desc: "Каталог, наличие в аптеках, бронирование и карта лояльности. Сайт и приложение для iOS и Android с интеграцией в аптечную систему.",
     to: "/case/adonis",
     categories: ["Мобильные приложения", "Сайты и веб-сервисы", "Личные кабинеты"],
   },
   {
-    img: olympImg,
+    media: <OlympPhones />,
     title: "Олимп Клиник: сайт и личный кабинет для сети клиник",
     desc: "Полная пересборка сайта, доработка готовых макетов и интеграция с 1С-Битрикс. От подключения к проекту до запуска — около трёх месяцев.",
     to: "/case/olymp-clinic",
@@ -80,14 +79,7 @@ export default function CasesPage() {
               {visibleCases.map((c) => {
                 const inner = (
                   <>
-                    <div className="cases-card__media">
-                      <img
-                        src={c.img}
-                        alt={c.title}
-                        className="cases-card__img"
-                        loading="lazy"
-                      />
-                    </div>
+                    <div className="cases-card__media">{c.media}</div>
                     <h3 className="cases-card__title">{c.title}</h3>
                     <p className="cases-card__desc">{c.desc}</p>
                   </>
