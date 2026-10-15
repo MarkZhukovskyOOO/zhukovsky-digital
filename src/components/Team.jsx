@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import teamPhoto from "../assets/figma/team-photo.png";
+import teamPhoto from "../assets/figma/team-photo.webp";
 import "./Team.css";
 
 const STATS = [

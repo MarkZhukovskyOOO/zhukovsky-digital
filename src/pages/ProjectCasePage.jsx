@@ -49,8 +49,6 @@ const PROJECTS = {
     outcomeTitle: "Собственные цифровые каналы",
     outcome: "Сайт и приложение полностью готовы и выпущены. У «Адониса» появились собственные цифровые каналы: покупатели могут находить товары и оформлять бронирования, а сотрудники — обрабатывать поступившие заказы в связке с аптечной системой. После релиза работа продолжается: развиваем функциональность, ASO приложения и GEO сайта.",
     technologies: ["iOS", "Android", "Аптечная CRM"],
-    metaTitle: "Сайт и приложение для аптечной сети «Адонис» — Zhukovsky Digital",
-    metaDescription: "С нуля создали сайт и приложение «Адонис» для iOS и Android, связали их с аптечной CRM и выпустили в работу. После релиза продолжаем развитие, ASO и GEO.",
     other: { to: "/case/olymp-clinic", label: "Олимп Клиник" },
   },
   olympClinic: {
@@ -97,8 +95,6 @@ const PROJECTS = {
     outcomeTitle: "Заново разработанный сайт",
     outcome: "Результат — заново разработанный сайт Olymp Clinic с обновлённым дизайном и управлением через 1С-Битрикс. В рамках партнёрского проекта мы отвечали за дизайн, согласование макетов и техническую реализацию.",
     technologies: ["1С-Битрикс"],
-    metaTitle: "Olymp Clinic: новая версия сайта на 1С-Битрикс — Zhukovsky Digital",
-    metaDescription: "Партнёрская команда Zhukovsky Digital заново разработала дизайн сайта Olymp Clinic, согласовала макеты и реализовала сайт на 1С-Битрикс.",
     other: { to: "/case/adonis", label: "Адонис" },
   },
 };
@@ -108,8 +104,6 @@ export default function ProjectCasePage({ project }) {
 
   return (
     <>
-      <title>{data.metaTitle}</title>
-      <meta name="description" content={data.metaDescription} />
       <main className="project-case">
         <section className="container case-hero">
           <Breadcrumbs

@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs.jsx";
 import ContactForm from "../components/ContactForm.jsx";
 import Footer from "../components/Footer.jsx";
-import teamPhoto from "../assets/figma/team-photo.png";
+import teamPhoto from "../assets/figma/team-photo.webp";
 import "./CompanyPage.css";
 
 const STATS = [
@@ -26,7 +27,12 @@ const PRINCIPLES = [
   },
   {
     title: "Развитие после запуска",
-    desc: "После запуска можем продолжить развитие: добавлять функции, дорабатывать интеграции и пользовательские сценарии. Для «Адониса» ведём ASO приложения и GEO сайта. Состав дальнейших работ согласуем отдельно.",
+    desc: (
+      <>
+        После запуска можем продолжить развитие: добавлять функции, дорабатывать интеграции и пользовательские сценарии. Для{" "}
+        <Link className="company-link" to="/case/adonis">«Адониса»</Link> ведём ASO приложения и GEO сайта. Состав дальнейших работ согласуем отдельно.
+      </>
+    ),
   },
 ];
 
@@ -146,9 +152,11 @@ export default function CompanyPage() {
                 Клиники, аптеки и электронная коммерция
               </h2>
               <p className="company-principle__desc">
-                Для аптечной сети «Адонис» мы с нуля создали сайт и мобильное
-                приложение. В проекте Olymp Clinic участвовали как партнёрская
-                команда: разработали дизайн, согласовали макеты, выполнили
+                Для аптечной сети{" "}
+                <Link className="company-link" to="/case/adonis">«Адонис»</Link>{" "}
+                мы с нуля создали сайт и мобильное приложение. В проекте{" "}
+                <Link className="company-link" to="/case/olymp-clinic">Olymp Clinic</Link>{" "}
+                участвовали как партнёрская команда: разработали дизайн, согласовали макеты, выполнили
                 вёрстку и подключили 1С-Битрикс.
               </p>
             </div>

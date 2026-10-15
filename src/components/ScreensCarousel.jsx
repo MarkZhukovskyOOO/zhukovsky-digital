@@ -1,7 +1,7 @@
 import productShot from "../assets/figma/adonis-shot-product.png";
 import cartShot from "../assets/figma/adonis-shot-cart.png";
 import loginShot from "../assets/figma/adonis-shot-login.png";
-import olympShot from "../assets/figma/case-olymp-cover.png";
+import olympShot from "../assets/figma/case-olymp-cover.webp";
 import "./ScreensCarousel.css";
 
 const ADONIS_SHOTS = [

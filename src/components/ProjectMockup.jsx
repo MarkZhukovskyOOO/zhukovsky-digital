@@ -1,19 +1,19 @@
 import { useEffect, useRef } from "react";
-import adonisHome from "../assets/figma/case-shot-main.png";
-import adonisCatalog from "../assets/figma/case-shot-catalog.png";
-import adonisCabinet from "../assets/figma/case-shot-cabinet.png";
-import olympKlinika from "../assets/figma/olymp-klinika.png";
-import olympNapravleniya from "../assets/figma/olymp-napravleniya.png";
-import olympVrachi from "../assets/figma/olymp-vrachi.png";
-import olympMobileSet from "../assets/figma/olymp-m-set.png";
-import olympMobileKlinika from "../assets/figma/olymp-m-klinika.png";
-import olympMobileVrachi from "../assets/figma/olymp-m-vrachi.png";
+import adonisHome from "../assets/figma/case-shot-main.webp";
+import adonisCatalog from "../assets/figma/case-shot-catalog.webp";
+import adonisCabinet from "../assets/figma/case-shot-cabinet.webp";
+import olympKlinika from "../assets/figma/olymp-klinika.webp";
+import olympNapravleniya from "../assets/figma/olymp-napravleniya.webp";
+import olympVrachi from "../assets/figma/olymp-vrachi.webp";
+import olympMobileSet from "../assets/figma/olymp-m-set.webp";
+import olympMobileKlinika from "../assets/figma/olymp-m-klinika.webp";
+import olympMobileVrachi from "../assets/figma/olymp-m-vrachi.webp";
 import "./ProjectMockup.css";
 
 const ADONIS_SCREENS = [
-  { src: adonisCabinet, place: "left", duration: "13s", delay: "-5s" },
-  { src: adonisCatalog, place: "right", duration: "11s", delay: "-8s" },
-  { src: adonisHome, place: "center", duration: "12s", delay: "-2s" },
+  { src: adonisCabinet, alt: "Личный кабинет на сайте «Адонис»", place: "left", duration: "13s", delay: "-5s" },
+  { src: adonisCatalog, alt: "Каталог товаров на сайте «Адонис»", place: "right", duration: "11s", delay: "-8s" },
+  { src: adonisHome, alt: "Главная страница сайта «Адонис»", place: "center", duration: "12s", delay: "-2s" },
 ];
 
 function useInViewPlayback(videoRef) {
@@ -73,7 +73,7 @@ export function MockupVideo({ src, poster, label }) {
   );
 }
 
-function MockupWindow({ src, place, duration, delay }) {
+function MockupWindow({ src, alt, place, duration, delay }) {
   const frameRef = useRef(null);
   const imgRef = useRef(null);
 
@@ -122,7 +122,7 @@ function MockupWindow({ src, place, duration, delay }) {
         ref={imgRef}
         className="mockup__shot"
         src={src}
-        alt=""
+        alt={alt}
         draggable="false"
         style={{ animationDuration: duration, animationDelay: delay }}
       />
@@ -152,9 +152,9 @@ export function AdonisMockup() {
 }
 
 const OLYMP_PHONES = [
-  { src: olympMobileSet, delay: 600 },
-  { src: olympMobileKlinika, delay: 1300 },
-  { src: olympMobileVrachi, delay: 2000 },
+  { src: olympMobileSet, delay: 600, alt: "Список клиник Olymp Clinic на телефоне" },
+  { src: olympMobileKlinika, delay: 1300, alt: "Страница клиники Olymp Clinic на телефоне" },
+  { src: olympMobileVrachi, delay: 2000, alt: "Страница врачей Olymp Clinic на телефоне" },
 ];
 
 export function OlympPhones() {
@@ -209,7 +209,7 @@ export function OlympPhones() {
                 <div className="olymp-phone__status" aria-hidden="true">
                   <span className="olymp-phone__island" />
                 </div>
-                <img src={phone.src} alt="" draggable="false" />
+                <img src={phone.src} alt={phone.alt} draggable="false" />
               </div>
             </div>
           ))}
@@ -220,9 +220,9 @@ export function OlympPhones() {
 }
 
 const OLYMP_FRAMES = [
-  { src: olympKlinika, scroll: 640 },
-  { src: olympNapravleniya, scroll: 640 },
-  { src: olympVrachi, scroll: 640 },
+  { src: olympKlinika, scroll: 640, alt: "Страница клиники на сайте Olymp Clinic" },
+  { src: olympNapravleniya, scroll: 640, alt: "Направления на сайте Olymp Clinic" },
+  { src: olympVrachi, scroll: 640, alt: "Врачи на сайте Olymp Clinic" },
 ];
 
 const CAROUSEL_SLOTS = [0, 1, 2, 3, -2, -1];
@@ -380,7 +380,12 @@ export function OlympBrowsers() {
         <div className="carousel__stage" ref={stageRef}>
           {frames.map((frame, index) => (
             <div className="carousel__card" data-scroll={frame.scroll} key={index}>
-              <img src={frame.src} alt="" draggable="false" loading="lazy" />
+              <img
+                src={frame.src}
+                alt={index < OLYMP_FRAMES.length ? frame.alt : ""}
+                draggable="false"
+                loading="lazy"
+              />
             </div>
           ))}
         </div>

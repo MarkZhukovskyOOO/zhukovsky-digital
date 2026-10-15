@@ -2,6 +2,7 @@ import { createReadStream, existsSync, statSync } from "node:fs";
 import { createServer } from "node:http";
 import { extname, join, sep } from "node:path";
 import { fileURLToPath } from "node:url";
+import { REDIRECTS, ROUTES, normalizePath } from "./seo-routes.js";
 import { handleLead } from "./server/lead.js";
 
 const root = fileURLToPath(new URL(".", import.meta.url));
@@ -24,8 +25,11 @@ const types = {
   ".woff2": "font/woff2",
   ".ttf": "font/ttf",
   ".txt": "text/plain; charset=utf-8",
+  ".xml": "application/xml; charset=utf-8",
   ".webmanifest": "application/manifest+json",
 };
+
+const routes = new Set(ROUTES);
 
 function fileInDist(urlPath) {
   let decoded;
@@ -42,13 +46,17 @@ function fileInDist(urlPath) {
   return file;
 }
 
-function sendFile(res, file) {
+function sendFile(res, file, status = 200) {
   const type = types[extname(file)] || "application/octet-stream";
   const cache =
     file.includes(`${sep}assets${sep}`)
       ? "public, max-age=31536000, immutable"
       : "no-cache";
-  res.writeHead(200, { "Content-Type": type, "Cache-Control": cache });
+  res.writeHead(status, { "Content-Type": type, "Cache-Control": cache });
+  if (res.req.method === "HEAD") {
+    res.end();
+    return;
+  }
   createReadStream(file).pipe(res);
 }
 
@@ -62,35 +70,44 @@ const server = createServer(async (req, res) => {
       return;
     }
 
+    const path = normalizePath(req.url || "/");
+    if (!path) {
+      res.writeHead(400, { "Content-Type": "text/plain; charset=utf-8" });
+      res.end("Bad request");
+      return;
+    }
+
+    const redirect = REDIRECTS[path];
+    if (redirect) {
+      res.writeHead(301, { Location: redirect });
+      res.end();
+      return;
+    }
+
     let file = fileInDist(req.url || "/");
     if (file && existsSync(file) && statSync(file).isDirectory()) {
       file = join(file, "index.html");
     }
     if (file && existsSync(file) && statSync(file).isFile()) {
-      if (req.method === "HEAD") {
-        res.writeHead(200);
-        res.end();
-        return;
-      }
       sendFile(res, file);
       return;
     }
 
-    const index = join(dist, "index.html");
-    if (!existsSync(index)) {
-      res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-      res.end("Not found");
+    if (routes.has(path)) {
+      const index = join(dist, "index.html");
+      if (existsSync(index)) {
+        sendFile(res, index);
+        return;
+      }
+    }
+
+    const missing = join(dist, "404.html");
+    if (existsSync(missing)) {
+      sendFile(res, missing, 404);
       return;
     }
-    res.writeHead(200, {
-      "Content-Type": "text/html; charset=utf-8",
-      "Cache-Control": "no-cache",
-    });
-    if (req.method === "HEAD") {
-      res.end();
-      return;
-    }
-    createReadStream(index).pipe(res);
+    res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
+    res.end("Такой страницы нет");
   } catch (error) {
     console.error(error);
     if (!res.headersSent) {

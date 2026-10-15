@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header.jsx";
+import Seo from "./Seo.jsx";
 import ContactModal from "./ContactModal.jsx";
 import { ThemeProvider } from "../theme-context.jsx";
 import useScrollReveal from "../hooks/useScrollReveal.js";
@@ -20,6 +21,7 @@ export default function Layout() {
   return (
     <ThemeProvider>
       <ScrollToTop />
+      <Seo />
       <Header />
       <Outlet />
       <ContactModal />

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import footerMotion from "../assets/figma/footer-motion.png";
+import footerMotion from "../assets/figma/footer-motion.webp";
 import "./Footer.css";
 
 const CONTACTS = [

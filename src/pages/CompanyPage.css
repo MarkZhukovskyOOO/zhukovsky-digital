@@ -253,6 +253,12 @@ a.company-contact-row__value:hover {
   color: var(--color-text-muted);
 }
 
+.company-link {
+  color: var(--color-text-brand);
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
 /* ============================================================
    Планшет (по фрейму Company 768): двухколоночность сохраняется,
    статы — в столбик с короткими линиями, контакты — в столбик

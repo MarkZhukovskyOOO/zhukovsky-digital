@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout.jsx";
 import Home from "./pages/Home.jsx";
 import ServicesPage from "./pages/ServicesPage.jsx";
@@ -18,7 +18,7 @@ export default function App() {
           <Route path="/company" element={<CompanyPage />} />
           <Route path="/case/adonis" element={<ProjectCasePage project="adonis" />} />
           <Route path="/case/olymp-clinic" element={<ProjectCasePage project="olympClinic" />} />
-          <Route path="/case/olymp" element={<ProjectCasePage project="olympClinic" />} />
+          <Route path="/case/olymp" element={<Navigate to="/case/olymp-clinic" replace />} />
           <Route path="/cases" element={<CasesPage />} />
           <Route path="/policy" element={<PolicyPage />} />
           <Route path="*" element={<NotFoundPage />} />

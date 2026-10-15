@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs.jsx";
 import Footer from "../components/Footer.jsx";
-import adonisImg from "../assets/figma/adonis-cover.png";
-import olympImg from "../assets/figma/case-olymp-cover.png";
+import adonisImg from "../assets/figma/adonis-cover.webp";
+import olympImg from "../assets/figma/case-olymp-cover.webp";
 import "./ServicesPage.css";
 
 const openContactModal = () =>
