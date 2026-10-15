@@ -31,11 +31,6 @@
 .logo__accent {
   color: var(--color-icon-brand);
 }
-.logo__short {
-  display: none;
-  font-size: 17px;
-  font-weight: 500;
-}
 
 /* --- Навигация по центру --- */
 .header__nav {
@@ -204,17 +199,10 @@
 
 /* ============================================================
    Планшет ≤860 — хедер 72px, меню инлайн после логотипа
-   (как во фрейме dropdown-768: «Жуковский», без иконок и Telegram)
    ============================================================ */
 @media (max-width: 860px) {
   .header__inner {
     height: 72px;
-  }
-  .logo__full {
-    display: none;
-  }
-  .logo__short {
-    display: inline;
   }
   .header__nav {
     position: static;
@@ -268,6 +256,22 @@
   }
   .nav-drop__item {
     height: 44px;
+  }
+}
+
+/* Узкий планшет: полное имя логотипа рядом с меню и кнопкой */
+@media (max-width: 640px) {
+  .logo {
+    font-size: 16px;
+  }
+  .header__nav {
+    margin-left: 12px;
+  }
+  .header__cta {
+    padding-inline: 12px;
+  }
+  .header__actions {
+    gap: 8px;
   }
 }
 

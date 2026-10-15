@@ -56,7 +56,7 @@ export default function Footer({ slim = false }) {
 
         <div className={`footer__bottom ${slim ? "footer__bottom--slim" : ""}`}>
           <Link to="/" className="footer__brand">
-            Жуковский
+            Zhukovsky <span className="logo__accent">Digital</span>
           </Link>
           <nav className="footer__nav">
             {NAV.map((item) => (

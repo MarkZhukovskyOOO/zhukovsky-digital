@@ -105,10 +105,7 @@ export default function Header() {
     <header className={`header ${scrolled ? "is-scrolled" : ""}`}>
       <div className="container header__inner">
         <Link to="/" className="logo" aria-label="Zhukovsky Digital — на главную">
-          <span className="logo__full">
-            Zhukovsky <span className="logo__accent">Digital</span>
-          </span>
-          <span className="logo__short">Жуковский</span>
+          Zhukovsky <span className="logo__accent">Digital</span>
         </Link>
 
         <nav className="header__nav" aria-label="Основная навигация">

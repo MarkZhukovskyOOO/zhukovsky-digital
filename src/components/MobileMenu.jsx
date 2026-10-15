@@ -42,7 +42,7 @@ export default function MobileMenu({ open, services, onClose, onContact }) {
     >
       <div className="mmenu__top">
         <Link to="/" className="mmenu__logo" onClick={onClose} tabIndex={open ? 0 : -1}>
-          Жуковский
+          Zhukovsky <span className="logo__accent">Digital</span>
         </Link>
         <button
           type="button"
