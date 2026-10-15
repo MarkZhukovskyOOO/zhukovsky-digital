@@ -3,7 +3,13 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: #b2c7f6;
+  background: #b0c7f5;
+}
+
+@media (max-width: 860px) {
+  .case-stage--follow {
+    display: none;
+  }
 }
 
 .project-case__cover {

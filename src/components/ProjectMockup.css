@@ -108,3 +108,201 @@
     animation: none;
   }
 }
+
+/* Карусель макетов: сцена 1440×810, слот 0 в центре, шаг 848. */
+
+.mockup--carousel,
+.mockup--olymp {
+  background: linear-gradient(180deg, #b0c7f5 0%, #3356a3 100%);
+}
+
+.carousel {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.carousel__stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: 810px;
+  overflow: hidden;
+  transform-origin: top left;
+}
+
+.carousel__card {
+  position: absolute;
+  top: 125px;
+  left: 280px;
+  width: 880px;
+  height: 560px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 24px 60px rgba(10, 26, 82, 0.26);
+  transform: translateX(calc(var(--slot, 0) * 848px)) scale(var(--sc, 0.8));
+  transform-origin: center;
+  transition: transform 900ms cubic-bezier(0.45, 0, 0.55, 1);
+  will-change: transform;
+}
+
+.carousel__card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: translateY(var(--sy, 0px));
+  transition: transform 2400ms cubic-bezier(0.45, 0, 0.55, 1);
+  will-change: transform;
+}
+
+.carousel__card.is-instant,
+.carousel__card.is-instant img {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel__card,
+  .carousel__card img {
+    transition: none;
+  }
+}
+
+/* Три телефона: корпуса стоят, внутри экрана макет едет вниз и возвращается. */
+
+.olymp-phone {
+  position: absolute;
+  width: 284px;
+  height: 599px;
+  border-radius: 42px;
+  background: #0a0a0d;
+  box-shadow:
+    0 0 0 1px #474952,
+    0 23px 46px rgba(5, 18, 64, 0.35);
+}
+
+.olymp-phone:nth-child(1) {
+  left: 222px;
+  top: 160px;
+}
+
+.olymp-phone:nth-child(2) {
+  left: 578px;
+  top: 105px;
+}
+
+.olymp-phone:nth-child(3) {
+  left: 934px;
+  top: 50px;
+}
+
+.olymp-phone__screen {
+  position: absolute;
+  inset: 7px;
+  overflow: hidden;
+  border-radius: 35px;
+  background: #ffffff;
+}
+
+.olymp-phone__status {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  height: 36px;
+  background: #ffffff;
+}
+
+.olymp-phone__island {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 76px;
+  height: 22px;
+  border-radius: 11px;
+  background: #0a0a0d;
+  transform: translateX(-50%);
+}
+
+.olymp-phone__screen img {
+  position: absolute;
+  top: 36px;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: auto;
+  animation-duration: 12400ms;
+  animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  animation-iteration-count: infinite;
+  animation-play-state: paused;
+  will-change: transform;
+}
+
+.olymp-phone:nth-child(1) .olymp-phone__screen img {
+  animation-name: olymp-phone-1;
+}
+
+.olymp-phone:nth-child(2) .olymp-phone__screen img {
+  animation-name: olymp-phone-2;
+}
+
+.olymp-phone:nth-child(3) .olymp-phone__screen img {
+  animation-name: olymp-phone-3;
+}
+
+.olymp-phones.is-live .olymp-phone__screen img {
+  animation-play-state: running;
+}
+
+@keyframes olymp-phone-1 {
+  0%,
+  4.8387% {
+    transform: translateY(0);
+  }
+  29.0323%,
+  61.2903% {
+    transform: translateY(-547px);
+  }
+  85.4839%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes olymp-phone-2 {
+  0%,
+  10.4839% {
+    transform: translateY(0);
+  }
+  34.6774%,
+  66.9355% {
+    transform: translateY(-547px);
+  }
+  91.129%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes olymp-phone-3 {
+  0%,
+  16.129% {
+    transform: translateY(0);
+  }
+  40.3226%,
+  72.5806% {
+    transform: translateY(-547px);
+  }
+  96.7742%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .olymp-phone__screen img {
+    animation: none;
+  }
+}

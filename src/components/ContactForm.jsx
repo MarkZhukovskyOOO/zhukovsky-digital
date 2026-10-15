@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
 import { useLeadForm } from "../lib/useLeadForm.js";
 
-export default function ContactForm({ title = "Обсудим вашу задачу" }) {
+export default function ContactForm({
+  title = "Обсудим вашу задачу",
+  note = "Ответим в течение рабочего дня. Для первого разговора достаточно коротко описать задачу — без длинных брифов и технического задания.",
+}) {
   const form = useLeadForm();
 
   return (
     <div className="contact-card" id="contact">
       <form className="contact-form" onSubmit={form.onSubmit}>
         <h3 className="contact-form__title">{title}</h3>
-        <p className="contact-form__sub">
-          Ответим в течение рабочего дня. Для первого разговора достаточно
-          коротко описать задачу — без длинных брифов и технического задания.
-        </p>
+        <p className="contact-form__sub">{note}</p>
 
         <div className="contact-form__row">
           <input
