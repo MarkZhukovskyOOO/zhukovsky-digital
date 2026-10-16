@@ -115,11 +115,16 @@
   max-width: 600px;
 }
 
-.project-case__outcome > p {
+.project-case__outcome > p,
+.project-case__outcome-copy p {
   max-width: 520px;
   color: var(--color-text-secondary);
   font-size: 18px;
   line-height: 1.6;
+}
+
+.project-case__outcome-copy p + p {
+  margin-top: 16px;
 }
 
 .project-case__context {
@@ -135,6 +140,155 @@
 
 .project-case__context .case-task {
   margin-top: 32px;
+}
+
+.case-section.case-section--adonis-context {
+  padding-top: 0;
+}
+
+.case-step__desc + .case-step__desc {
+  margin-top: 12px;
+}
+
+.project-case__context.project-case__context--split {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: start;
+  column-gap: 56px;
+  row-gap: 36px;
+}
+
+.project-case__context--split .case-h2 {
+  max-width: none;
+  margin-top: 16px;
+  font-size: 42px;
+  line-height: 1.15;
+  font-weight: 600;
+}
+
+.adonis-context__lead {
+  margin-top: 22px;
+  color: var(--color-text-secondary);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+.adonis-context__lead + .adonis-context__lead {
+  margin-top: 16px;
+}
+
+.adonis-context__needs-title {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.adonis-context__list {
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.adonis-context__item {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  column-gap: 16px;
+  padding-block: 22px;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.adonis-context__item:last-child {
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.adonis-context__num {
+  padding-top: 3px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+.adonis-context__name {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.adonis-context__note {
+  margin: 8px 0 0;
+  color: var(--color-text-secondary);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.project-case__context--split .adonis-context__task {
+  grid-column: 1 / -1;
+  margin-top: 0;
+  padding: 32px;
+  box-shadow: none;
+}
+
+.adonis-context__task-title {
+  margin: 12px 0 0;
+  color: var(--color-text-primary);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.project-case__context--split .adonis-context__task-copy {
+  max-width: 70ch;
+  margin: 12px 0 0;
+  color: var(--color-text-secondary);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+@media (max-width: 900px) {
+  .project-case__context.project-case__context--split {
+    grid-template-columns: 1fr;
+    row-gap: 30px;
+  }
+
+  .project-case__context--split .case-h2 {
+    font-size: 30px;
+    line-height: 1.18;
+  }
+
+  .adonis-context__lead {
+    font-size: 16px;
+  }
+
+  .adonis-context__needs-title {
+    font-size: 20px;
+  }
+
+  .adonis-context__name {
+    font-size: 17px;
+  }
+
+  .adonis-context__task-title {
+    font-size: 22px;
+  }
+
+  .project-case__context--split .adonis-context__task {
+    padding: 22px;
+  }
+
+  .project-case__context--split .adonis-context__task-copy {
+    font-size: 16px;
+  }
 }
 
 .project-case__paragraph + .project-case__paragraph {
@@ -251,7 +405,8 @@
     padding-top: 18px;
   }
 
-  .project-case__outcome > p {
+  .project-case__outcome > p,
+  .project-case__outcome-copy p {
     font-size: 16px;
   }
 
