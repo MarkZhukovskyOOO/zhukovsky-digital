@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs.jsx";
 import Footer from "../components/Footer.jsx";
-import { AdonisMockup, OlympBrowsers, OlympPhones } from "../components/ProjectMockup.jsx";
+import { AdonisBrowsers, AdonisMockup, OlympBrowsers, OlympPhones } from "../components/ProjectMockup.jsx";
 import "./CasePage.css";
 import "./ProjectCasePage.css";
 
@@ -13,6 +13,7 @@ const PROJECTS = {
     lead: "С нуля разработали сайт и приложение для iOS и Android, связали их с аптечной CRM и выпустили в работу. Покупатели получили возможность находить товары и оформлять бронирования, а сотрудники аптек — обрабатывать онлайн-заказы в своей системе.",
     tags: ["Сайт", "Мобильное приложение", "Личный кабинет", "Интеграции"],
     media: <AdonisMockup />,
+    screens: <AdonisBrowsers />,
     coverAlt: "Сайт и мобильное приложение аптечной сети «Адонис»",
     facts: [
       ["Клиент", "Аптечная сеть «Адонис»"],

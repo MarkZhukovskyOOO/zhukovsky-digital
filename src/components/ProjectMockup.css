@@ -111,9 +111,23 @@
 
 /* Карусель макетов: сцена 1440×810, слот 0 в центре, шаг 848. */
 
-.mockup--carousel,
+.mockup--carousel.mockup--olymp,
 .mockup--olymp {
   background: linear-gradient(180deg, #b0c7f5 0%, #3356a3 100%);
+}
+
+.mockup--adonis {
+  background: linear-gradient(180deg, #ffff61 0%, #94c924 100%);
+}
+
+.mockup--adonis .olymp-phone {
+  box-shadow:
+    0 0 0 1px #474952,
+    0 23px 46px rgba(51, 64, 0, 0.35);
+}
+
+.mockup--adonis .carousel__card {
+  box-shadow: 0 24px 60px rgba(51, 64, 0, 0.18);
 }
 
 .carousel {

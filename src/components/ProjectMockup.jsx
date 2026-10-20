@@ -1,7 +1,10 @@
 import { useEffect, useRef } from "react";
-import adonisHome from "../assets/figma/case-shot-main.webp";
-import adonisCatalog from "../assets/figma/case-shot-catalog.webp";
-import adonisCabinet from "../assets/figma/case-shot-cabinet.webp";
+import adonisHome from "../assets/figma/adonis-glavnaya.webp";
+import adonisCatalog from "../assets/figma/adonis-katalog.webp";
+import adonisCabinet from "../assets/figma/adonis-kabinet.webp";
+import adonisMobileHome from "../assets/figma/adonis-m-glavnaya.webp";
+import adonisMobileCart from "../assets/figma/adonis-m-korzina.webp";
+import adonisMobileOrder from "../assets/figma/adonis-m-zakaz.webp";
 import olympKlinika from "../assets/figma/olymp-klinika.webp";
 import olympNapravleniya from "../assets/figma/olymp-napravleniya.webp";
 import olympVrachi from "../assets/figma/olymp-vrachi.webp";
@@ -10,10 +13,16 @@ import olympMobileKlinika from "../assets/figma/olymp-m-klinika.webp";
 import olympMobileVrachi from "../assets/figma/olymp-m-vrachi.webp";
 import "./ProjectMockup.css";
 
-const ADONIS_SCREENS = [
-  { src: adonisCabinet, alt: "Личный кабинет на сайте «Адонис»", place: "left", duration: "13s", delay: "-5s" },
-  { src: adonisCatalog, alt: "Каталог товаров на сайте «Адонис»", place: "right", duration: "11s", delay: "-8s" },
-  { src: adonisHome, alt: "Главная страница сайта «Адонис»", place: "center", duration: "12s", delay: "-2s" },
+const ADONIS_PHONES = [
+  { src: adonisMobileHome, delay: 600, alt: "Главная приложения «Адонис» на телефоне" },
+  { src: adonisMobileCart, delay: 1300, alt: "Корзина «Адонис» на телефоне" },
+  { src: adonisMobileOrder, delay: 2000, alt: "Заказ «Адонис» на телефоне" },
+];
+
+const ADONIS_FRAMES = [
+  { src: adonisHome, scroll: 640, alt: "Главная страница сайта «Адонис»" },
+  { src: adonisCatalog, scroll: 640, alt: "Каталог товаров на сайте «Адонис»" },
+  { src: adonisCabinet, scroll: 266, alt: "Личный кабинет на сайте «Адонис»" },
 ];
 
 function useInViewPlayback(videoRef) {
@@ -142,22 +151,13 @@ export function MockupBrowsers({ label, screens }) {
   );
 }
 
-export function AdonisMockup() {
-  return (
-    <MockupBrowsers
-      label="Сайт «Адонис»: страницы прокручиваются в окнах браузера"
-      screens={ADONIS_SCREENS}
-    />
-  );
-}
-
 const OLYMP_PHONES = [
   { src: olympMobileSet, delay: 600, alt: "Список клиник Olymp Clinic на телефоне" },
   { src: olympMobileKlinika, delay: 1300, alt: "Страница клиники Olymp Clinic на телефоне" },
   { src: olympMobileVrachi, delay: 2000, alt: "Страница врачей Olymp Clinic на телефоне" },
 ];
 
-export function OlympPhones() {
+function DevicePhones({ phones, label, variant }) {
   const wrapRef = useRef(null);
   const stageRef = useRef(null);
 
@@ -197,13 +197,13 @@ export function OlympPhones() {
 
   return (
     <div
-      className="mockup mockup--olymp"
+      className={`mockup mockup--${variant}`}
       role="img"
-      aria-label="Сайт Olymp Clinic на экранах трёх телефонов"
+      aria-label={label}
     >
       <div className="carousel" ref={wrapRef}>
         <div className="carousel__stage olymp-phones" ref={stageRef}>
-          {OLYMP_PHONES.map((phone) => (
+          {phones.map((phone) => (
             <div className="olymp-phone" key={phone.delay}>
               <div className="olymp-phone__screen">
                 <div className="olymp-phone__status" aria-hidden="true">
@@ -216,6 +216,26 @@ export function OlympPhones() {
         </div>
       </div>
     </div>
+  );
+}
+
+export function OlympPhones() {
+  return (
+    <DevicePhones
+      phones={OLYMP_PHONES}
+      label="Сайт Olymp Clinic на экранах трёх телефонов"
+      variant="olymp"
+    />
+  );
+}
+
+export function AdonisMockup() {
+  return (
+    <DevicePhones
+      phones={ADONIS_PHONES}
+      label="Приложение «Адонис» на экранах трёх телефонов"
+      variant="adonis"
+    />
   );
 }
 
@@ -238,10 +258,10 @@ function scrollLimit(card) {
   return Math.min(requested, extra);
 }
 
-export function OlympBrowsers() {
+function DeviceCarousel({ frames, label, variant }) {
   const wrapRef = useRef(null);
   const stageRef = useRef(null);
-  const frames = [...OLYMP_FRAMES, ...OLYMP_FRAMES];
+  const slides = [...frames, ...frames];
 
   useEffect(() => {
     const wrap = wrapRef.current;
@@ -372,17 +392,17 @@ export function OlympBrowsers() {
 
   return (
     <div
-      className="mockup mockup--carousel"
+      className={`mockup mockup--carousel mockup--${variant}`}
       role="img"
-      aria-label="Сайт Olymp Clinic: три макета сменяются по кругу"
+      aria-label={label}
     >
       <div className="carousel" ref={wrapRef}>
         <div className="carousel__stage" ref={stageRef}>
-          {frames.map((frame, index) => (
+          {slides.map((frame, index) => (
             <div className="carousel__card" data-scroll={frame.scroll} key={index}>
               <img
                 src={frame.src}
-                alt={index < OLYMP_FRAMES.length ? frame.alt : ""}
+                alt={index < frames.length ? frame.alt : ""}
                 draggable="false"
                 loading="lazy"
               />
@@ -391,5 +411,25 @@ export function OlympBrowsers() {
         </div>
       </div>
     </div>
+  );
+}
+
+export function OlympBrowsers() {
+  return (
+    <DeviceCarousel
+      frames={OLYMP_FRAMES}
+      label="Сайт Olymp Clinic: три макета сменяются по кругу"
+      variant="olymp"
+    />
+  );
+}
+
+export function AdonisBrowsers() {
+  return (
+    <DeviceCarousel
+      frames={ADONIS_FRAMES}
+      label="Сайт «Адонис»: главная, каталог и кабинет сменяются по кругу"
+      variant="adonis"
+    />
   );
 }
