@@ -65,7 +65,20 @@ const PROJECTS = {
       "Сайт и приложение запущены. У «Адониса» появились собственные сервисы, через которые покупатели могут находить товары и оформлять бронирования. Онлайн-заказы связаны с внутренней системой сети, а изменения состава заказа при частичном подтверждении передаются покупателю для согласования.",
       "После релиза развиваем функциональность проекта. Занимаемся ASO — видимостью приложения в магазинах приложений — и GEO: работой над присутствием сайта в ответах ИИ. Запуск стал основой для дальнейшего развития онлайн-направления «Адониса».",
     ],
-    technologies: ["iOS", "Android", "Аптечная CRM"],
+    technologies: [
+      "Flutter",
+      "Node.js",
+      "React",
+      "iOS",
+      "Android",
+      { name: "АЙТИ какая аптека", href: "https://itwhat.ru/" },
+      "Apple Push",
+    ],
+    stack: (
+      <>
+        Сайт собран на React. Приложение для iOS и Android — на Flutter. Сайт и приложение работают через один сервер на Node.js: он отдаёт страницы и API. Товары, цены, остатки и заказы синхронизируются с <a href="https://itwhat.ru/" target="_blank" rel="noopener noreferrer">АЙТИ какая аптека</a>. Уведомления о заказах приходят через Apple Push на iOS и RuStore на Android.
+      </>
+    ),
     other: { to: "/case/olymp-clinic", label: "Олимп Клиник" },
   },
   olympClinic: {
@@ -283,9 +296,20 @@ export default function ProjectCasePage({ project }) {
               <span className="case-overline">Технологии и интеграции</span>
               <h2 className="case-h2">Стек проекта</h2>
             </div>
-            <ul className="case-chips" aria-label="Технологии проекта">
-              {data.technologies.map((technology) => <li className="case-chip" key={technology}>{technology}</li>)}
-            </ul>
+            <div className="project-case__stack">
+              {data.stack ? <p className="project-case__stack-text">{data.stack}</p> : null}
+              <ul className="case-chips" aria-label="Технологии проекта">
+                {data.technologies.map((technology) => {
+                  const name = typeof technology === "string" ? technology : technology.name;
+                  const href = typeof technology === "string" ? undefined : technology.href;
+                  return (
+                    <li className="case-chip" key={name}>
+                      {href ? <a href={href} target="_blank" rel="noopener noreferrer">{name}</a> : name}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
         </section>
 

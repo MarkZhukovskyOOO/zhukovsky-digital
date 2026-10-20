@@ -325,6 +325,29 @@
   margin-top: 12px;
 }
 
+.project-case__stack {
+  display: grid;
+  gap: 20px;
+}
+
+.project-case__stack-text {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.project-case__stack-text a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-underline-offset: 3px;
+}
+
+.project-case__stack .case-chip a {
+  color: var(--color-text-brand);
+  text-decoration: none;
+}
+
 .project-case__other {
   display: flex;
   min-height: 104px;
