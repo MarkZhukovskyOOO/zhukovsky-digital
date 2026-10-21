@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { track } from "./track.js";
 
 export function useLeadForm() {
   const [need, setNeed] = useState("new");
@@ -8,6 +9,15 @@ export function useLeadForm() {
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState("");
+  const extraRef = useRef({ service: "", page: "", placeholder: "" });
+
+  function setLeadContext(context) {
+    extraRef.current = {
+      service: context?.service || "",
+      page: context?.page || "",
+      placeholder: context?.placeholder || "",
+    };
+  }
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -19,6 +29,8 @@ export function useLeadForm() {
       contact: contact.trim(),
       need,
       message: message.trim(),
+      service: extraRef.current.service,
+      page: extraRef.current.page,
     };
     const problem = validateLead(payload);
     if (problem) {
@@ -40,10 +52,19 @@ export function useLeadForm() {
       });
       const data = await response.json().catch(() => ({}));
       if (!response.ok) {
+        track("lead_error", {
+          service_slug: extraRef.current.service,
+          page_path: extraRef.current.page,
+          error_category: String(response.status),
+        });
         setStatus("error");
         setError(data.error || "Не получилось отправить заявку. Напишите в Telegram.");
         return;
       }
+      track("lead_success", {
+        service_slug: extraRef.current.service,
+        page_path: extraRef.current.page,
+      });
       setStatus("success");
       setName("");
       setCompany("");
@@ -51,6 +72,11 @@ export function useLeadForm() {
       setMessage("");
       setNeed("new");
     } catch {
+      track("lead_error", {
+        service_slug: extraRef.current.service,
+        page_path: extraRef.current.page,
+        error_category: "network",
+      });
       setStatus("error");
       setError("Нет соединения. Проверьте интернет и попробуйте ещё раз.");
     }
@@ -69,6 +95,8 @@ export function useLeadForm() {
     setMessage,
     status,
     error,
+    placeholder: extraRef.current.placeholder,
+    setLeadContext,
     onSubmit,
   };
 }

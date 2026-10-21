@@ -7,6 +7,7 @@ import ProjectCasePage from "./pages/ProjectCasePage.jsx";
 import CasesPage from "./pages/CasesPage.jsx";
 import PolicyPage from "./pages/PolicyPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
+import ServiceOfferPage from "./pages/ServiceOfferPage.jsx";
 
 export default function App() {
   return (
@@ -15,9 +16,11 @@ export default function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/:slug" element={<ServiceOfferPage />} />
           <Route path="/company" element={<CompanyPage />} />
           <Route path="/case/adonis" element={<ProjectCasePage project="adonis" />} />
           <Route path="/case/olymp-clinic" element={<ProjectCasePage project="olympClinic" />} />
+          <Route path="/case/narodnaya" element={<ProjectCasePage project="narodnaya" />} />
           <Route path="/case/olymp" element={<Navigate to="/case/olymp-clinic" replace />} />
           <Route path="/cases" element={<CasesPage />} />
           <Route path="/policy" element={<PolicyPage />} />

@@ -4,15 +4,8 @@ import ThemeToggle from "./ThemeToggle.jsx";
 import MobileMenu from "./MobileMenu.jsx";
 import "./Header.css";
 
-/* Список услуг для дропдауна и мобильного аккордеона (тексты — из макета) */
-const SERVICES = [
-  "Сайты и веб-сервисы",
-  "Мобильные приложения",
-  "Личные кабинеты и цифровые сервисы",
-  "Аудит и развитие существующих продуктов",
-  "Развитие и поддержка",
-  "Продуктовые исследования и UX/UI",
-];
+import { SERVICE_NAV } from "../data/serviceOffers.js";
+import { serviceSlugFromPath, track } from "../lib/track.js";
 
 /* Иконки пунктов навигации (16px, из макета) */
 function IconWorks() {
@@ -144,12 +137,12 @@ export default function Header() {
 
             <div className={`nav-drop ${dropOpen ? "is-open" : ""}`} role="menu">
               <div className="nav-drop__cols">
-                {[SERVICES.slice(0, 3), SERVICES.slice(3)].map((col, ci) => (
+                {[SERVICE_NAV.slice(0, 3), SERVICE_NAV.slice(3)].map((col, ci) => (
                   <ul className="nav-drop__col" key={ci}>
-                    {col.map((label, i) => (
-                      <li key={label}>
+                    {col.map((item, i) => (
+                      <li key={item.to}>
                         <Link
-                          to="/services"
+                          to={item.to}
                           role="menuitem"
                           className="nav-drop__item"
                           onClick={() => setDropOpen(false)}
@@ -157,7 +150,7 @@ export default function Header() {
                           <span className="nav-drop__index">
                             {String(ci * 3 + i + 1).padStart(2, "0")}
                           </span>
-                          <span className="nav-drop__label">{label}</span>
+                          <span className="nav-drop__label">{item.label}</span>
                         </Link>
                       </li>
                     ))}
@@ -182,6 +175,7 @@ export default function Header() {
             className="header__tg"
             target="_blank"
             rel="noreferrer"
+            onClick={() => track("telegram_click", { service_slug: serviceSlugFromPath(pathname), place: "header" })}
           >
             <IconTelegram />
             Telegram
@@ -209,7 +203,7 @@ export default function Header() {
 
       <MobileMenu
         open={menuOpen}
-        services={SERVICES}
+        services={SERVICE_NAV}
         onClose={() => setMenuOpen(false)}
         onContact={() => {
           setMenuOpen(false);

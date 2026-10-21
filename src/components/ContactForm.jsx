@@ -85,7 +85,7 @@ export default function ContactForm({
         </button>
         {form.status === "success" && (
           <p className="contact-form__status contact-form__status--ok" role="status">
-            Заявка отправлена. Ответим в течение рабочего дня.
+            Заявка отправлена. Марк свяжется с вами по указанному контакту, чтобы обсудить задачу и следующий шаг.
           </p>
         )}
         {form.status === "error" && (

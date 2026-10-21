@@ -3,10 +3,16 @@ export const SITE = "https://zhukovsky-digital.com";
 export const ROUTES = [
   "/",
   "/services",
+  "/services/web-development",
+  "/services/personal-accounts",
+  "/services/product-audit",
+  "/services/support",
+  "/services/ux-ui",
   "/company",
   "/cases",
   "/case/adonis",
   "/case/olymp-clinic",
+  "/case/narodnaya",
   "/policy",
 ];
 

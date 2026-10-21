@@ -120,6 +120,20 @@
   background: linear-gradient(180deg, #ffff61 0%, #94c924 100%);
 }
 
+.mockup--narodnaya {
+  background: linear-gradient(180deg, #dbefd9 0%, #47a33c 100%);
+}
+
+.mockup--narodnaya .olymp-phone {
+  box-shadow:
+    0 0 0 1px #474952,
+    0 23px 46px rgba(13, 51, 8, 0.35);
+}
+
+.mockup--narodnaya .carousel__card {
+  box-shadow: 0 24px 60px rgba(13, 51, 8, 0.22);
+}
+
 .mockup--adonis .olymp-phone {
   box-shadow:
     0 0 0 1px #474952,

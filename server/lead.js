@@ -102,6 +102,8 @@ export async function handleLead(req, res) {
   const contact = clip(data?.contact, 120);
   const message = clip(data?.message, 2000);
   const need = Object.hasOwn(NEED, data?.need) ? data.need : "";
+  const service = clip(data?.service, 80);
+  const page = clip(data?.page, 160);
 
   if (!name) {
     json(res, 400, { ok: false, error: "Укажите имя." });
@@ -135,6 +137,8 @@ export async function handleLead(req, res) {
     `Компания: ${company || "—"}`,
     `Контакт: ${contact}`,
     `Что нужно: ${NEED[need]}`,
+    ...(service ? [`Услуга: ${service}`] : []),
+    ...(page ? [`Страница: ${page}`] : []),
     "",
     "О задаче:",
     message,

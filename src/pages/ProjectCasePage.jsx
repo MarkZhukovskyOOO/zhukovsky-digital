@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs.jsx";
 import Footer from "../components/Footer.jsx";
-import { AdonisBrowsers, AdonisMockup, OlympBrowsers, OlympPhones } from "../components/ProjectMockup.jsx";
+import { AdonisBrowsers, AdonisMockup, NarodnayaBrowsers, NarodnayaPhones, OlympBrowsers, OlympPhones } from "../components/ProjectMockup.jsx";
 import "./CasePage.css";
 import "./ProjectCasePage.css";
 
@@ -85,7 +85,7 @@ const PROJECTS = {
     name: "Olymp Clinic",
     eyebrow: "Кейс · Сеть клиник",
     title: "Olymp Clinic — новая версия сайта на 1С-Битрикс",
-    lead: "Как партнёрская команда заново разработали дизайн, согласовали его с заказчиком и реализовали сайт на 1С-Битрикс.",
+    lead: "Взяли на себя весь цикл создания новой версии сайта Olymp Clinic: от инициации проекта и подготовки дизайна до согласования макетов, разработки на 1С-Битрикс и выпуска в продакшен. Выполнили проект за 1,5 месяца, работая как партнёрская команда.",
     tags: ["Сайт", "Дизайн", "1С-Битрикс", "Партнёрский проект"],
     media: <OlympPhones />,
     screens: <OlympBrowsers />,
@@ -94,7 +94,7 @@ const PROJECTS = {
       ["Клиент", "Olymp Clinic"],
       ["Формат", "Партнёрская команда"],
       ["Платформа", "1С-Битрикс"],
-      ["Наша роль", "Дизайн, согласование макетов, вёрстка и подключение CMS"],
+      ["Наша роль", "Полный цикл: инициация, дизайн, согласование, разработка и выпуск в продакшен"],
     ],
     highlightsTitle: "Что получилось",
     highlights: [
@@ -106,7 +106,7 @@ const PROJECTS = {
     contextTitle: "Новая версия вместо устаревшего сайта",
     context: [
       "У Olymp Clinic уже был сайт, но его визуальное решение устарело. Требовалось создать новую версию: заново разработать дизайн, согласовать его с заказчиком и реализовать сайт на 1С-Битрикс.",
-      "Нас привлекли к проекту как партнёрскую команду. Zhukovsky Digital взяла на себя полный цикл создания новой версии сайта — от макетов до вёрстки и подключения системы управления контентом.",
+      "Нас привлекли к проекту как партнёрскую команду. Zhukovsky Digital выполнила полный цикл создания новой версии сайта — от инициации и дизайна до разработки на 1С-Битрикс и выпуска в продакшен.",
     ],
     considerations: [
       "Заново разработать дизайн.",
@@ -114,7 +114,7 @@ const PROJECTS = {
       "Выполнить вёрстку и подключить 1С-Битрикс.",
     ],
     taskTitle: "Полный цикл новой версии сайта",
-    task: "Zhukovsky Digital взяла на себя полный цикл создания новой версии сайта — от макетов до вёрстки и подключения системы управления контентом.",
+    task: "Полный цикл: инициация, дизайн, согласование, разработка на 1С-Битрикс и выпуск в продакшен. Проект выполнен за 1,5 месяца.",
     stepsTitle: "Решение",
     steps: [
       ["01", "Дизайн", "Работу начали с дизайна и подготовили новые макеты."],
@@ -125,6 +125,53 @@ const PROJECTS = {
     outcomeTitle: "Заново разработанный сайт",
     outcome: "Результат — заново разработанный сайт Olymp Clinic с обновлённым дизайном и управлением через 1С-Битрикс. В рамках партнёрского проекта мы отвечали за дизайн, согласование макетов и техническую реализацию.",
     technologies: ["1С-Битрикс"],
+    other: { to: "/case/adonis", label: "Адонис" },
+  },
+  narodnaya: {
+    name: "Аптека Народная",
+    eyebrow: "Кейс · Аптечная сеть",
+    title: "Аптека Народная — сайт аптечной сети",
+    lead: "Сайт аптеканародная.рф для сети аптек: поиск и каталог, карточка с ценой, наличием и инструкцией, выбор аптеки и бронирование с самовывозом.",
+    tags: ["Сайт", "Каталог", "Бронирование", "Самовывоз"],
+    media: <NarodnayaPhones />,
+    screens: <NarodnayaBrowsers />,
+    coverAlt: "Сайт аптечной сети «Аптека Народная»",
+    facts: [
+      ["Сайт", "аптеканародная.рф"],
+      ["Формат", "Бронирование и самовывоз"],
+      ["Каталог", "Лекарства, БАД, медтовары и уход"],
+      ["Получение", "В выбранной аптеке"],
+    ],
+    highlightsTitle: "Что есть на сайте",
+    highlights: [
+      ["Каталог", "Поиск, фильтры и подборки по симптомам"],
+      ["Карточка", "Цена, наличие, инструкция и аналоги"],
+      ["Аптеки", "Список, карта и часы работы"],
+      ["Заказ", "Бронь и самовывоз из аптеки"],
+    ],
+    aboutTitle: "Как устроен сайт",
+    about: [
+      ["01", "Город и аптека", [
+        "Покупатель подтверждает город или выбирает другой. Наличие можно смотреть по всему городу или по одной аптеке.",
+        "Аптеки открываются списком и на Яндекс Карте: адрес, телефон и часы работы. Есть поиск по адресу или номеру и отметка избранной аптеки.",
+      ]],
+      ["02", "Каталог и поиск", [
+        "Каталог делится на лекарства, витамины и БАД, планирование семьи, товары для мамы и малыша, медицинские изделия и приборы, гигиену и уход, оптику. Внутри разделов товары собраны по системам организма и симптомам.",
+        "Товар ищется по названию. В списке есть фильтры по цене, производителю, лекарственной форме, действующему веществу и наличию, а также сортировка и постраничный просмотр. На главной отдельно стоят товары дня и подборки: простуда, аллергия, боль и спазмы, пищеварение, женские заболевания, зрение.",
+      ]],
+      ["03", "Карточка товара", [
+        "На карточке показаны цена, наличие, производитель, форма выпуска, категория, действующее вещество, артикул и количество. Оформление начинается с кнопки «Заказать».",
+        "Ниже — инструкция: описание, состав, действие, показания, противопоказания, способ применения, побочные действия, особые указания и взаимодействие. Отдельно отмечены алкоголь, беременность и кормление. Рядом аналоги, блок «часто берут вместе» и аптеки, где товар можно купить. Сайт предупреждает, что цена и остаток в конкретной аптеке могут отличаться от цифр на странице.",
+      ]],
+      ["04", "Бронирование и самовывоз", [
+        "Заказ собирается так: город и аптека, товар в корзину, аптека самовывоза, вход по номеру телефона, проверка состава, суммы и места выдачи. На сайте есть пошаговая инструкция и интерактивный тур.",
+        "Подтверждение приходит на почту или в личный кабинет, в отдельных случаях заказ уточняет оператор. Оплата проходит в аптеке, наличными или картой. Курьерская доставка на сайте отмечена как недоступная. Для Донецка описана выдача в тот же день при заказе до 12:30, если вес до 5 кг и в заказе нет товаров с особыми условиями хранения. Минимальной суммы нет.",
+      ]],
+      ["05", "Наборы, кабинет и приложение", [
+        "Готовые аптечки можно положить в корзину целиком: набор автомобилиста, домашняя аптечка, набор при мигрени и набор для загара.",
+        "Личный кабинет открывается по коду на номер телефона. Сайт также ведёт в мобильное приложение в RuStore, Google Play и App Store: заказ там описан так же, как на сайте. Отдельно есть новости и статьи, вакансии и контакты.",
+      ]],
+    ],
     other: { to: "/case/adonis", label: "Адонис" },
   },
 };
@@ -170,6 +217,7 @@ export default function ProjectCasePage({ project }) {
           <div className="case-stage case-stage--follow">{data.screens}</div>
         )}
 
+        {data.highlights && (
         <section className="case-section">
           <div className="container">
             <div className="project-case__highlights">
@@ -187,8 +235,36 @@ export default function ProjectCasePage({ project }) {
             </div>
           </div>
         </section>
+        )}
 
-        {data.contextLayout === "split" ? (
+        {data.about && (
+        <section className="case-section">
+          <div className="container">
+            <div className="case-head">
+              <span className="case-overline">Сайт</span>
+              <h2 className="case-h2">{data.aboutTitle}</h2>
+            </div>
+            <div className="case-steps">
+              {data.about.map(([n, title, copy]) => {
+                const paragraphs = Array.isArray(copy) ? copy : [copy];
+                return (
+                  <article className="case-step" key={n}>
+                    <span className="case-step__n">{n}</span>
+                    <h3 className="case-step__title">{title}</h3>
+                    <div className="case-step__copy">
+                      {paragraphs.map((paragraph) => (
+                        <p className="case-step__desc" key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+        )}
+
+        {data.contextTitle && (data.contextLayout === "split" ? (
           <section className="case-section case-section--adonis-context">
             <div className="container project-case__context project-case__context--split">
               <div className="adonis-context__intro">
@@ -245,8 +321,9 @@ export default function ProjectCasePage({ project }) {
               </div>
             </div>
           </section>
-        )}
+        ))}
 
+        {data.steps && (
         <section className="case-section">
           <div className="container">
             <div className="case-head">
@@ -271,7 +348,9 @@ export default function ProjectCasePage({ project }) {
             </div>
           </div>
         </section>
+        )}
 
+        {data.outcome && (
         <section className="case-section">
           <div className="container">
             <div className="project-case__outcome">
@@ -289,7 +368,9 @@ export default function ProjectCasePage({ project }) {
             </div>
           </div>
         </section>
+        )}
 
+        {data.technologies && (
         <section className="case-section">
           <div className="container project-case__technology">
             <div>
@@ -312,6 +393,7 @@ export default function ProjectCasePage({ project }) {
             </div>
           </div>
         </section>
+        )}
 
         <section className="case-section">
           <div className="container">

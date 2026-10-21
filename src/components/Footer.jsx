@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { serviceSlugFromPath, track } from "../lib/track.js";
 import footerMotion from "../assets/figma/footer-motion.webp";
 import "./Footer.css";
 
@@ -18,11 +19,12 @@ const CONTACTS = [
 
 const NAV = [
   { label: "Кейсы", to: "/cases" },
-  { label: "Услуги", to: "/services" },
+  { label: "Услуги", to: "/#services" },
   { label: "О студии", to: "/company" },
 ];
 
 export default function Footer({ slim = false }) {
+  const { pathname } = useLocation();
   return (
     <footer className="footer" id="contact-footer">
       {/* Фон: кадр Wrangle Motion + мягкие синие блобы */}
@@ -45,7 +47,11 @@ export default function Footer({ slim = false }) {
               {CONTACTS.map((c) => (
                 <div className="footer__contact" key={c.label}>
                   <span className="footer__contact-label">{c.label}</span>
-                  <a href={c.href} className="footer__contact-value">
+                  <a
+                    href={c.href}
+                    className="footer__contact-value"
+                    onClick={c.href.includes("t.me") ? () => track("telegram_click", { service_slug: serviceSlugFromPath(pathname), place: "footer" }) : undefined}
+                  >
                     {c.value}
                   </a>
                 </div>

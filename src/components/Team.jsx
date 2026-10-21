@@ -3,9 +3,9 @@ import teamPhoto from "../assets/figma/team-photo.webp";
 import "./Team.css";
 
 const STATS = [
-  { num: "2022", label: "год основания" },
+  { num: "2023", label: "год основания" },
   { num: "11", label: "человек в штате" },
-  { num: "21", label: "продукт в проде" },
+  { num: "21", label: "продукт запущен" },
 ];
 
 export default function Team() {

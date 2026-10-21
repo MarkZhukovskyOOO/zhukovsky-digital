@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
+import { serviceSlugFromPath, track } from "../lib/track.js";
 import "./MobileMenu.css";
 
 /* Полноэкранное мобильное меню (≤560) — по фреймам menu-mobile-*.
@@ -76,10 +77,10 @@ export default function MobileMenu({ open, services, onClose, onContact }) {
         </button>
         {servicesOpen && (
           <ul className="mmenu__sub">
-            {services.map((label) => (
-              <li key={label}>
-                <Link to="/services" className="mmenu__sub-link" onClick={onClose}>
-                  {label}
+            {services.map((item) => (
+              <li key={item.to}>
+                <Link to={item.to} className="mmenu__sub-link" onClick={onClose}>
+                  {item.label}
                 </Link>
               </li>
             ))}
@@ -109,6 +110,7 @@ export default function MobileMenu({ open, services, onClose, onContact }) {
               href="https://t.me/Mark_Zhukovskiy"
               target="_blank"
               rel="noreferrer"
+              onClick={() => track("telegram_click", { service_slug: serviceSlugFromPath(window.location.pathname), place: "menu" })}
               tabIndex={open ? 0 : -1}
             >
               @Mark_Zhukovskiy

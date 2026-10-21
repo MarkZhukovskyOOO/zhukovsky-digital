@@ -87,6 +87,10 @@
   color: var(--muted-2);
 }
 
+.svc-hero .svc-lead {
+  margin-top: 20px;
+}
+
 .svc-hero__actions {
   margin-top: 60px;
   display: flex;

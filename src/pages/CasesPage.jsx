@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs.jsx";
 import Footer from "../components/Footer.jsx";
 import { useState } from "react";
-import { AdonisMockup, OlympPhones } from "../components/ProjectMockup.jsx";
+import { AdonisMockup, NarodnayaPhones, OlympPhones } from "../components/ProjectMockup.jsx";
 import "./CasesPage.css";
 
 const FILTERS = [
@@ -23,10 +23,17 @@ const CASES = [
   },
   {
     media: <OlympPhones />,
-    title: "Олимп Клиник: сайт и личный кабинет для сети клиник",
-    desc: "Полная пересборка сайта, доработка готовых макетов и интеграция с 1С-Битрикс. От подключения к проекту до запуска — около трёх месяцев.",
+    title: "Olymp Clinic — сайт для сети клиник",
+    desc: "Полный цикл создания новой версии сайта: от инициации проекта и дизайна до разработки на 1С-Битрикс и выпуска в продакшен. Срок — 1,5 месяца.",
     to: "/case/olymp-clinic",
-    categories: ["Сайты и веб-сервисы", "Личные кабинеты"],
+    categories: ["Сайты и веб-сервисы"],
+  },
+  {
+    media: <NarodnayaPhones />,
+    title: "Аптека Народная — сайт аптечной сети",
+    desc: "Каталог, карточка с ценой и инструкцией, выбор аптеки на карте. Заказ на аптеканародная.рф оформляется как бронь и забирается самовывозом.",
+    to: "/case/narodnaya",
+    categories: ["Сайты и веб-сервисы"],
   },
 ];
 

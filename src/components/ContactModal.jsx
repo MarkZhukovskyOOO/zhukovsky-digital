@@ -8,12 +8,22 @@ import "./ContactModal.css";
    Открывается по window-событию `open-contact-modal`. */
 export default function ContactModal() {
   const [open, setOpen] = useState(false);
+  const [hint, setHint] = useState({ placeholder: "", note: "" });
   const form = useLeadForm();
   const lastFocusRef = useRef(null);
   const closeBtnRef = useRef(null);
 
   useEffect(() => {
-    const onOpen = () => {
+    const onOpen = (event) => {
+      const detail = event.detail || {};
+      form.setLeadContext({
+        service: detail.service || "",
+        page: detail.page || "",
+      });
+      setHint({
+        placeholder: detail.placeholder || "",
+        note: detail.note || "",
+      });
       lastFocusRef.current = document.activeElement;
       setOpen(true);
     };
@@ -70,8 +80,7 @@ export default function ContactModal() {
 
           <h3 className="cmodal__title">Обсудить проект</h3>
           <p className="cmodal__sub">
-            Ответим в течение рабочего дня. Для первого разговора достаточно
-            коротко описать задачу — без длинных брифов и технического задания.
+            {hint.note || "Ответим в течение рабочего дня. Для первого разговора достаточно коротко описать задачу — без длинных брифов и технического задания."}
           </p>
 
           <div className="cmodal__row">
@@ -132,7 +141,7 @@ export default function ContactModal() {
           <textarea
             rows="4"
             name="message"
-            placeholder="Коротко о задаче: продукт, сроки, что уже есть"
+            placeholder={hint.placeholder || "Коротко о задаче: продукт, сроки, что уже есть"}
             aria-label="Расскажите о задаче"
             value={form.message}
             onChange={(event) => form.setMessage(event.target.value)}
@@ -147,7 +156,7 @@ export default function ContactModal() {
           </button>
           {form.status === "success" && (
             <p className="cmodal__status cmodal__status--ok" role="status">
-              Заявка отправлена. Ответим в течение рабочего дня.
+              Заявка отправлена. Марк свяжется с вами по указанному контакту, чтобы обсудить задачу и следующий шаг.
             </p>
           )}
           {form.status === "error" && (

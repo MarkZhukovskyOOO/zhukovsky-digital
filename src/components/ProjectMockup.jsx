@@ -11,6 +11,12 @@ import olympVrachi from "../assets/figma/olymp-vrachi.webp";
 import olympMobileSet from "../assets/figma/olymp-m-set.webp";
 import olympMobileKlinika from "../assets/figma/olymp-m-klinika.webp";
 import olympMobileVrachi from "../assets/figma/olymp-m-vrachi.webp";
+import narodnayaHome from "../assets/figma/narodnaya-glavnaya.webp";
+import narodnayaCatalog from "../assets/figma/narodnaya-katalog.webp";
+import narodnayaPharmacies from "../assets/figma/narodnaya-apteki.webp";
+import narodnayaMobileHome from "../assets/figma/narodnaya-m-glavnaya.webp";
+import narodnayaMobileCatalog from "../assets/figma/narodnaya-m-katalog.webp";
+import narodnayaMobileProduct from "../assets/figma/narodnaya-m-tovar.webp";
 import "./ProjectMockup.css";
 
 const ADONIS_PHONES = [
@@ -229,6 +235,28 @@ export function OlympPhones() {
   );
 }
 
+const NARODNAYA_PHONES = [
+  { src: narodnayaMobileHome, delay: 600, alt: "Главная сайта «Аптека Народная» на телефоне" },
+  { src: narodnayaMobileCatalog, delay: 1300, alt: "Каталог «Аптека Народная» на телефоне" },
+  { src: narodnayaMobileProduct, delay: 2000, alt: "Карточка товара «Аптека Народная» на телефоне" },
+];
+
+const NARODNAYA_FRAMES = [
+  { src: narodnayaHome, scroll: 640, alt: "Главная страница сайта «Аптека Народная»" },
+  { src: narodnayaCatalog, scroll: 640, alt: "Каталог на сайте «Аптека Народная»" },
+  { src: narodnayaPharmacies, scroll: 513, alt: "Список аптек на сайте «Аптека Народная»" },
+];
+
+export function NarodnayaPhones() {
+  return (
+    <DevicePhones
+      phones={NARODNAYA_PHONES}
+      label="Сайт «Аптека Народная» на экранах трёх телефонов"
+      variant="narodnaya"
+    />
+  );
+}
+
 export function AdonisMockup() {
   return (
     <DevicePhones
@@ -420,6 +448,16 @@ export function OlympBrowsers() {
       frames={OLYMP_FRAMES}
       label="Сайт Olymp Clinic: три макета сменяются по кругу"
       variant="olymp"
+    />
+  );
+}
+
+export function NarodnayaBrowsers() {
+  return (
+    <DeviceCarousel
+      frames={NARODNAYA_FRAMES}
+      label="Сайт «Аптека Народная»: главная, каталог и аптеки сменяются по кругу"
+      variant="narodnaya"
     />
   );
 }
