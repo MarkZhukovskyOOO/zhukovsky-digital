@@ -137,7 +137,10 @@ async function capture(page, port, route) {
 async function main() {
   const chrome = chromePath();
   if (!chrome) {
-    throw new Error("Не найден Chrome. Укажите путь в CHROME_PATH.");
+    console.warn(
+      "Chrome не найден, пререндер пропущен. Сайт соберётся без статических HTML-страниц. Чтобы включить пререндер, задайте CHROME_PATH.",
+    );
+    return;
   }
   if (!existsSync(join(dist, "index.html"))) {
     throw new Error("Сначала нужен dist/index.html — запустите vite build.");
