@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header.jsx";
+import ThemeToggle from "./ThemeToggle.jsx";
 import Seo from "./Seo.jsx";
 import ContactModal from "./ContactModal.jsx";
 import { ThemeProvider } from "../theme-context.jsx";
@@ -24,6 +25,7 @@ export default function Layout() {
       <Seo />
       <Header />
       <Outlet />
+      <ThemeToggle />
       <ContactModal />
     </ThemeProvider>
   );

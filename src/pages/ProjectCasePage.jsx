@@ -79,6 +79,7 @@ const PROJECTS = {
         Сайт собран на React. Приложение для iOS и Android — на Flutter. Сайт и приложение работают через один сервер на Node.js: он отдаёт страницы и API. Товары, цены, остатки и заказы синхронизируются с <a href="https://itwhat.ru/" target="_blank" rel="noopener noreferrer">АйТи какая! Аптека</a>. Уведомления о заказах приходят через Apple Push на iOS и RuStore на Android.
       </>
     ),
+    industry: true,
     other: { to: "/case/olymp-clinic", label: "Олимп Клиник" },
   },
   olympClinic: {
@@ -172,6 +173,7 @@ const PROJECTS = {
         "Личный кабинет открывается по коду на номер телефона. Сайт также ведёт в мобильное приложение в RuStore, Google Play и App Store: заказ там описан так же, как на сайте. Отдельно есть новости и статьи, вакансии и контакты.",
       ]],
     ],
+    industry: true,
     other: { to: "/case/adonis", label: "Адонис" },
   },
 };
@@ -393,6 +395,16 @@ export default function ProjectCasePage({ project }) {
             </div>
           </div>
         </section>
+        )}
+
+        {data.industry && (
+          <section className="case-section">
+            <div className="container">
+              <Link className="project-case__other" to="/industries/pharmacy">
+                Нужен похожий сервис для вашей аптечной сети? <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </section>
         )}
 
         <section className="case-section">

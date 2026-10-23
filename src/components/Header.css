@@ -32,14 +32,15 @@
   color: var(--color-icon-brand);
 }
 
-/* --- Навигация по центру --- */
+/* --- Навигация по центру свободного места между логотипом и правым блоком --- */
 .header__nav {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  flex: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  min-width: 0;
 }
 .header__nav-item {
   display: flex;
@@ -76,9 +77,8 @@
 }
 
 /* --- Дропдаун «Услуги» ---
-   Десктоп: .header__nav позиционирован (absolute), поэтому дропдаун
-   считается от него: 50% = центр навигации = центр вьюпорта.
-   top: 40px = отступ до низа хедера (32) + зазор 8. */
+   Считается от .header__nav: 50% — центр меню между логотипом и правым блоком.
+   top: 40px — от низа пунктов до зазора под хедером. */
 .nav-drop {
   position: absolute;
   top: calc(100% + 40px);
@@ -152,17 +152,43 @@
   align-items: center;
   gap: 18px;
 }
+.header__rule {
+  width: 1px;
+  height: 16px;
+  margin-right: 6px;
+  background: var(--color-border-default);
+  flex: none;
+}
+.header__pharmacy {
+  margin-right: 6px;
+}
+
+/* На ширине, где правое «Аптечным сетям» теснит меню, убираем иконки пунктов */
+@media (max-width: 1360px) {
+  .header__nav-icon {
+    display: none;
+  }
+  .header__actions {
+    gap: 12px;
+  }
+}
 .header__tg {
+  flex: none;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  color: var(--color-text-secondary);
-  font-weight: 500;
-  font-size: 15px;
-  transition: color 0.15s ease;
+  justify-content: center;
+  width: var(--control-md);
+  height: var(--control-md);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border-default);
+  background: var(--color-bg-surface);
+  color: var(--color-icon-primary);
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
 }
 .header__tg:hover {
-  color: var(--color-text-primary);
+  background: var(--color-state-hover);
+  border-color: var(--color-border-strong);
+  color: var(--color-icon-primary);
 }
 .header__cta {
   height: 44px;
@@ -170,7 +196,7 @@
   font-size: 16px;
 }
 
-/* --- Бургер (только ≤560) --- */
+/* --- Бургер (≤1000, когда меню уже не помещается в строку) --- */
 .burger {
   display: none;
   flex-direction: column;
@@ -197,8 +223,21 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
+/* Ниже ~1024px правое «Аптечным сетям» уже не помещается рядом с меню.
+   Пункт остаётся в бургере. */
+@media (max-width: 1000px) {
+  .header__nav,
+  .header__pharmacy,
+  .header__rule {
+    display: none;
+  }
+  .burger {
+    display: flex;
+  }
+}
+
 /* ============================================================
-   Планшет ≤860 — хедер 72px, меню инлайн после логотипа
+   Планшет ≤860 — хедер 72px
    ============================================================ */
 @media (max-width: 860px) {
   .header__inner {
@@ -214,9 +253,6 @@
     padding-inline: 8px;
   }
   .header__nav-icon {
-    display: none;
-  }
-  .header__tg {
     display: none;
   }
   .header__actions {
@@ -283,13 +319,16 @@
     height: 60px;
   }
   .header__nav,
-  .header__cta {
+  .header__cta,
+  .header__pharmacy,
+  .header__rule {
     display: none;
   }
   .header__actions {
-    gap: 4px;
+    gap: 8px;
   }
   .burger {
     display: flex;
   }
 }
+

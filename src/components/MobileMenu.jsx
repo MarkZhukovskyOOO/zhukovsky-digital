@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { serviceSlugFromPath, track } from "../lib/track.js";
+import { PHARMACY_PATH } from "../lib/pharmacyLead.js";
 import "./MobileMenu.css";
 
 /* Полноэкранное мобильное меню (≤560) — по фреймам menu-mobile-*.
@@ -59,9 +60,23 @@ export default function MobileMenu({ open, services, onClose, onContact }) {
       </div>
 
       <nav className="mmenu__nav" aria-label="Мобильная навигация">
-        <Link to="/cases" className="mmenu__link" onClick={onClose} tabIndex={open ? 0 : -1}>
+        <NavLink
+          to={PHARMACY_PATH}
+          end
+          className={({ isActive }) => `mmenu__link ${isActive ? "is-current" : ""}`}
+          onClick={onClose}
+          tabIndex={open ? 0 : -1}
+        >
+          Аптечным сетям
+        </NavLink>
+        <NavLink
+          to="/cases"
+          className={({ isActive }) => `mmenu__link ${isActive ? "is-current" : ""}`}
+          onClick={onClose}
+          tabIndex={open ? 0 : -1}
+        >
           Кейсы
-        </Link>
+        </NavLink>
 
         <button
           type="button"
@@ -87,9 +102,14 @@ export default function MobileMenu({ open, services, onClose, onContact }) {
           </ul>
         )}
 
-        <Link to="/company" className="mmenu__link" onClick={onClose} tabIndex={open ? 0 : -1}>
+        <NavLink
+          to="/company"
+          className={({ isActive }) => `mmenu__link ${isActive ? "is-current" : ""}`}
+          onClick={onClose}
+          tabIndex={open ? 0 : -1}
+        >
           О студии
-        </Link>
+        </NavLink>
       </nav>
 
       <div className="mmenu__bottom">

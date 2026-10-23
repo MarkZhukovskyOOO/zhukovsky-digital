@@ -9,6 +9,7 @@ export const ROUTES = [
   "/services/support",
   "/services/ux-ui",
   "/company",
+  "/industries/pharmacy",
   "/cases",
   "/case/adonis",
   "/case/olymp-clinic",

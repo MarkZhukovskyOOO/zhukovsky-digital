@@ -1,0 +1,485 @@
+.ph [id] {
+  scroll-margin-top: 120px;
+}
+
+.ph-crumbs {
+  padding-top: 28px;
+}
+
+.ph-hero {
+  padding: 28px 0 72px;
+}
+
+.ph-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+  gap: 48px;
+  align-items: center;
+}
+
+.ph-eyebrow {
+  margin: 0 0 16px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-brand);
+}
+
+.ph h1 {
+  margin: 0;
+  font-size: clamp(34px, 4vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+.ph-lead,
+.ph-head p,
+.ph-final p,
+.ph-case-more > p {
+  margin: 18px 0 0;
+  max-width: 640px;
+  color: var(--color-text-secondary);
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.ph-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ph-pills li {
+  padding: 8px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-subtle);
+  color: var(--color-text-primary);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.ph-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.ph-actions--next {
+  margin-top: 28px;
+}
+
+.ph-actions--center {
+  justify-content: center;
+}
+
+.ph-actions .btn {
+  white-space: normal;
+  text-align: center;
+  height: auto;
+  min-height: 52px;
+  padding-block: 12px;
+}
+
+.ph-price {
+  margin: 18px 0 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.ph-trust,
+.ph-note {
+  margin: 14px 0 0;
+  max-width: 720px;
+  color: var(--color-text-secondary);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.ph-note--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.ph-hero__visual {
+  position: relative;
+  min-width: 0;
+  padding-bottom: 28px;
+}
+
+.ph-browser {
+  overflow: hidden;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.ph-browser__bar {
+  display: flex;
+  gap: 6px;
+  padding: 12px 14px;
+  background: var(--color-bg-subtle);
+}
+
+.ph-browser__bar i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-border-strong);
+}
+
+.ph-browser__screen,
+.ph-shot,
+.ph-phone {
+  overflow: hidden;
+}
+
+.ph-browser__screen {
+  aspect-ratio: 16 / 10;
+}
+
+.ph-browser__screen img,
+.ph-shot img,
+.ph-phone img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.ph-phone {
+  position: absolute;
+  right: 5%;
+  bottom: 0;
+  width: 30%;
+  max-width: 168px;
+  min-width: 104px;
+  aspect-ratio: 9 / 19;
+  border: 3px solid #1d1d1f;
+  border-radius: 22px;
+  background: #1d1d1f;
+  box-shadow: var(--shadow-elevated);
+}
+
+.ph-section {
+  padding: 80px 0;
+}
+
+.ph-section--subtle {
+  background: var(--color-bg-subtle);
+}
+
+.ph-head {
+  max-width: 760px;
+  margin-bottom: 36px;
+}
+
+.ph h2 {
+  margin: 0;
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+.ph h3 {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+.ph-cards {
+  display: grid;
+  gap: 16px;
+}
+
+.ph-cards--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 16px;
+}
+
+.ph-cards--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ph-cards--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.ph-card,
+.ph-offer {
+  padding: 24px;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-surface);
+}
+
+.ph-section--subtle .ph-card,
+.ph-section--subtle .ph-offer {
+  background: var(--color-bg-page);
+}
+
+.ph-card p,
+.ph-offer p,
+.ph-steps p,
+.ph-faq__item p {
+  margin: 10px 0 0;
+  color: var(--color-text-secondary);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.ph-card ul,
+.ph-offer ul {
+  margin: 14px 0 0;
+  padding-left: 18px;
+  color: var(--color-text-secondary);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.ph-card li + li {
+  margin-top: 8px;
+}
+
+.ph-card__price,
+.ph-offer__price {
+  margin: 8px 0 0;
+  color: var(--color-text-primary);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.ph-path,
+.ph-sequence {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ph-path li,
+.ph-sequence li {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-page);
+  color: var(--color-text-primary);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.ph-path li:not(:last-child)::after,
+.ph-sequence li:not(:last-child)::after {
+  content: "→";
+  margin-left: 8px;
+  color: var(--color-text-brand);
+}
+
+.ph-gallery {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 0.8fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.ph-figure {
+  margin: 0;
+  min-width: 0;
+}
+
+.ph-shot {
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-subtle);
+}
+
+.ph-gallery .ph-figure:first-child .ph-shot {
+  aspect-ratio: 16 / 11;
+}
+
+.ph-figure figcaption {
+  margin-top: 10px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.ph-case-more {
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid var(--color-border-default);
+}
+
+.ph-steps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: ph-step;
+}
+
+.ph-steps li {
+  min-width: 0;
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-page);
+  counter-increment: ph-step;
+}
+
+.ph-section:not(.ph-section--subtle) .ph-steps li {
+  background: var(--color-bg-subtle);
+}
+
+.ph-steps li::before {
+  content: counter(ph-step, decimal-leading-zero);
+  display: block;
+  margin-bottom: 12px;
+  color: var(--color-text-brand);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ph-offer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 32px;
+  align-items: end;
+}
+
+.ph-offer__side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.ph-offer__side .ph-offer__price {
+  margin: 0;
+}
+
+.ph-faq-wrap {
+  max-width: 860px;
+}
+
+.ph-faq {
+  margin-top: 28px;
+  border-top: 1px solid var(--color-border-default);
+}
+
+.ph-faq__item {
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.ph-faq__item summary {
+  padding: 18px 28px 18px 0;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  list-style: none;
+}
+
+.ph-faq__item summary::-webkit-details-marker {
+  display: none;
+}
+
+.ph-faq__item summary::after {
+  content: "+";
+  float: right;
+  margin-right: -28px;
+  color: var(--color-text-brand);
+  font-weight: 500;
+}
+
+.ph-faq__item[open] summary::after {
+  content: "–";
+}
+
+.ph-faq__item p {
+  max-width: 70ch;
+  padding-bottom: 18px;
+}
+
+.ph-final {
+  padding: 88px 0;
+  text-align: center;
+}
+
+.ph-final h2,
+.ph-final p {
+  margin-inline: auto;
+}
+
+@media (max-width: 1100px) {
+  .ph-cards--4,
+  .ph-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .ph-hero {
+    padding-bottom: 48px;
+  }
+
+  .ph-hero__grid,
+  .ph-cards--3,
+  .ph-gallery,
+  .ph-offer {
+    grid-template-columns: 1fr;
+  }
+
+  .ph-hero__visual {
+    order: 2;
+  }
+
+  .ph-section {
+    padding: 56px 0;
+  }
+
+  .ph-gallery .ph-figure:first-child .ph-shot,
+  .ph-shot {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+@media (max-width: 640px) {
+  .ph-cards--2,
+  .ph-cards--4,
+  .ph-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .ph-actions .btn {
+    width: 100%;
+  }
+
+  .ph-offer__side,
+  .ph-offer__side .btn {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ph-faq__item summary::after {
+    transition: none;
+  }
+}

@@ -15,6 +15,7 @@ const SLUGS = {
   "/services/product-audit": "product-audit",
   "/services/support": "support",
   "/services/ux-ui": "ux-ui",
+  "/industries/pharmacy": "pharmacy",
 };
 
 export function serviceSlugFromPath(path) {
