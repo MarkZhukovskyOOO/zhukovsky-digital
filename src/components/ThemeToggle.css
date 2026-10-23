@@ -1,8 +1,15 @@
-.theme-toggle {
+.corner {
   position: fixed;
   right: 20px;
   bottom: max(20px, env(safe-area-inset-bottom));
   z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.corner__tg,
+.theme-toggle {
+  flex: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -16,6 +23,7 @@
   transition: background 0.18s ease, border-color 0.18s ease,
     color 0.18s ease, transform 0.08s ease;
 }
+.corner__tg:hover,
 .theme-toggle:hover {
   background: var(--color-state-hover);
   border-color: var(--color-border-strong);

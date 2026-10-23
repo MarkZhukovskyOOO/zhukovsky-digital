@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs.jsx";
 import ContactForm from "../components/ContactForm.jsx";
 import Footer from "../components/Footer.jsx";
-import teamPhoto from "../assets/figma/team-photo.webp";
 import "./CompanyPage.css";
 
 const STATS = [
@@ -34,10 +33,6 @@ const PRINCIPLES = [
       </>
     ),
   },
-];
-
-const TEAM = [
-  { name: "Марк Жуковский", role: "Основатель" },
 ];
 
 const INDUSTRIES = [
@@ -80,11 +75,6 @@ export default function CompanyPage() {
                 находимся в Краснодаре и проводим встречи с заказчиками удалённо.
               </p>
             </div>
-            <img
-              className="company-hero__photo"
-              src={teamPhoto}
-              alt="Zhukovsky Digital"
-            />
           </div>
         </section>
 
@@ -117,27 +107,6 @@ export default function CompanyPage() {
                   <h3 className="company-principle__title">{p.title}</h3>
                   <p className="company-principle__desc">{p.desc}</p>
                 </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ===== Team ===== */}
-        <section className="company-section">
-          <div className="container">
-            <div className="company-section__head">
-              <span className="company-overline">Команда</span>
-              <h2 className="company-section__title">
-                Проекты выполняет постоянная команда
-              </h2>
-            </div>
-            <div className="company-team">
-              {TEAM.map((m, i) => (
-                <div className="company-member" key={i}>
-                  <div className="company-member__photo">Фото</div>
-                  <div className="company-member__name">{m.name}</div>
-                  <div className="company-member__role">{m.role}</div>
-                </div>
               ))}
             </div>
           </div>
@@ -201,9 +170,6 @@ export default function CompanyPage() {
                       )}
                     </div>
                   ))}
-                </div>
-                <div className="company-contacts__map">
-                  Краснодар · встречи удалённо
                 </div>
                 <p className="company-contacts__legal">
                   Основатель — Марк Жуковский, 2023 год.

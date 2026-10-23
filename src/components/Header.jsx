@@ -4,7 +4,6 @@ import MobileMenu from "./MobileMenu.jsx";
 import "./Header.css";
 
 import { SERVICE_NAV } from "../data/serviceOffers.js";
-import { serviceSlugFromPath, track } from "../lib/track.js";
 import { openPharmacyLead, PHARMACY_PATH } from "../lib/pharmacyLead.js";
 
 /* Иконки пунктов навигации (16px, из макета) */
@@ -36,15 +35,6 @@ function IconCompany() {
     </svg>
   );
 }
-function IconTelegram() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M14 2.5 7.6 13.2 6 8.6 1.6 6.8 14 2.5Z" />
-      <path d="M14 2.5 6 8.6" />
-    </svg>
-  );
-}
-
 function openContactModal() {
   window.dispatchEvent(new CustomEvent("open-contact-modal"));
 }
@@ -179,16 +169,6 @@ export default function Header() {
           >
             Аптечным сетям
           </NavLink>
-          <a
-            href="https://t.me/Mark_Zhukovskiy"
-            className="header__tg"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Telegram"
-            onClick={() => track("telegram_click", { service_slug: serviceSlugFromPath(pathname), place: "header" })}
-          >
-            <IconTelegram />
-          </a>
           <button
             type="button"
             className="btn btn-primary header__cta"

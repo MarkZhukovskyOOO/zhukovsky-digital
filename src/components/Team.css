@@ -1,4 +1,4 @@
-/* Секция Studio: заголовок + описание, фото команды, статистика */
+/* Секция Studio: заголовок, описание и статистика */
 .team {
   background: var(--bg-soft);
   padding-block: 80px;
@@ -28,14 +28,6 @@
   color: var(--color-text-secondary);
   font-size: 18px;
   line-height: 1.55;
-}
-
-.team__photo {
-  width: 100%;
-  margin-top: 48px;
-  aspect-ratio: 1240 / 440;
-  object-fit: cover;
-  border-radius: 22px;
 }
 
 .team__stats {
@@ -78,13 +70,8 @@
   }
 }
 
-/* Мобайл (375): фото выше, статы в 2 колонки — как во фрейме Mobile 375 */
+/* Мобайл (375): статы в 2 колонки */
 @media (max-width: 560px) {
-  .team__photo {
-    margin-top: 32px;
-    aspect-ratio: 335 / 195;
-    border-radius: var(--radius-md);
-  }
   .team__stats {
     margin-top: 32px;
     grid-template-columns: repeat(2, 1fr);

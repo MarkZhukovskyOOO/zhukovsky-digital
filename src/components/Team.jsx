@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import teamPhoto from "../assets/figma/team-photo.webp";
 import "./Team.css";
 
 const STATS = [
@@ -29,13 +28,6 @@ export default function Team() {
             меняется под задачу.
           </p>
         </div>
-
-        <img
-          className="team__photo"
-          src={teamPhoto}
-          alt="Команда студии Жуковский"
-          loading="lazy"
-        />
 
         <div className="team__stats">
           {STATS.map((s) => (
