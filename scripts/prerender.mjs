@@ -131,8 +131,8 @@ async function capture(page, port, route) {
   if (!html.includes('rel="canonical"') && !html.includes("rel='canonical'")) {
     throw new Error(`В HTML ${route} нет canonical`);
   }
-  if (!html.includes("noindex")) {
-    throw new Error(`В HTML ${route} пропал noindex`);
+  if (html.includes("noindex")) {
+    throw new Error(`В HTML ${route} остался noindex`);
   }
   const titles = html.match(/<title>/g) || [];
   if (titles.length !== 1) {
@@ -184,6 +184,9 @@ async function main() {
     const notFound = await page.content();
     if (!notFound.includes("Такой страницы нет")) {
       throw new Error("Не удалось собрать HTML для 404");
+    }
+    if (!notFound.includes("noindex")) {
+      throw new Error("В HTML 404 нет noindex");
     }
 
     for (const [route, html] of htmlByRoute) {
