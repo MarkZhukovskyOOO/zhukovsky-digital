@@ -170,6 +170,16 @@ function assertHtml(html, route) {
   if (!parsed.linksInBody.some((href) => href.startsWith("/") || href.startsWith(SITE))) {
     throw new Error(`В HTML ${route} нет внутренних ссылок`);
   }
+  const image = page?.image?.image || "";
+  if (image && !image.startsWith(`${SITE}/og/`)) {
+    throw new Error(`В HTML ${route} картинка для соцсетей не абсолютная`);
+  }
+  const twitter = metaContent(parsed.metas, "twitter:card");
+  const ogImage = parsed.metas.find((meta) => meta.property === "og:image")?.content || "";
+  if (page.image) {
+    if (ogImage !== page.image.image) throw new Error(`В HTML ${route} нет og:image`);
+    if (twitter !== "summary_large_image") throw new Error(`В HTML ${route} нет twitter:card`);
+  }
   if (parsed.jsonLd.length === 0) throw new Error(`В HTML ${route} нет структурированных данных`);
   for (const block of parsed.jsonLd) JSON.parse(block);
   if (html.includes("reveal-ready")) throw new Error(`В HTML ${route} контент скрыт анимацией без JavaScript`);

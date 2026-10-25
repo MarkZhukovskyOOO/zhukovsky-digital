@@ -7,7 +7,6 @@
   align-items: center;
   gap: 8px;
 }
-.corner__tg,
 .theme-toggle {
   flex: none;
   display: inline-flex;
@@ -23,7 +22,18 @@
   transition: background 0.18s ease, border-color 0.18s ease,
     color 0.18s ease, transform 0.08s ease;
 }
-.corner__tg:hover,
+.corner__tg {
+  flex: none;
+  display: inline-flex;
+  width: var(--control-md);
+  height: var(--control-md);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  box-shadow: var(--shadow-button);
+}
+.corner__tg:hover {
+  opacity: 0.88;
+}
 .theme-toggle:hover {
   background: var(--color-state-hover);
   border-color: var(--color-border-strong);

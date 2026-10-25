@@ -55,6 +55,14 @@ export default function Seo() {
     setMeta("property", "og:title", meta.title);
     setMeta("property", "og:description", meta.description);
     setMeta("property", "og:url", url);
+    setMeta("property", "og:image", page?.image?.image || "");
+    setMeta("property", "og:image:alt", page?.image?.alt || "");
+    setMeta("property", "og:image:width", page?.image?.width || "");
+    setMeta("property", "og:image:height", page?.image?.height || "");
+    setMeta("name", "twitter:card", page?.image ? "summary_large_image" : "");
+    setMeta("name", "twitter:title", page?.image ? meta.title : "");
+    setMeta("name", "twitter:description", page?.image ? meta.description : "");
+    setMeta("name", "twitter:image", page?.image?.image || "");
     const canonical = document.head.querySelector('link[rel="canonical"]');
     if (url) {
       const link = canonical || document.createElement("link");
