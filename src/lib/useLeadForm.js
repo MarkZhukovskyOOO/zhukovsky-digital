@@ -50,15 +50,18 @@ export function useLeadForm() {
         },
         body: JSON.stringify(payload),
       });
-      const data = await response.json().catch(() => ({}));
-      if (!response.ok) {
+      const type = response.headers.get("content-type") || "";
+      const data = type.toLowerCase().includes("application/json")
+        ? await response.json().catch(() => null)
+        : null;
+      if (!response.ok || !data || data.ok !== true) {
         track("lead_error", {
           service_slug: extraRef.current.service,
           page_path: extraRef.current.page,
-          error_category: String(response.status),
+          error_category: response.ok ? "invalid_response" : String(response.status),
         });
         setStatus("error");
-        setError(data.error || "Не получилось отправить заявку. Напишите в Telegram.");
+        setError(data?.error || "Не получилось отправить заявку. Напишите в Telegram.");
         return;
       }
       track("lead_success", {

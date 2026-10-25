@@ -77,7 +77,7 @@ export default function Pricing() {
         <div className="pricing__grid">
           {PLANS.map((plan) => (
             <article
-              className={`plan ${plan.featured ? "plan--featured" : ""}`}
+              className={`plan${plan.featured ? " plan--featured" : ""}`}
               key={plan.eyebrow}
             >
               <span className="plan__eyebrow">{plan.eyebrow}</span>

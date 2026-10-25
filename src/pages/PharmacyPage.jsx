@@ -158,7 +158,7 @@ export default function PharmacyPage() {
                 <DemoButton place="hero">Запросить демонстрацию</DemoButton>
                 <CaseLink to="/case/adonis" place="hero">Посмотреть кейс «Адонис»</CaseLink>
               </div>
-              <p className="ph-price">Внедрение под ключ — от {IMPLEMENTATION}</p>
+              <p className="ph-price">{`Внедрение под ключ — от ${IMPLEMENTATION}`}</p>
               <p className="ph-trust">
                 Для «Адониса» уже работают сайт, приложение и обмен заказами с аптечной системой. «Аптеку Народную» тоже сделали мы: каталог, выбор аптеки и бронирование с самовывозом.
               </p>
@@ -412,18 +412,18 @@ export default function PharmacyPage() {
                   Брендированный сайт, приложение iOS и Android, каталог, онлайн-бронирование, серверная часть, согласованная интеграция, тестирование и запуск.
                 </p>
                 <p className="ph-note">
-                  Цена — ориентир внедрения под ключ при наличии подходящего API. Общий пакет «сайт и приложение» на сайте студии начинается от {GENERAL_SITE_APP}: это другой состав, без отраслевых интеграций и аптечного сценария этой страницы. Точная смета — после технического обследования. Сторонние лицензии и работы вне технического задания считаются отдельно.
+                  {`Цена — ориентир внедрения под ключ при наличии подходящего API. Общий пакет «сайт и приложение» на сайте студии начинается от ${GENERAL_SITE_APP}: это другой состав, без отраслевых интеграций и аптечного сценария этой страницы. Точная смета — после технического обследования. Сторонние лицензии и работы вне технического задания считаются отдельно.`}
                 </p>
               </div>
               <div className="ph-offer__side">
-                <p className="ph-offer__price">от {IMPLEMENTATION}</p>
+                <p className="ph-offer__price">{`от ${IMPLEMENTATION}`}</p>
                 <OfferButton place="pricing">Обсудить внедрение</OfferButton>
               </div>
             </article>
             <div className="ph-cards ph-cards--2">
               <article className="ph-card">
                 <h3>Техническая поддержка</h3>
-                <p className="ph-card__price">от {SUPPORT}/мес</p>
+                <p className="ph-card__price">{`от ${SUPPORT}/мес`}</p>
                 <ul>
                   <li>Мониторинг доступности и ключевых сценариев;</li>
                   <li>Инциденты и ошибки по согласованному SLA;</li>
@@ -433,7 +433,7 @@ export default function PharmacyPage() {
               </article>
               <article className="ph-card">
                 <h3>Запуск и развитие цифрового канала</h3>
-                <p className="ph-card__price">от {GROWTH}/мес</p>
+                <p className="ph-card__price">{`от ${GROWTH}/мес`}</p>
                 <ul>
                   <li>Согласованный объём технической поддержки;</li>
                   <li>Аналитика установок, бронирований и пользовательских сценариев;</li>

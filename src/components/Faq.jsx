@@ -21,7 +21,7 @@ export default function Faq() {
             {ITEMS.map((item, i) => {
               const isOpen = open === i;
               return (
-                <div className={`faq__item ${isOpen ? "is-open" : ""}`} key={item.q}>
+                <div className={`faq__item${isOpen ? " is-open" : ""}`} key={item.q}>
                   <button
                     className="faq__q"
                     onClick={() => setOpen(isOpen ? -1 : i)}

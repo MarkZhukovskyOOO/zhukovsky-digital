@@ -86,7 +86,7 @@ export default function Header() {
   const discuss = pathname === PHARMACY_PATH ? () => openPharmacyLead() : openContactModal;
 
   return (
-    <header className={`header ${scrolled ? "is-scrolled" : ""}`}>
+    <header className={`header${scrolled ? " is-scrolled" : ""}`}>
       <div className="container header__inner">
         <Link to="/" className="logo" aria-label="Zhukovsky Digital — на главную">
           Zhukovsky <span className="logo__accent">Digital</span>
@@ -95,7 +95,7 @@ export default function Header() {
         <nav className="header__nav" aria-label="Основная навигация">
           <NavLink
             to="/cases"
-            className={({ isActive }) => `header__nav-link ${isActive ? "is-current" : ""}`}
+            className={({ isActive }) => `header__nav-link${isActive ? " is-current" : ""}`}
           >
             <span className="header__nav-icon"><IconWorks /></span>
             Кейсы
@@ -117,7 +117,7 @@ export default function Header() {
             <button
               type="button"
               ref={dropBtnRef}
-              className={`header__nav-link ${servicesActive ? "is-current" : ""}`}
+              className={`header__nav-link${servicesActive ? " is-current" : ""}`}
               aria-haspopup="true"
               aria-expanded={dropOpen}
               onClick={() => setDropOpen((v) => !v)}
@@ -126,7 +126,7 @@ export default function Header() {
               Услуги
             </button>
 
-            <div className={`nav-drop ${dropOpen ? "is-open" : ""}`} role="menu">
+            <div className={`nav-drop${dropOpen ? " is-open" : ""}`} role="menu">
               <div className="nav-drop__cols">
                 {[SERVICE_NAV.slice(0, 3), SERVICE_NAV.slice(3)].map((col, ci) => (
                   <ul className="nav-drop__col" key={ci}>
@@ -153,7 +153,7 @@ export default function Header() {
 
           <NavLink
             to="/company"
-            className={({ isActive }) => `header__nav-link ${isActive ? "is-current" : ""}`}
+            className={({ isActive }) => `header__nav-link${isActive ? " is-current" : ""}`}
           >
             <span className="header__nav-icon"><IconCompany /></span>
             О студии
@@ -165,7 +165,7 @@ export default function Header() {
           <NavLink
             to={PHARMACY_PATH}
             end
-            className={({ isActive }) => `header__nav-link header__pharmacy ${isActive ? "is-current" : ""}`}
+            className={({ isActive }) => `header__nav-link header__pharmacy${isActive ? " is-current" : ""}`}
           >
             Аптечным сетям
           </NavLink>
@@ -177,7 +177,7 @@ export default function Header() {
             Обсудить проект
           </button>
           <button
-            className={`burger ${menuOpen ? "is-open" : ""}`}
+            className={`burger${menuOpen ? " is-open" : ""}`}
             aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((v) => !v)}

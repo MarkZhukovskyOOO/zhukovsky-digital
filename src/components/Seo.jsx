@@ -48,7 +48,7 @@ export default function Seo() {
       if (index > 0) node.remove();
     });
     setMeta("name", "description", meta.description);
-    setMeta("name", "robots", page ? "" : "noindex, nofollow");
+    setMeta("name", "robots", page ? page.robots || "" : "noindex, nofollow");
     setMeta("property", "og:type", page?.kind || "website");
     setMeta("property", "og:site_name", "Zhukovsky Digital");
     setMeta("property", "og:locale", "ru_RU");
@@ -64,7 +64,7 @@ export default function Seo() {
     } else {
       canonical?.remove();
     }
-  }, [meta.title, meta.description, page?.kind, url]);
+  }, [page, meta.title, meta.description, url]);
 
   return (
     <>

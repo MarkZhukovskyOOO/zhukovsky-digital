@@ -414,7 +414,8 @@ export default function ProjectCasePage({ project }) {
               <Link className="case-head__action" to="/cases">Все кейсы</Link>
             </div>
             <Link className="project-case__other" to={data.other.to}>
-              Смотреть кейс «{data.other.label}» <span aria-hidden="true">→</span>
+              {`Смотреть кейс «${data.other.label}» `}
+              <span aria-hidden="true">→</span>
             </Link>
           </div>
         </section>

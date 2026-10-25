@@ -116,7 +116,7 @@ export default function ContactModal() {
 
           <div className="cmodal__label">Что нужно?</div>
           <div className="cmodal__options">
-            <label className={`cmodal-option ${form.need === "new" ? "is-active" : ""}`}>
+            <label className={`cmodal-option${form.need === "new" ? " is-active" : ""}`}>
               <input
                 type="radio"
                 name="cmodal-need"
@@ -126,7 +126,7 @@ export default function ContactModal() {
               <i className="cmodal-option__dot" aria-hidden="true" />
               <span>Новый продукт с нуля</span>
             </label>
-            <label className={`cmodal-option ${form.need === "dev" ? "is-active" : ""}`}>
+            <label className={`cmodal-option${form.need === "dev" ? " is-active" : ""}`}>
               <input
                 type="radio"
                 name="cmodal-need"
@@ -165,7 +165,7 @@ export default function ContactModal() {
             </p>
           )}
           <p className="cmodal__note">
-            Нажимая кнопку, вы соглашаетесь с{" "}
+            {"Нажимая кнопку, вы соглашаетесь с "}
             <Link to="/policy" className="cmodal__policy" onClick={close}>
               политикой конфиденциальности
             </Link>

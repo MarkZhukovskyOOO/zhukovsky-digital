@@ -10,6 +10,11 @@ import "./MobileMenu.css";
    делает его containing block для position: fixed. */
 export default function MobileMenu({ open, services, onClose, onContact }) {
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   /* Блокировка скролла body, пока меню открыто */
   useEffect(() => {
@@ -34,9 +39,11 @@ export default function MobileMenu({ open, services, onClose, onContact }) {
     return () => document.removeEventListener("keydown", onKey);
   }, [open, onClose]);
 
+  if (!mounted) return null;
+
   return createPortal(
     <div
-      className={`mmenu ${open ? "is-open" : ""}`}
+      className={`mmenu${open ? " is-open" : ""}`}
       role="dialog"
       aria-modal="true"
       aria-label="Меню"
@@ -63,7 +70,7 @@ export default function MobileMenu({ open, services, onClose, onContact }) {
         <NavLink
           to={PHARMACY_PATH}
           end
-          className={({ isActive }) => `mmenu__link ${isActive ? "is-current" : ""}`}
+          className={({ isActive }) => `mmenu__link${isActive ? " is-current" : ""}`}
           onClick={onClose}
           tabIndex={open ? 0 : -1}
         >
@@ -71,7 +78,7 @@ export default function MobileMenu({ open, services, onClose, onContact }) {
         </NavLink>
         <NavLink
           to="/cases"
-          className={({ isActive }) => `mmenu__link ${isActive ? "is-current" : ""}`}
+          className={({ isActive }) => `mmenu__link${isActive ? " is-current" : ""}`}
           onClick={onClose}
           tabIndex={open ? 0 : -1}
         >
@@ -80,7 +87,7 @@ export default function MobileMenu({ open, services, onClose, onContact }) {
 
         <button
           type="button"
-          className={`mmenu__link mmenu__acc ${servicesOpen ? "is-open" : ""}`}
+          className={`mmenu__link mmenu__acc${servicesOpen ? " is-open" : ""}`}
           aria-expanded={servicesOpen}
           onClick={() => setServicesOpen((v) => !v)}
           tabIndex={open ? 0 : -1}
@@ -104,7 +111,7 @@ export default function MobileMenu({ open, services, onClose, onContact }) {
 
         <NavLink
           to="/company"
-          className={({ isActive }) => `mmenu__link ${isActive ? "is-current" : ""}`}
+          className={({ isActive }) => `mmenu__link${isActive ? " is-current" : ""}`}
           onClick={onClose}
           tabIndex={open ? 0 : -1}
         >

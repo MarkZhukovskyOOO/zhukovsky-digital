@@ -45,7 +45,7 @@ export default function ContactForm({
 
         <div className="contact-form__label">Что нужно?</div>
         <div className="contact-form__options">
-          <label className={`option-card ${form.need === "new" ? "is-active" : ""}`}>
+          <label className={`option-card${form.need === "new" ? " is-active" : ""}`}>
             <input
               type="radio"
               name="need"
@@ -55,7 +55,7 @@ export default function ContactForm({
             <i className="option-card__dot" aria-hidden="true" />
             <span>Новый продукт с нуля</span>
           </label>
-          <label className={`option-card ${form.need === "dev" ? "is-active" : ""}`}>
+          <label className={`option-card${form.need === "dev" ? " is-active" : ""}`}>
             <input
               type="radio"
               name="need"
@@ -94,7 +94,7 @@ export default function ContactForm({
           </p>
         )}
         <p className="contact-form__note">
-          Нажимая кнопку, вы соглашаетесь с{" "}
+          {"Нажимая кнопку, вы соглашаетесь с "}
           <Link to="/policy" className="contact-form__policy">
             политикой конфиденциальности
           </Link>

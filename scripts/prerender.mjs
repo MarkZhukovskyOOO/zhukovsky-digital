@@ -1,13 +1,15 @@
 import { createReadStream, existsSync, statSync } from "node:fs";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { createServer } from "node:http";
 import { extname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import puppeteer from "puppeteer-core";
-import { REDIRECTS, ROUTES, SITE } from "../seo-routes.js";
+import { REDIRECTS, ROUTES, SITE, SITEMAP_ROUTES, sitemapXml } from "../seo-routes.js";
+import { NOT_FOUND, PAGES, pageUrl } from "../src/seo.js";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const dist = join(root, "dist");
+const chromeCache = join(root, ".cache", "chrome");
 
 const MARKERS = {
   "/": "Мы решаем digital-задачи медицинских сетей",
@@ -42,16 +44,47 @@ const types = {
   ".xml": "application/xml; charset=utf-8",
 };
 
-function chromePath() {
+function systemChrome() {
   const candidates = [
     process.env.CHROME_PATH,
     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
     "/Applications/Chromium.app/Contents/MacOS/Chromium",
     "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary",
     "/usr/bin/google-chrome",
+    "/usr/bin/google-chrome-stable",
     "/usr/bin/chromium",
+    "/usr/bin/chromium-browser",
   ].filter(Boolean);
   return candidates.find((path) => existsSync(path)) || null;
+}
+
+async function resolveChrome() {
+  const existing = systemChrome();
+  if (existing) return existing;
+
+  const {
+    install,
+    Browser,
+    resolveBuildId,
+    detectBrowserPlatform,
+    computeExecutablePath,
+  } = await import("@puppeteer/browsers");
+  const platform = detectBrowserPlatform();
+  if (!platform) throw new Error("Не удалось определить платформу для установки Chrome.");
+  const buildId = await resolveBuildId(Browser.CHROME, platform, "stable");
+  const executablePath = computeExecutablePath({
+    browser: Browser.CHROME,
+    buildId,
+    cacheDir: chromeCache,
+  });
+  if (!existsSync(executablePath)) {
+    console.log("Chrome не найден в системе, скачиваю его для сборки…");
+    await install({ browser: Browser.CHROME, buildId, cacheDir: chromeCache });
+  }
+  if (!existsSync(executablePath)) {
+    throw new Error("Chrome не установился. Задайте путь в CHROME_PATH.");
+  }
+  return executablePath;
 }
 
 function startServer() {
@@ -80,24 +113,98 @@ function startServer() {
   });
 }
 
-function redirectHtml(target) {
-  const canonical = `${SITE}${target}`;
-  return `<!doctype html>
-<html lang="ru">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex, nofollow" />
-    <title>Olymp Clinic — Zhukovsky Digital</title>
-    <link rel="canonical" href="${canonical}" />
-    <meta http-equiv="refresh" content="0; url=${target}" />
-    <script>location.replace(${JSON.stringify(target)})</script>
-  </head>
-  <body>
-    <p><a href="${target}">Кейс Olymp Clinic</a></p>
-  </body>
-</html>
-`;
+function decodeEntities(value) {
+  return value
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, "\"")
+    .replace(/&#39;/g, "'");
+}
+
+function tagAttrs(raw) {
+  const attrs = {};
+  for (const match of raw.matchAll(/([\w:-]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g)) {
+    attrs[match[1].toLowerCase()] = decodeEntities(match[2] ?? match[3] ?? "");
+  }
+  return attrs;
+}
+
+function pageHead(html) {
+  const head = (html.match(/<head\b[^>]*>([\s\S]*?)<\/head>/i)?.[1] || "")
+    .replace(/<script\b[\s\S]*?<\/script>/gi, "");
+  const titles = [...head.matchAll(/<title>([\s\S]*?)<\/title>/gi)].map((match) => decodeEntities(match[1].trim()));
+  const metas = [...head.matchAll(/<meta\b([^>]*)\/?>/gi)].map((match) => tagAttrs(match[1]));
+  const links = [...head.matchAll(/<link\b([^>]*)\/?>/gi)].map((match) => tagAttrs(match[1]));
+  const h1 = [...html.matchAll(/<h1\b/gi)].length;
+  const linksInBody = [...html.matchAll(/<a\b[^>]*href\s*=\s*["']([^"']+)["']/gi)].map((match) => match[1]);
+  const jsonLd = [...html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)].map((match) => match[1]);
+  return { titles, metas, links, h1, linksInBody, jsonLd };
+}
+
+function metaContent(metas, name) {
+  return metas.find((meta) => (meta.name || "").toLowerCase() === name)?.content || "";
+}
+
+function assertHtml(html, route) {
+  const page = PAGES[route];
+  const marker = MARKERS[route];
+  const parsed = pageHead(html);
+  if (!page) throw new Error(`Нет метаданных для ${route}`);
+  if (!marker || !html.includes(marker)) throw new Error(`В HTML ${route} нет текста страницы`);
+  if (parsed.h1 !== 1) throw new Error(`В HTML ${route} заголовков H1: ${parsed.h1}`);
+  if (parsed.titles.length !== 1 || parsed.titles[0] !== page.title) {
+    throw new Error(`В HTML ${route} title не совпал с реестром`);
+  }
+  if (metaContent(parsed.metas, "description") !== page.description) {
+    throw new Error(`В HTML ${route} description не совпал с реестром`);
+  }
+  const canonical = parsed.links.find((link) => link.rel === "canonical")?.href || "";
+  if (canonical !== pageUrl(route)) throw new Error(`В HTML ${route} неверный canonical: ${canonical}`);
+  const robots = metaContent(parsed.metas, "robots");
+  if (page.robots) {
+    if (robots !== page.robots) throw new Error(`В HTML ${route} ожидался robots «${page.robots}», получен «${robots}»`);
+  } else if (robots.toLowerCase().includes("noindex")) {
+    throw new Error(`В HTML ${route} коммерческая страница закрыта от индексации`);
+  }
+  if (!parsed.linksInBody.some((href) => href.startsWith("/") || href.startsWith(SITE))) {
+    throw new Error(`В HTML ${route} нет внутренних ссылок`);
+  }
+  if (parsed.jsonLd.length === 0) throw new Error(`В HTML ${route} нет структурированных данных`);
+  for (const block of parsed.jsonLd) JSON.parse(block);
+  if (html.includes("reveal-ready")) throw new Error(`В HTML ${route} контент скрыт анимацией без JavaScript`);
+}
+
+function assertNotFound(html) {
+  const parsed = pageHead(html);
+  if (!html.includes("Такой страницы нет")) throw new Error("В HTML 404 нет текста страницы");
+  if (parsed.h1 !== 1) throw new Error(`В HTML 404 заголовков H1: ${parsed.h1}`);
+  if (parsed.titles.length !== 1 || parsed.titles[0] !== NOT_FOUND.title) {
+    throw new Error("В HTML 404 title не совпал");
+  }
+  if (metaContent(parsed.metas, "robots") !== "noindex, nofollow") {
+    throw new Error("В HTML 404 нет noindex в meta robots");
+  }
+  if (parsed.links.some((link) => link.rel === "canonical")) {
+    throw new Error("В HTML 404 не должно быть canonical");
+  }
+}
+
+function assertSitemap(xml) {
+  if (xml.includes("<lastmod>")) throw new Error("В sitemap не должно быть lastmod");
+  const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+  const expected = SITEMAP_ROUTES.map((route) => (route === "/" ? `${SITE}/` : `${SITE}${route}`));
+  if (locs.length !== expected.length || expected.some((loc, index) => locs[index] !== loc)) {
+    throw new Error(`Sitemap не совпал с реестром: ${locs.length} адресов`);
+  }
+  const closed = new Set([`${SITE}/policy`, `${SITE}/case/olymp`]);
+  if (locs.some((loc) => closed.has(loc) || loc.includes("?"))) {
+    throw new Error("В sitemap попала закрытая или неканоническая страница");
+  }
+}
+
+function routeFile(route) {
+  return route === "/" ? join(dist, "index.html") : join(dist, route, "index.html");
 }
 
 async function capture(page, port, route) {
@@ -120,46 +227,43 @@ async function capture(page, port, route) {
     document.querySelectorAll(".reveal, .is-visible, .is-ready, .is-live").forEach((el) => {
       el.classList.remove("reveal", "is-visible", "is-ready", "is-live");
     });
+    /* Стили анимации из эффектов не должны попадать в HTML: при гидратации
+       первый рендер их ещё не ставит. Длительность из JSX сохраняем. */
+    const effectProps = ["width", "margin-left", "transform", "z-index", "--shift", "--slot", "--sc", "--sy"];
     document.querySelectorAll(".mockup [style], .carousel [style]").forEach((el) => {
-      el.removeAttribute("style");
+      effectProps.forEach((prop) => el.style.removeProperty(prop));
+      if (!el.getAttribute("style")?.trim()) el.removeAttribute("style");
     });
+    /* Портал меню появляется после монтирования. В снимке его быть не должно,
+       иначе первый рендер (null) не совпадёт с HTML. */
+    document.querySelectorAll("body > .mmenu").forEach((el) => el.remove());
   });
   const html = await page.content();
-  if (marker && !html.includes(marker)) {
-    throw new Error(`В HTML ${route} нет текста страницы`);
-  }
-  if (!html.includes('rel="canonical"') && !html.includes("rel='canonical'")) {
-    throw new Error(`В HTML ${route} нет canonical`);
-  }
-  if (html.includes("noindex")) {
-    throw new Error(`В HTML ${route} остался noindex`);
-  }
-  const titles = html.match(/<title>/g) || [];
-  if (titles.length !== 1) {
-    throw new Error(`В HTML ${route} заголовков title: ${titles.length}`);
-  }
+  assertHtml(html, route);
   return html;
 }
 
 async function main() {
-  const chrome = chromePath();
-  if (!chrome) {
-    console.warn(
-      "Chrome не найден, пререндер пропущен. Сайт соберётся без статических HTML-страниц. Чтобы включить пререндер, задайте CHROME_PATH.",
-    );
-    return;
-  }
   if (!existsSync(join(dist, "index.html"))) {
     throw new Error("Сначала нужен dist/index.html — запустите vite build.");
   }
+  for (const route of ROUTES) {
+    if (!PAGES[route] || !MARKERS[route]) throw new Error(`Маршрут ${route} не описан в реестре метаданных`);
+  }
+
+  const chrome = await resolveChrome();
+  let browser;
+  try {
+    browser = await puppeteer.launch({
+      executablePath: chrome,
+      headless: true,
+      args: ["--no-sandbox", "--disable-dev-shm-usage"],
+    });
+  } catch (error) {
+    throw new Error(`Chrome не запустился (${chrome}): ${error.message}`);
+  }
 
   const { server, port } = await startServer();
-  const browser = await puppeteer.launch({
-    executablePath: chrome,
-    headless: true,
-    args: ["--no-sandbox", "--disable-dev-shm-usage"],
-  });
-
   try {
     const page = await browser.newPage();
     await page.setViewport({ width: 1280, height: 900 });
@@ -182,26 +286,30 @@ async function main() {
       { timeout: 10000 },
     );
     const notFound = await page.content();
-    if (!notFound.includes("Такой страницы нет")) {
-      throw new Error("Не удалось собрать HTML для 404");
-    }
-    if (!notFound.includes("noindex")) {
-      throw new Error("В HTML 404 нет noindex");
-    }
+    assertNotFound(notFound);
 
     for (const [route, html] of htmlByRoute) {
-      const dir = route === "/" ? dist : join(dist, route);
-      await mkdir(dir, { recursive: true });
-      const file = route === "/" ? join(dist, "index.html") : join(dir, "index.html");
+      const file = routeFile(route);
+      await mkdir(join(file, ".."), { recursive: true });
       await writeFile(file, html);
     }
     await writeFile(join(dist, "404.html"), notFound);
 
+    for (const route of ROUTES) {
+      const file = routeFile(route);
+      if (!existsSync(file)) throw new Error(`Не создан HTML для ${route}`);
+      assertHtml(await readFile(file, "utf8"), route);
+    }
+    if (!existsSync(join(dist, "404.html"))) throw new Error("Не создан 404.html");
+
+    const xml = sitemapXml();
+    assertSitemap(xml);
+    await writeFile(join(dist, "sitemap.xml"), xml);
+    await writeFile(join(root, "public", "sitemap.xml"), xml);
+    console.log(`sitemap ${SITEMAP_ROUTES.length}`);
+
     for (const [from, to] of Object.entries(REDIRECTS)) {
-      const dir = join(dist, from);
-      await mkdir(dir, { recursive: true });
-      await writeFile(join(dir, "index.html"), redirectHtml(to));
-      console.log(`redirect ${from} -> ${to}`);
+      console.log(`redirect ${from} -> ${to} (HTTP 301 отдаёт server.js)`);
     }
   } finally {
     await browser.close();

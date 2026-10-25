@@ -1,4 +1,4 @@
-import { REDIRECTS, ROUTES, SITE, normalizePath } from "../seo-routes.js";
+import { REDIRECTS, ROBOTS, ROUTES, SITE, normalizePath } from "../seo-routes.js";
 
 export { REDIRECTS, ROUTES, SITE, normalizePath };
 
@@ -125,6 +125,7 @@ export const PAGES = {
   "/policy": {
     title: "Политика конфиденциальности — Zhukovsky Digital",
     description: "Черновик структуры: объём и порядок разделов.",
+    robots: ROBOTS["/policy"],
   },
 };
 
