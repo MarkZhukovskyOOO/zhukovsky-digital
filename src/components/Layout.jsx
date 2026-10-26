@@ -6,7 +6,15 @@ import Seo from "./Seo.jsx";
 import ContactModal from "./ContactModal.jsx";
 import { ThemeProvider } from "../theme-context.jsx";
 import useScrollReveal from "../hooks/useScrollReveal.js";
-import { serviceSlugFromPath, track } from "../lib/track.js";
+import { serviceSlugFromPath, track, trackNavigation } from "../lib/track.js";
+
+function TrackRoute() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    trackNavigation(pathname);
+  }, [pathname]);
+  return null;
+}
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -24,6 +32,7 @@ export default function Layout() {
     <ThemeProvider>
       <ScrollToTop />
       <Seo />
+      <TrackRoute />
       <Header />
       <Outlet />
       <div className="corner">

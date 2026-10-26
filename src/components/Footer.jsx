@@ -18,10 +18,10 @@ const CONTACTS = [
 ];
 
 const NAV = [
-  { label: "Аптечным сетям", to: "/industries/pharmacy" },
-  { label: "Кейсы", to: "/cases" },
+  { label: "Аптечным сетям", to: "/industries/pharmacy/" },
+  { label: "Кейсы", to: "/cases/" },
   { label: "Услуги", to: "/#services" },
-  { label: "О студии", to: "/company" },
+  { label: "О студии", to: "/company/" },
 ];
 
 export default function Footer({ slim = false }) {

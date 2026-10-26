@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { useLeadForm } from "../lib/useLeadForm.js";
+import { track } from "../lib/track.js";
 import "./ContactModal.css";
 
 /* Модалка «Обсудить проект» — фреймы modal-1440/768/375.
@@ -25,6 +26,10 @@ export default function ContactModal() {
         note: detail.note || "",
       });
       lastFocusRef.current = document.activeElement;
+      track("lead_open", {
+        page_path: detail.page || window.location.pathname,
+        service_slug: detail.service || "",
+      });
       setOpen(true);
     };
     window.addEventListener("open-contact-modal", onOpen);
@@ -166,7 +171,7 @@ export default function ContactModal() {
           )}
           <p className="cmodal__note">
             {"Нажимая кнопку, вы соглашаетесь с "}
-            <Link to="/policy" className="cmodal__policy" onClick={close}>
+            <Link to="/policy/" className="cmodal__policy" onClick={close}>
               политикой конфиденциальности
             </Link>
           </p>

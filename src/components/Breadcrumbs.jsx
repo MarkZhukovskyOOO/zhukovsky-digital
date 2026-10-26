@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { SITE, normalizePath } from "../seo.js";
+import { normalizePath, pageUrl } from "../seo.js";
 import "./Breadcrumbs.css";
 
 export default function Breadcrumbs({ items }) {
@@ -10,12 +10,12 @@ export default function Breadcrumbs({ items }) {
     "@type": "BreadcrumbList",
     itemListElement: items.map((item, i) => {
       const last = i === items.length - 1;
-      const href = item.to || (last ? path : "/");
+      const href = normalizePath(item.to || (last ? path : "/")) || "/";
       return {
         "@type": "ListItem",
         position: i + 1,
         name: item.label,
-        item: href === "/" ? `${SITE}/` : `${SITE}${href}`,
+        item: pageUrl(href),
       };
     }),
   };

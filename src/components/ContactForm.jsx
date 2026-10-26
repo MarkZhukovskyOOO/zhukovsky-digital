@@ -95,7 +95,7 @@ export default function ContactForm({
         )}
         <p className="contact-form__note">
           {"Нажимая кнопку, вы соглашаетесь с "}
-          <Link to="/policy" className="contact-form__policy">
+          <Link to="/policy/" className="contact-form__policy">
             политикой конфиденциальности
           </Link>
         </p>

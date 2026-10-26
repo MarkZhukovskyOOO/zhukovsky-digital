@@ -5,6 +5,7 @@ import "./Header.css";
 
 import { SERVICE_NAV } from "../data/serviceOffers.js";
 import { openPharmacyLead, PHARMACY_PATH } from "../lib/pharmacyLead.js";
+import { normalizePath, publicPath } from "../seo.js";
 
 /* Иконки пунктов навигации (16px, из макета) */
 function IconWorks() {
@@ -82,8 +83,9 @@ export default function Header() {
     };
   }, [dropOpen]);
 
-  const servicesActive = pathname.startsWith("/services");
-  const discuss = pathname === PHARMACY_PATH ? () => openPharmacyLead() : openContactModal;
+  const path = normalizePath(pathname);
+  const servicesActive = Boolean(path && path.startsWith("/services"));
+  const discuss = path === PHARMACY_PATH ? () => openPharmacyLead() : openContactModal;
 
   return (
     <header className={`header${scrolled ? " is-scrolled" : ""}`}>
@@ -94,7 +96,7 @@ export default function Header() {
 
         <nav className="header__nav" aria-label="Основная навигация">
           <NavLink
-            to="/cases"
+            to={publicPath("/cases")}
             className={({ isActive }) => `header__nav-link${isActive ? " is-current" : ""}`}
           >
             <span className="header__nav-icon"><IconWorks /></span>
@@ -152,7 +154,7 @@ export default function Header() {
           </div>
 
           <NavLink
-            to="/company"
+            to={publicPath("/company")}
             className={({ isActive }) => `header__nav-link${isActive ? " is-current" : ""}`}
           >
             <span className="header__nav-icon"><IconCompany /></span>
@@ -163,7 +165,7 @@ export default function Header() {
         <div className="header__actions">
           <span className="header__rule" aria-hidden="true" />
           <NavLink
-            to={PHARMACY_PATH}
+            to={publicPath(PHARMACY_PATH)}
             end
             className={({ isActive }) => `header__nav-link header__pharmacy${isActive ? " is-current" : ""}`}
           >

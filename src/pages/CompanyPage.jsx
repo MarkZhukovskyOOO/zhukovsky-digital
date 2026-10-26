@@ -29,7 +29,7 @@ const PRINCIPLES = [
     desc: (
       <>
         {"После запуска можем продолжить развитие: добавлять функции, дорабатывать интеграции и пользовательские сценарии. Для "}
-        <Link className="company-link" to="/case/adonis">«Адониса»</Link>
+        <Link className="company-link" to="/case/adonis/">«Адониса»</Link>
         {" ведём ASO приложения и GEO сайта. Состав дальнейших работ согласуем отдельно."}
       </>
     ),
@@ -123,9 +123,9 @@ export default function CompanyPage() {
               </h2>
               <p className="company-principle__desc">
                 {"Для аптечной сети "}
-                <Link className="company-link" to="/case/adonis">«Адонис»</Link>
+                <Link className="company-link" to="/case/adonis/">«Адонис»</Link>
                 {" мы с нуля создали сайт и мобильное приложение. Для "}
-                <Link className="company-link" to="/case/olymp-clinic">Olymp Clinic</Link>
+                <Link className="company-link" to="/case/olymp-clinic/">Olymp Clinic</Link>
                 {" в партнёрском формате выполнили весь цикл создания новой версии сайта — от инициации и дизайна до разработки на 1С-Битрикс и выпуска в продакшен за 1,5 месяца."}
               </p>
             </div>

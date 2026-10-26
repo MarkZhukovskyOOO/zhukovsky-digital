@@ -4,7 +4,7 @@ import { createServer } from "node:http";
 import { extname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import puppeteer from "puppeteer-core";
-import { REDIRECTS, ROUTES, SITE, SITEMAP_ROUTES, sitemapXml } from "../seo-routes.js";
+import { REDIRECTS, ROUTES, SITE, SITEMAP_ROUTES, publicPath, sitemapXml } from "../seo-routes.js";
 import { NOT_FOUND, PAGES, pageUrl } from "../src/seo.js";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
@@ -161,6 +161,17 @@ function assertHtml(html, route) {
   }
   const canonical = parsed.links.find((link) => link.rel === "canonical")?.href || "";
   if (canonical !== pageUrl(route)) throw new Error(`В HTML ${route} неверный canonical: ${canonical}`);
+  const ogUrl = parsed.metas.find((meta) => meta.property === "og:url")?.content || "";
+  if (ogUrl !== pageUrl(route)) throw new Error(`В HTML ${route} неверный og:url: ${ogUrl}`);
+  for (const href of parsed.linksInBody) {
+    if (!href.startsWith("/") || href.startsWith("//")) continue;
+    const pathOnly = href.split(/[?#]/)[0];
+    if (pathOnly === "/" || /\.[a-z0-9]+$/i.test(pathOnly)) continue;
+    const key = pathOnly.endsWith("/") ? pathOnly.slice(0, -1) : pathOnly;
+    if (ROUTES.includes(key) && !pathOnly.endsWith("/")) {
+      throw new Error(`В HTML ${route} ссылка без завершающего слеша: ${href}`);
+    }
+  }
   const robots = metaContent(parsed.metas, "robots");
   if (page.robots) {
     if (robots !== page.robots) throw new Error(`В HTML ${route} ожидался robots «${page.robots}», получен «${robots}»`);
@@ -203,11 +214,16 @@ function assertNotFound(html) {
 function assertSitemap(xml) {
   if (xml.includes("<lastmod>")) throw new Error("В sitemap не должно быть lastmod");
   const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  const expected = SITEMAP_ROUTES.map((route) => (route === "/" ? `${SITE}/` : `${SITE}${route}`));
+  const expected = SITEMAP_ROUTES.map((route) => `${SITE}${publicPath(route)}`);
   if (locs.length !== expected.length || expected.some((loc, index) => locs[index] !== loc)) {
     throw new Error(`Sitemap не совпал с реестром: ${locs.length} адресов`);
   }
-  const closed = new Set([`${SITE}/policy`, `${SITE}/case/olymp`]);
+  const closed = new Set([
+    `${SITE}/policy`,
+    `${SITE}/policy/`,
+    `${SITE}/case/olymp`,
+    `${SITE}/case/olymp/`,
+  ]);
   if (locs.some((loc) => closed.has(loc) || loc.includes("?"))) {
     throw new Error("В sitemap попала закрытая или неканоническая страница");
   }
@@ -218,7 +234,7 @@ function routeFile(route) {
 }
 
 async function capture(page, port, route) {
-  const response = await page.goto(`http://127.0.0.1:${port}${route}`, {
+  const response = await page.goto(`http://127.0.0.1:${port}${publicPath(route)}`, {
     waitUntil: "networkidle0",
     timeout: 30000,
   });

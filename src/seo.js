@@ -1,6 +1,6 @@
-import { REDIRECTS, ROBOTS, ROUTES, SITE, normalizePath } from "../seo-routes.js";
+import { REDIRECTS, ROBOTS, ROUTES, SITE, normalizePath, publicPath } from "../seo-routes.js";
 
-export { REDIRECTS, ROUTES, SITE, normalizePath };
+export { REDIRECTS, ROUTES, SITE, normalizePath, publicPath };
 
 export const FAQ = [
   {
@@ -32,12 +32,62 @@ export const FAQ = [
 export const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": `${SITE}/#organization`,
   name: "Zhukovsky Digital",
-  url: SITE,
+  url: `${SITE}/`,
   email: "sales@zhukovsky-digital.com",
   telephone: "+7 495 120-14-08",
   sameAs: ["https://t.me/Mark_Zhukovskiy"],
 };
+
+export const websiteJsonLd = {
+  "@type": "WebSite",
+  "@id": `${SITE}/#website`,
+  url: `${SITE}/`,
+  name: "Zhukovsky Digital",
+  inLanguage: "ru",
+  publisher: { "@id": `${SITE}/#organization` },
+};
+
+export function pageJsonLd(path, page) {
+  const type =
+    path === "/company"
+      ? "AboutPage"
+      : path === "/cases"
+        ? "CollectionPage"
+        : path.startsWith("/services")
+          ? "Service"
+          : path.startsWith("/case/")
+            ? "CreativeWork"
+            : "WebPage";
+  const node = {
+    "@type": type,
+    "@id": `${pageUrl(path)}#webpage`,
+    url: pageUrl(path),
+    name: page.title,
+    description: page.description,
+    inLanguage: "ru",
+    isPartOf: { "@id": `${SITE}/#website` },
+    publisher: { "@id": `${SITE}/#organization` },
+  };
+  if (type === "Service") node.provider = { "@id": `${SITE}/#organization` };
+  return node;
+}
+
+export function faqPageJsonLd(items) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1"),
+      },
+    })),
+  };
+}
 
 export const faqJsonLd = {
   "@context": "https://schema.org",
@@ -171,5 +221,5 @@ export const NOT_FOUND = {
 };
 
 export function pageUrl(path) {
-  return path === "/" ? `${SITE}/` : `${SITE}${path}`;
+  return `${SITE}${publicPath(path)}`;
 }

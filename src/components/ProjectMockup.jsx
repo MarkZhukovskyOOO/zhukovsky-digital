@@ -133,12 +133,13 @@ function MockupWindow({ src, alt, place, duration, delay }) {
 
   return (
     <div className={`mockup__window mockup__window--${place}`} ref={frameRef}>
-      <img
+        <img
         ref={imgRef}
         className="mockup__shot"
         src={src}
         alt={alt}
         draggable="false"
+        loading="lazy"
         style={{ animationDuration: duration, animationDelay: delay }}
       />
     </div>

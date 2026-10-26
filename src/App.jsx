@@ -22,7 +22,7 @@ export default function App() {
           <Route path="/case/adonis" element={<ProjectCasePage project="adonis" />} />
           <Route path="/case/olymp-clinic" element={<ProjectCasePage project="olympClinic" />} />
           <Route path="/case/narodnaya" element={<ProjectCasePage project="narodnaya" />} />
-          <Route path="/case/olymp" element={<Navigate to="/case/olymp-clinic" replace />} />
+          <Route path="/case/olymp" element={<Navigate to="/case/olymp-clinic/" replace />} />
           <Route path="/industries/pharmacy" element={<PharmacyPage />} />
           <Route path="/cases" element={<CasesPage />} />
           <Route path="/policy" element={<PolicyPage />} />

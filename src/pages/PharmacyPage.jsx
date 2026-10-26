@@ -156,7 +156,7 @@ export default function PharmacyPage() {
               </ul>
               <div className="ph-actions">
                 <DemoButton place="hero">Запросить демонстрацию</DemoButton>
-                <CaseLink to="/case/adonis" place="hero">Посмотреть кейс «Адонис»</CaseLink>
+                <CaseLink to="/case/adonis/" place="hero">Посмотреть кейс «Адонис»</CaseLink>
               </div>
               <p className="ph-price">{`Внедрение под ключ — от ${IMPLEMENTATION}`}</p>
               <p className="ph-trust">
@@ -294,7 +294,7 @@ export default function PharmacyPage() {
               />
             </div>
             <div className="ph-actions">
-              <CaseLink to="/case/adonis" place="case" className="btn btn-primary">Открыть подробный кейс</CaseLink>
+              <CaseLink to="/case/adonis/" place="case" className="btn btn-primary">Открыть подробный кейс</CaseLink>
               <LiveLink href={ADONIS_SITE} project="adonis">Посмотреть работающий сайт</LiveLink>
               <DemoButton place="case" variant="btn btn-ghost">Показать такое решение на созвоне</DemoButton>
             </div>
@@ -322,7 +322,7 @@ export default function PharmacyPage() {
                 />
               </div>
               <div className="ph-actions">
-                <CaseLink to="/case/narodnaya" place="case">Открыть кейс «Аптека Народная»</CaseLink>
+                <CaseLink to="/case/narodnaya/" place="case">Открыть кейс «Аптека Народная»</CaseLink>
                 <LiveLink href={NARODNAYA_SITE} project="narodnaya">Открыть аптеканародная.рф</LiveLink>
               </div>
             </div>
@@ -506,7 +506,7 @@ export default function PharmacyPage() {
             </p>
             <div className="ph-actions ph-actions--center">
               <DemoButton place="final">Запросить демонстрацию</DemoButton>
-              <CaseLink to="/case/adonis" place="final">Посмотреть кейс «Адонис»</CaseLink>
+              <CaseLink to="/case/adonis/" place="final">Посмотреть кейс «Адонис»</CaseLink>
             </div>
             <p className="ph-note ph-note--center">
               Первый разговор — о задачах, интеграциях и вариантах запуска. Подготовка точной сметы — после уточнения требований.

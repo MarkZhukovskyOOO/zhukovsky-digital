@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { Link, NavLink } from "react-router-dom";
 import { serviceSlugFromPath, track } from "../lib/track.js";
 import { PHARMACY_PATH } from "../lib/pharmacyLead.js";
+import { publicPath } from "../seo.js";
 import "./MobileMenu.css";
 
 /* Полноэкранное мобильное меню (≤560) — по фреймам menu-mobile-*.
@@ -68,7 +69,7 @@ export default function MobileMenu({ open, services, onClose, onContact }) {
 
       <nav className="mmenu__nav" aria-label="Мобильная навигация">
         <NavLink
-          to={PHARMACY_PATH}
+          to={publicPath(PHARMACY_PATH)}
           end
           className={({ isActive }) => `mmenu__link${isActive ? " is-current" : ""}`}
           onClick={onClose}
@@ -77,7 +78,7 @@ export default function MobileMenu({ open, services, onClose, onContact }) {
           Аптечным сетям
         </NavLink>
         <NavLink
-          to="/cases"
+          to="/cases/"
           className={({ isActive }) => `mmenu__link${isActive ? " is-current" : ""}`}
           onClick={onClose}
           tabIndex={open ? 0 : -1}
@@ -110,7 +111,7 @@ export default function MobileMenu({ open, services, onClose, onContact }) {
         )}
 
         <NavLink
-          to="/company"
+          to="/company/"
           className={({ isActive }) => `mmenu__link${isActive ? " is-current" : ""}`}
           onClick={onClose}
           tabIndex={open ? 0 : -1}

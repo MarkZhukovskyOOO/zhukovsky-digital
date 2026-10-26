@@ -2,7 +2,7 @@ import { createReadStream, existsSync, statSync } from "node:fs";
 import { createServer } from "node:http";
 import { extname, join, sep } from "node:path";
 import { fileURLToPath } from "node:url";
-import { REDIRECTS, normalizePath } from "./seo-routes.js";
+import { REDIRECTS, normalizePath, publicPath } from "./seo-routes.js";
 import { handleLead } from "./server/lead.js";
 
 const root = fileURLToPath(new URL(".", import.meta.url));
@@ -86,24 +86,26 @@ const server = createServer(async (req, res) => {
       return;
     }
 
+    const query = String(req.url || "").includes("?")
+      ? req.url.slice(req.url.indexOf("?"))
+      : "";
     const alias = canonicalHost(req.headers.host);
     if (alias) {
-      const target = path === "/" ? `${alias}/` : `${alias}${path}`;
-      res.writeHead(301, { Location: target });
+      res.writeHead(301, { Location: `${alias}${publicPath(path)}${query}` });
       res.end();
       return;
     }
 
     const redirect = REDIRECTS[path];
     if (redirect) {
-      res.writeHead(301, { Location: redirect });
+      res.writeHead(301, { Location: `${redirect}${query}` });
       res.end();
       return;
     }
 
     if (path === "/index.html" || path.endsWith("/index.html")) {
       const clean = path.replace(/\/index\.html$/, "") || "/";
-      res.writeHead(301, { Location: clean });
+      res.writeHead(301, { Location: `${publicPath(clean)}${query}` });
       res.end();
       return;
     }

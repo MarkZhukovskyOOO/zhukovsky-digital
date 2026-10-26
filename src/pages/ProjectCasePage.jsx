@@ -80,7 +80,7 @@ const PROJECTS = {
       </>
     ),
     industry: true,
-    other: { to: "/case/olymp-clinic", label: "Олимп Клиник" },
+    other: { to: "/case/olymp-clinic/", label: "Олимп Клиник" },
   },
   olympClinic: {
     name: "Olymp Clinic",
@@ -126,7 +126,7 @@ const PROJECTS = {
     outcomeTitle: "Заново разработанный сайт",
     outcome: "Результат — заново разработанный сайт Olymp Clinic с обновлённым дизайном и управлением через 1С-Битрикс. В рамках партнёрского проекта мы отвечали за дизайн, согласование макетов и техническую реализацию.",
     technologies: ["1С-Битрикс"],
-    other: { to: "/case/adonis", label: "Адонис" },
+    other: { to: "/case/adonis/", label: "Адонис" },
   },
   narodnaya: {
     name: "Аптека Народная",
@@ -174,7 +174,7 @@ const PROJECTS = {
       ]],
     ],
     industry: true,
-    other: { to: "/case/adonis", label: "Адонис" },
+    other: { to: "/case/adonis/", label: "Адонис" },
   },
 };
 
@@ -188,7 +188,7 @@ export default function ProjectCasePage({ project }) {
           <Breadcrumbs
             items={[
               { label: "Главная", to: "/" },
-              { label: "Кейсы", to: "/cases" },
+              { label: "Кейсы", to: "/cases/" },
               { label: data.name },
             ]}
           />
@@ -400,7 +400,7 @@ export default function ProjectCasePage({ project }) {
         {data.industry && (
           <section className="case-section">
             <div className="container">
-              <Link className="project-case__other" to="/industries/pharmacy">
+              <Link className="project-case__other" to="/industries/pharmacy/">
                 Нужен похожий сервис для вашей аптечной сети? <span aria-hidden="true">→</span>
               </Link>
             </div>
@@ -411,7 +411,7 @@ export default function ProjectCasePage({ project }) {
           <div className="container">
             <div className="case-head case-head--row">
               <h2 className="case-h2">Другие кейсы</h2>
-              <Link className="case-head__action" to="/cases">Все кейсы</Link>
+              <Link className="case-head__action" to="/cases/">Все кейсы</Link>
             </div>
             <Link className="project-case__other" to={data.other.to}>
               {`Смотреть кейс «${data.other.label}» `}

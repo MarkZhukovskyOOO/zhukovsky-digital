@@ -18,7 +18,7 @@ export default function Team() {
               <br />
               профессионалов
             </h2>
-            <Link to="/cases" className="team__link">
+            <Link to="/cases/" className="team__link">
               Все проекты
             </Link>
           </div>

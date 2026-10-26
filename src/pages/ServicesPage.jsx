@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { track } from "../lib/track.js";
+import { faqPageJsonLd } from "../seo.js";
 import { Link } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs.jsx";
 import Footer from "../components/Footer.jsx";
@@ -176,13 +177,13 @@ const CASES = [
     img: adonisImg,
     title: "Адонис: сайт и приложение для аптечной сети",
     desc: "Каталог, наличие в аптеках, бронирование и карта лояльности с интеграцией в аптечную систему.",
-    to: "/case/adonis",
+    to: "/case/adonis/",
   },
   {
     img: olympImg,
     title: "Olymp Clinic — сайт для сети клиник",
     desc: "Полный цикл создания новой версии сайта: от инициации проекта и дизайна до разработки на 1С-Битрикс и выпуска в продакшен. Срок — 1,5 месяца.",
-    to: "/case/olymp-clinic",
+    to: "/case/olymp-clinic/",
   },
 ];
 
@@ -261,7 +262,7 @@ export default function ServicesPage() {
             >
               Обсудить проект
             </button>
-            <Link to="/cases" className="btn btn-ghost">
+            <Link to="/cases/" className="btn btn-ghost">
               Смотреть кейсы
             </Link>
           </div>
@@ -429,7 +430,7 @@ export default function ServicesPage() {
           <div className="container">
             <header className="svc-cases__head">
               <h2 className="svc-title">Примеры наших проектов</h2>
-              <Link to="/cases" className="svc-action">
+              <Link to="/cases/" className="svc-action">
                 Все кейсы
               </Link>
             </header>
@@ -465,6 +466,12 @@ export default function ServicesPage() {
               overline="Вопросы"
               title="Что спрашивают чаще всего"
               desc="Не нашли свой вопрос — напишите в Telegram, ответим в течение рабочего дня."
+            />
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(faqPageJsonLd(FAQ)).replace(/</g, "\\u003c"),
+              }}
             />
             <div className="svc-faq__list">
               {FAQ.map((item, i) => {

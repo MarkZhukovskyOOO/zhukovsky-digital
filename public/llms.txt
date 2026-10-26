@@ -11,19 +11,19 @@ Zhukovsky Digital — студия заказной разработки. Соз
 ## Страницы
 
 - [Главная](https://zhukovsky-digital.com/): digital-задачи медицинских сетей
-- [Мобильные приложения](https://zhukovsky-digital.com/services): приложения для клиник, стоматологий, лабораторий и аптечных сетей
-- [Сайты и интернет-магазины](https://zhukovsky-digital.com/services/web-development): сайты, каталоги и магазины на 1С-Битрикс и заказной разработке
-- [Личные кабинеты](https://zhukovsky-digital.com/services/personal-accounts): кабинеты клиентов, пациентов и партнёров
-- [Аудит продукта](https://zhukovsky-digital.com/services/product-audit): проверка согласованных сценариев, отчёт и план доработок, от 80 000 ₽
-- [Поддержка и развитие](https://zhukovsky-digital.com/services/support): исправления и новые функции после запуска
-- [UX/UI](https://zhukovsky-digital.com/services/ux-ui): сценарии, прототипы и дизайн сайтов и приложений
-- [Аптечным сетям](https://zhukovsky-digital.com/industries/pharmacy): сайт и приложение для аптечной сети, каталог, бронирование и интеграция с учётной системой. Внедрение под ключ от 1 900 000 ₽
-- [Кейсы](https://zhukovsky-digital.com/cases): продукты, которые создают ценность для бизнеса
-- [Адонис](https://zhukovsky-digital.com/case/adonis): сайт и приложение для iOS и Android, связь с аптечной CRM
-- [Olymp Clinic](https://zhukovsky-digital.com/case/olymp-clinic): полный цикл новой версии сайта на 1С-Битрикс за 1,5 месяца. Это канонический адрес кейса
-- [Аптека Народная](https://zhukovsky-digital.com/case/narodnaya): сайт аптеканародная.рф — каталог, карточка товара, выбор аптеки и бронирование с самовывозом
-- [О студии](https://zhukovsky-digital.com/company): студия заказной разработки
-- [Политика конфиденциальности](https://zhukovsky-digital.com/policy): черновик структуры
+- [Мобильные приложения](https://zhukovsky-digital.com/services/): приложения для клиник, стоматологий, лабораторий и аптечных сетей
+- [Сайты и интернет-магазины](https://zhukovsky-digital.com/services/web-development/): сайты, каталоги и магазины на 1С-Битрикс и заказной разработке
+- [Личные кабинеты](https://zhukovsky-digital.com/services/personal-accounts/): кабинеты клиентов, пациентов и партнёров
+- [Аудит продукта](https://zhukovsky-digital.com/services/product-audit/): проверка согласованных сценариев, отчёт и план доработок, от 80 000 ₽
+- [Поддержка и развитие](https://zhukovsky-digital.com/services/support/): исправления и новые функции после запуска
+- [UX/UI](https://zhukovsky-digital.com/services/ux-ui/): сценарии, прототипы и дизайн сайтов и приложений
+- [Аптечным сетям](https://zhukovsky-digital.com/industries/pharmacy/): сайт и приложение для аптечной сети, каталог, бронирование и интеграция с учётной системой. Внедрение под ключ от 1 900 000 ₽
+- [Кейсы](https://zhukovsky-digital.com/cases/): продукты, которые создают ценность для бизнеса
+- [Адонис](https://zhukovsky-digital.com/case/adonis/): сайт и приложение для iOS и Android, связь с аптечной CRM
+- [Olymp Clinic](https://zhukovsky-digital.com/case/olymp-clinic/): полный цикл новой версии сайта на 1С-Битрикс за 1,5 месяца. Это канонический адрес кейса
+- [Аптека Народная](https://zhukovsky-digital.com/case/narodnaya/): сайт аптеканародная.рф — каталог, карточка товара, выбор аптеки и бронирование с самовывозом
+- [О студии](https://zhukovsky-digital.com/company/): студия заказной разработки
+- [Политика конфиденциальности](https://zhukovsky-digital.com/policy/): черновик структуры
 
 ## Услуги
 

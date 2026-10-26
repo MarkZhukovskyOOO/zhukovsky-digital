@@ -6,6 +6,7 @@ import NotFoundPage from "./NotFoundPage.jsx";
 import adonisImg from "../assets/figma/adonis-cover.webp";
 import olympImg from "../assets/figma/case-olymp-cover.webp";
 import { SERVICE_OFFERS } from "../data/serviceOffers.js";
+import { faqPageJsonLd } from "../seo.js";
 import { track } from "../lib/track.js";
 import "./ServicesPage.css";
 
@@ -187,7 +188,7 @@ export default function ServiceOfferPage() {
           <div className="container">
             <header className="svc-cases__head">
               <h2 className="svc-title">{offer.casesTitle}</h2>
-              <Link to="/cases" className="svc-action">Все кейсы</Link>
+              <Link to="/cases/" className="svc-action">Все кейсы</Link>
             </header>
             <div className="svc-cases">
               {offer.cases.map((item) => (
@@ -214,6 +215,14 @@ export default function ServiceOfferPage() {
               <span className="svc-overline">Вопросы</span>
               <h2 className="svc-title">Что спрашивают чаще всего</h2>
             </header>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(
+                  faqPageJsonLd(offer.faq.map(([q, a]) => ({ q, a })))
+                ).replace(/</g, "\\u003c"),
+              }}
+            />
             <div className="svc-faq__list">
               {offer.faq.map(([question, answer], index) => {
                 const isOpen = open === index;

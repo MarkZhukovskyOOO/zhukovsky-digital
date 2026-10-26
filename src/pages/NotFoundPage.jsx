@@ -19,7 +19,7 @@ export default function NotFoundPage() {
             <Link to="/" className="btn btn-primary">
               На главную
             </Link>
-            <Link to="/cases" className="btn notfound__btn-secondary">
+            <Link to="/cases/" className="btn notfound__btn-secondary">
               Смотреть кейсы
             </Link>
           </div>

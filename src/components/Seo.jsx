@@ -6,7 +6,9 @@ import {
   faqJsonLd,
   normalizePath,
   organizationJsonLd,
+  pageJsonLd,
   pageUrl,
+  websiteJsonLd,
 } from "../seo.js";
 
 function JsonLd({ data }) {
@@ -74,9 +76,18 @@ export default function Seo() {
     }
   }, [page, meta.title, meta.description, url]);
 
+  const organization = { ...organizationJsonLd };
+  delete organization["@context"];
+  const graph = {
+    "@context": "https://schema.org",
+    "@graph": page && path
+      ? [organization, websiteJsonLd, pageJsonLd(path, page)]
+      : [organization],
+  };
+
   return (
     <>
-      <JsonLd data={organizationJsonLd} />
+      <JsonLd data={graph} />
       {page?.faq && <JsonLd data={faqJsonLd} />}
     </>
   );
