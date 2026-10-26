@@ -81,6 +81,11 @@ export function trackNavigation(pathname) {
   track("page_view", { page_path: path || pathname }, { goal: false });
   if (!metrikaId()) return;
   const key = hitKey(hit);
+  if (window.__YM_LAST_HIT === key) {
+    lastHitKey = key;
+    return;
+  }
+  window.__YM_LAST_HIT = key;
   const tail = metrikaQueue[metrikaQueue.length - 1];
   if ((tail && hitKey(tail) === key) || (!tail && key === lastHitKey)) return;
   metrikaQueue.push(hit);
