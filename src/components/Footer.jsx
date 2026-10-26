@@ -9,7 +9,7 @@ const CONTACTS = [
     value: "sales@zhukovsky-digital.com",
     href: "mailto:sales@zhukovsky-digital.com",
   },
-  { label: "Телефон", value: "+7 495 120-14-08", href: "tel:+74951201408" },
+  { label: "Телефон", value: "+7 (918) 253-14-30", href: "tel:+79182531430" },
   {
     label: "Telegram",
     value: "@Mark_Zhukovskiy",

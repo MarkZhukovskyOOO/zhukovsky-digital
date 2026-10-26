@@ -36,7 +36,7 @@ export const organizationJsonLd = {
   name: "Zhukovsky Digital",
   url: `${SITE}/`,
   email: "sales@zhukovsky-digital.com",
-  telephone: "+7 495 120-14-08",
+  telephone: "+7 (918) 253-14-30",
   sameAs: ["https://t.me/Mark_Zhukovskiy"],
 };
 

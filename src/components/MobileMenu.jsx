@@ -130,7 +130,7 @@ export default function MobileMenu({ open, services, onClose, onContact }) {
           </div>
           <div className="mmenu__contact">
             <span className="mmenu__contact-label">Телефон</span>
-            <a href="tel:+74951201408" tabIndex={open ? 0 : -1}>+7 495 120-14-08</a>
+            <a href="tel:+79182531430" tabIndex={open ? 0 : -1}>+7 (918) 253-14-30</a>
           </div>
           <div className="mmenu__contact">
             <span className="mmenu__contact-label">Telegram</span>
