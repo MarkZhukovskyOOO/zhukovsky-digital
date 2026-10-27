@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { Link } from "react-router-dom";
 import { useLeadForm } from "../lib/useLeadForm.js";
+import FormConsent from "./FormConsent.jsx";
 import { track } from "../lib/track.js";
 import "./ContactModal.css";
 
@@ -152,6 +152,8 @@ export default function ContactModal() {
             onChange={(event) => form.setMessage(event.target.value)}
           />
 
+          <FormConsent checked={form.consent} onChange={form.setConsent} />
+
           <button
             type="submit"
             className="btn btn-primary cmodal__submit"
@@ -169,12 +171,6 @@ export default function ContactModal() {
               {form.error}
             </p>
           )}
-          <p className="cmodal__note">
-            {"Нажимая кнопку, вы соглашаетесь с "}
-            <Link to="/policy/" className="cmodal__policy" onClick={close}>
-              политикой конфиденциальности
-            </Link>
-          </p>
         </form>
       </div>
     </div>,

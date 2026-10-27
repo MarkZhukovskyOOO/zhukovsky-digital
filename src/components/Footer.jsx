@@ -65,7 +65,7 @@ export default function Footer({ slim = false }) {
           <Link to="/" className="footer__brand">
             Zhukovsky <span className="logo__accent">Digital</span>
           </Link>
-          <nav className="footer__nav">
+          <nav className="footer__nav" aria-label="Разделы сайта">
             {NAV.map((item) => (
               <Link key={item.to} to={item.to}>
                 {item.label}
@@ -73,6 +73,13 @@ export default function Footer({ slim = false }) {
             ))}
           </nav>
           <span className="footer__copy">© 2026</span>
+          <nav className="footer__legal" aria-label="Документы и настройки">
+            <Link to="/policy/">Политика обработки персональных данных</Link>
+            <Link to="/consent/">Согласие на обработку персональных данных</Link>
+            <button type="button" onClick={() => window.dispatchEvent(new CustomEvent("open-analytics-settings"))}>
+              Настройки аналитики
+            </button>
+          </nav>
         </div>
       </div>
     </footer>

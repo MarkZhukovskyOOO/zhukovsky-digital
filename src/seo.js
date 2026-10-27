@@ -207,9 +207,17 @@ export const PAGES = {
     image: OG.olymp,
   },
   "/policy": {
-    title: "Политика конфиденциальности — Zhukovsky Digital",
-    description: "Черновик структуры: объём и порядок разделов.",
+    title: "Политика обработки персональных данных — Zhukovsky Digital",
+    description:
+      "Как ИП Жуковский Марк Дмитриевич обрабатывает данные посетителей сайта и обращений по услугам студии.",
     robots: ROBOTS["/policy"],
+    image: OG.adonis,
+  },
+  "/consent": {
+    title: "Согласие на обработку персональных данных — Zhukovsky Digital",
+    description:
+      "Согласие на обработку данных, указанных в форме заявки, для рассмотрения обращения и подготовки предложения.",
+    robots: ROBOTS["/consent"],
     image: OG.adonis,
   },
 };

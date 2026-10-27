@@ -25,7 +25,8 @@ const MARKERS = {
   "/case/adonis": "Адонис — запуск онлайн-направления аптечной сети",
   "/case/olymp-clinic": "Olymp Clinic — новая версия сайта на 1С-Битрикс",
   "/case/narodnaya": "Аптека Народная — сайт аптечной сети",
-  "/policy": "Политика конфиденциальности",
+  "/policy": "Оператор персональных данных",
+  "/consent": "Я предоставляю ИП Жуковскому Марку Дмитриевичу",
 };
 
 const types = {
@@ -221,6 +222,8 @@ function assertSitemap(xml) {
   const closed = new Set([
     `${SITE}/policy`,
     `${SITE}/policy/`,
+    `${SITE}/consent`,
+    `${SITE}/consent/`,
     `${SITE}/case/olymp`,
     `${SITE}/case/olymp/`,
   ]);

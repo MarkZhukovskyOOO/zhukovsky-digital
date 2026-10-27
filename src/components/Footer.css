@@ -142,6 +142,43 @@
   color: #f5f5f7;
 }
 
+.footer__bottom {
+  flex-wrap: wrap;
+}
+
+.footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.footer__legal a,
+.footer__legal button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: rgba(245, 245, 247, 0.8);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.45;
+  text-align: left;
+  cursor: pointer;
+}
+
+.footer__legal a:hover,
+.footer__legal button:hover {
+  color: #6faef1;
+}
+
+.footer__legal a:focus-visible,
+.footer__legal button:focus-visible,
+.footer__nav a:focus-visible {
+  outline: 2px solid #6faef1;
+  outline-offset: 3px;
+}
+
 @media (max-width: 860px) {
   .footer {
     padding-block: 64px 48px;

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import FormConsent from "./FormConsent.jsx";
 import { useLeadForm } from "../lib/useLeadForm.js";
 
 export default function ContactForm({
@@ -76,6 +76,8 @@ export default function ContactForm({
           onChange={(event) => form.setMessage(event.target.value)}
         />
 
+        <FormConsent checked={form.consent} onChange={form.setConsent} />
+
         <button
           type="submit"
           className="btn btn-primary contact-form__submit"
@@ -93,12 +95,6 @@ export default function ContactForm({
             {form.error}
           </p>
         )}
-        <p className="contact-form__note">
-          {"Нажимая кнопку, вы соглашаетесь с "}
-          <Link to="/policy/" className="contact-form__policy">
-            политикой конфиденциальности
-          </Link>
-        </p>
       </form>
     </div>
   );

@@ -6,6 +6,7 @@ import CompanyPage from "./pages/CompanyPage.jsx";
 import ProjectCasePage from "./pages/ProjectCasePage.jsx";
 import CasesPage from "./pages/CasesPage.jsx";
 import PolicyPage from "./pages/PolicyPage.jsx";
+import ConsentPage from "./pages/ConsentPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 import ServiceOfferPage from "./pages/ServiceOfferPage.jsx";
 import PharmacyPage from "./pages/PharmacyPage.jsx";
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="/industries/pharmacy" element={<PharmacyPage />} />
           <Route path="/cases" element={<CasesPage />} />
           <Route path="/policy" element={<PolicyPage />} />
+          <Route path="/consent" element={<ConsentPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

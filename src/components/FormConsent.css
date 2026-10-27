@@ -1,0 +1,41 @@
+.form-consent {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.form-consent__check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.form-consent__check input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  flex: none;
+  accent-color: var(--color-text-brand);
+}
+
+.form-consent a {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.form-consent__policy {
+  margin-left: 28px;
+}
+
+.form-consent a:focus-visible,
+.form-consent input:focus-visible {
+  outline: 2px solid var(--color-text-brand);
+  outline-offset: 3px;
+}

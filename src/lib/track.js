@@ -1,5 +1,72 @@
 import { NOT_FOUND, PAGES, normalizePath, publicPath } from "../seo.js";
 
+export const YM_COUNTER_ID = 113805957;
+const YM_SRC = `https://mc.yandex.ru/metrika/tag.js?id=${YM_COUNTER_ID}`;
+const ANALYTICS_KEY = "zd-analytics";
+
+export function analyticsChoice() {
+  try {
+    const value = localStorage.getItem(ANALYTICS_KEY);
+    return value === "granted" || value === "denied" ? value : "";
+  } catch {
+    return "";
+  }
+}
+
+function metrikaHostAllowed() {
+  return window.location.hostname === "zhukovsky-digital.com" && navigator.webdriver !== true;
+}
+
+let loaderInstalled = false;
+
+function installLoader() {
+  if (!metrikaHostAllowed() || loaderInstalled) return false;
+  loaderInstalled = true;
+  window.__YM_ID = YM_COUNTER_ID;
+  (function (m, e, t, r, i, k, a) {
+    m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
+    m[i].l = 1 * new Date();
+    for (let j = 0; j < document.scripts.length; j += 1) {
+      if (document.scripts[j].src === r) return;
+    }
+    k = e.createElement(t);
+    a = e.getElementsByTagName(t)[0];
+    k.async = 1;
+    k.src = r;
+    a.parentNode.insertBefore(k, a);
+  })(window, document, "script", YM_SRC, "ym");
+  return true;
+}
+
+export function prepareAnalytics() {
+  if (analyticsChoice() === "granted") installLoader();
+}
+
+export function allowAnalytics(pathname) {
+  const already = analyticsChoice() === "granted" && Boolean(window.__YM_ID);
+  try {
+    localStorage.setItem(ANALYTICS_KEY, "granted");
+  } catch {
+    /* Выбор останется до закрытия вкладки, если хранилище недоступно. */
+  }
+  if (!metrikaHostAllowed()) return;
+  if (!loaderInstalled) installLoader();
+  else window.__YM_ID = YM_COUNTER_ID;
+  if (already) return;
+  lastHitKey = "";
+  window.__YM_LAST_HIT = "";
+  trackNavigation(pathname);
+}
+
+export function denyAnalytics() {
+  try {
+    localStorage.setItem(ANALYTICS_KEY, "denied");
+  } catch {
+    /* Отказ всё равно прекращает отправку в этой вкладке. */
+  }
+  window.__YM_ID = "";
+}
+
 export function track(name, params = {}, { goal = true } = {}) {
   const payload = { event: name, ...params };
   window.dataLayer = window.dataLayer || [];

@@ -6,11 +6,13 @@ import Seo from "./Seo.jsx";
 import ContactModal from "./ContactModal.jsx";
 import { ThemeProvider } from "../theme-context.jsx";
 import useScrollReveal from "../hooks/useScrollReveal.js";
-import { serviceSlugFromPath, track, trackNavigation } from "../lib/track.js";
+import { prepareAnalytics, serviceSlugFromPath, track, trackNavigation } from "../lib/track.js";
+import AnalyticsNotice from "./AnalyticsNotice.jsx";
 
 function TrackRoute() {
   const { pathname } = useLocation();
   useEffect(() => {
+    prepareAnalytics();
     trackNavigation(pathname);
   }, [pathname]);
   return null;
@@ -51,6 +53,7 @@ export default function Layout() {
         <ThemeToggle />
       </div>
       <ContactModal />
+      <AnalyticsNotice />
     </ThemeProvider>
   );
 }

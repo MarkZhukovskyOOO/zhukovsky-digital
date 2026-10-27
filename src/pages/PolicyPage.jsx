@@ -1,45 +1,8 @@
 import Footer from "../components/Footer.jsx";
 import Breadcrumbs from "../components/Breadcrumbs.jsx";
+import { LegalText } from "../components/LegalText.jsx";
+import { POLICY_SECTIONS, POLICY_TITLE } from "../content/legal.js";
 import "./PolicyPage.css";
-
-const SECTIONS = [
-  {
-    title: "1. Общие положения",
-    body: "Политика описывает, как [юридическое лицо] («Жуковский») обрабатывает персональные данные пользователей сайта. Отправляя форму на сайте, вы подтверждаете согласие с этой политикой.",
-  },
-  {
-    title: "2. Какие данные мы собираем",
-    body: "Из форм: имя, компания, телефон, почта или Telegram, описание задачи. Автоматически: IP-адрес, тип устройства и браузера, источник перехода, страницы и действия на сайте.",
-  },
-  {
-    title: "3. Зачем мы их обрабатываем",
-    body: "Чтобы ответить на заявку и обсудить задачу, подготовить оценку, вести переписку по проекту, а также улучшать сайт и оценивать эффективность рекламы.",
-  },
-  {
-    title: "4. Правовое основание",
-    body: "Обработка ведётся на основании вашего согласия, которое вы даёте при отправке формы, и на основании договора, если мы начинаем работу.",
-  },
-  {
-    title: "5. Кому передаём данные",
-    body: "Данные могут обрабатываться сервисами, которые обеспечивают работу сайта, аналитику и связь: [перечень сервисов]. Мы не продаём данные и не передаём их для чужих рассылок.",
-  },
-  {
-    title: "6. Сроки хранения",
-    body: "Заявки храним [срок] с момента обращения, после чего удаляем или обезличиваем. Данные аналитики храним в обезличенном виде.",
-  },
-  {
-    title: "7. Cookie и аналитика",
-    body: "Сайт использует cookie для работы интерфейса и аналитики. Их можно отключить в настройках браузера — часть функций сайта может работать иначе.",
-  },
-  {
-    title: "8. Ваши права",
-    body: "Вы можете запросить доступ к своим данным, их исправление или удаление, а также отозвать согласие. Напишите на sales@zhukovsky-digital.com — ответим в течение [срок].",
-  },
-  {
-    title: "9. Контакты",
-    body: "[Юридическое лицо], ИНН [—], адрес [—]. Почта: sales@zhukovsky-digital.com, телефон: +7 (918) 253-14-30.",
-  },
-];
 
 export default function PolicyPage() {
   return (
@@ -50,24 +13,20 @@ export default function PolicyPage() {
             <Breadcrumbs
               items={[
                 { label: "Главная", to: "/" },
-                { label: "Политика конфиденциальности" },
+                { label: POLICY_TITLE },
               ]}
             />
-            <h1 className="policy__title">Политика конфиденциальности</h1>
-            <p className="policy__updated">Обновлено 20 сентября 2026</p>
+            <h1 className="policy__title">{POLICY_TITLE}</h1>
           </div>
-
-          <div className="policy__note">
-            Черновик структуры: объём и порядок разделов. Финальные
-            формулировки даёт юрист заказчика — в макете важна вёрстка и
-            читаемость.
-          </div>
-
           <div className="policy__sections">
-            {SECTIONS.map((s) => (
-              <section className="policy__section" key={s.title}>
-                <h2 className="policy__section-title">{s.title}</h2>
-                <p className="policy__section-body">{s.body}</p>
+            {POLICY_SECTIONS.map((section) => (
+              <section className="policy__section" key={section.title}>
+                <h2 className="policy__section-title">{section.title}</h2>
+                {section.paragraphs.map((paragraph) => (
+                  <p className="policy__section-body" key={paragraph}>
+                    <LegalText text={paragraph} />
+                  </p>
+                ))}
               </section>
             ))}
           </div>

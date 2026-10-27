@@ -15,6 +15,7 @@ export const ROUTES = [
   "/case/olymp-clinic",
   "/case/narodnaya",
   "/policy",
+  "/consent",
 ];
 
 export const REDIRECTS = {
@@ -24,6 +25,7 @@ export const REDIRECTS = {
 /* Черновик политики остаётся доступным, но не попадает в поиск и карту. */
 export const ROBOTS = {
   "/policy": "noindex, follow",
+  "/consent": "noindex, follow",
 };
 
 export const SITEMAP_ROUTES = ROUTES.filter((route) => !ROBOTS[route]);

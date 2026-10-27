@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { CONSENT_VERSION } from "../content/legal.js";
 import { track } from "./track.js";
 
 export function useLeadForm() {
@@ -7,6 +8,7 @@ export function useLeadForm() {
   const [company, setCompany] = useState("");
   const [contact, setContact] = useState("");
   const [message, setMessage] = useState("");
+  const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState("");
   const extraRef = useRef({ service: "", page: "", placeholder: "" });
@@ -31,6 +33,8 @@ export function useLeadForm() {
       message: message.trim(),
       service: extraRef.current.service,
       page: extraRef.current.page,
+      consent,
+      consentVersion: CONSENT_VERSION,
     };
     const problem = validateLead(payload);
     if (problem) {
@@ -74,6 +78,7 @@ export function useLeadForm() {
       setContact("");
       setMessage("");
       setNeed("new");
+      setConsent(false);
     } catch {
       track("lead_error", {
         service_slug: extraRef.current.service,
@@ -96,6 +101,8 @@ export function useLeadForm() {
     setContact,
     message,
     setMessage,
+    consent,
+    setConsent,
     status,
     error,
     placeholder: extraRef.current.placeholder,
@@ -109,5 +116,8 @@ function validateLead(payload) {
   if (!payload.contact) return "Укажите телефон, почту или Telegram.";
   if (payload.need !== "new" && payload.need !== "dev") return "Выберите, что нужно.";
   if (!payload.message) return "Коротко опишите задачу.";
+  if (payload.consent !== true || payload.consentVersion !== CONSENT_VERSION) {
+    return "Подтвердите согласие на обработку данных, чтобы отправить заявку.";
+  }
   return "";
 }

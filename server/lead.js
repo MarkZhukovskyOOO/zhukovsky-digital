@@ -1,9 +1,12 @@
+import { randomUUID } from "node:crypto";
+import { CONSENT_VERSION } from "../src/content/legal.js";
 import "./env.js";
 
 const MAX_BODY = 8_000;
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_HITS = 5;
 const hits = new Map();
+const consentReceipts = [];
 
 const NEED = {
   new: "Новый продукт с нуля",
@@ -104,6 +107,15 @@ export async function handleLead(req, res) {
   const need = Object.hasOwn(NEED, data?.need) ? data.need : "";
   const service = clip(data?.service, 80);
   const page = clip(data?.page, 160);
+  const consentVersion = clip(data?.consentVersion, 40);
+
+  if (data?.consent !== true || consentVersion !== CONSENT_VERSION) {
+    json(res, 400, {
+      ok: false,
+      error: "Подтвердите согласие на обработку данных, чтобы отправить заявку.",
+    });
+    return true;
+  }
 
   if (!name) {
     json(res, 400, { ok: false, error: "Укажите имя." });
@@ -169,6 +181,14 @@ export async function handleLead(req, res) {
     return true;
   }
 
-  json(res, 200, { ok: true });
+  const receipt = {
+    id: randomUUID(),
+    consentVersion,
+    receivedAt: new Date().toISOString(),
+  };
+  consentReceipts.push(receipt);
+  if (consentReceipts.length > 200) consentReceipts.shift();
+
+  json(res, 200, { ok: true, ...receipt });
   return true;
 }
