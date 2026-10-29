@@ -1,8 +1,24 @@
-.corner {
+.site-dock {
   position: fixed;
-  right: 20px;
-  bottom: max(20px, env(safe-area-inset-bottom));
   z-index: 40;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  padding: 12px 20px max(20px, env(safe-area-inset-bottom));
+  pointer-events: none;
+}
+
+.site-dock > * {
+  pointer-events: auto;
+}
+
+.corner {
+  position: static;
+  align-self: flex-end;
   display: flex;
   align-items: center;
   gap: 8px;
