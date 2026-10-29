@@ -28,8 +28,8 @@ export default function AnalyticsNotice() {
         <Link to="/policy/">Политика обработки персональных данных</Link>
       </p>
       <div className="analytics-notice__actions">
-        <button type="button" onClick={() => choose(true)}>Разрешить аналитику</button>
-        <button type="button" onClick={() => choose(false)}>Продолжить без аналитики</button>
+        <button type="button" className="btn btn-primary" onClick={() => choose(true)}>Разрешить аналитику</button>
+        <button type="button" className="btn btn-ghost" onClick={() => choose(false)}>Продолжить без аналитики</button>
       </div>
     </aside>
   );

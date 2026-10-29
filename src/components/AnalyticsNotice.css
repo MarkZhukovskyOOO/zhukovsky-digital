@@ -1,68 +1,89 @@
 .analytics-notice {
   position: fixed;
-  z-index: 30;
-  left: 16px;
-  right: 96px;
-  bottom: 16px;
-  max-width: 720px;
-  padding: 16px 18px;
-  border: 1px solid var(--color-line);
-  border-radius: 16px;
-  background: var(--color-bg);
-  color: var(--color-text-primary);
-  box-shadow: none;
+  z-index: 35;
+  left: 24px;
+  right: 120px;
+  bottom: 24px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 16px;
+  max-width: 920px;
+  margin-inline: auto;
+  padding: 16px 18px 16px 22px;
+  border: 1px solid color-mix(in srgb, var(--color-border-default) 80%, transparent);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--color-bg-page) 62%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
 }
 
 .analytics-notice__text {
   margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
   font-size: 14px;
   line-height: 1.5;
   color: var(--color-text-secondary);
 }
 
 .analytics-notice__text a {
-  color: var(--color-text-primary);
+  color: var(--color-text-brand);
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
 }
 
 .analytics-notice__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
+  display: grid;
+  flex: none;
+  grid-template-columns: max-content;
+  gap: 2px;
 }
 
-.analytics-notice__actions button {
-  min-height: 44px;
-  padding: 8px 14px;
-  border: 1px solid var(--color-line);
-  border-radius: 999px;
+.analytics-notice .btn {
+  height: 24px;
+  padding-inline: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: none;
+}
+
+.analytics-notice .btn-primary,
+.analytics-notice .btn-primary:hover,
+.analytics-notice .btn-primary:active {
+  background: color-mix(in srgb, var(--color-bg-brand) 12%, transparent);
+  color: var(--color-text-brand);
+  box-shadow: none;
+}
+
+.analytics-notice .btn-primary:hover {
+  background: color-mix(in srgb, var(--color-bg-brand) 20%, transparent);
+}
+
+.analytics-notice .btn-ghost,
+.analytics-notice .btn-ghost:hover,
+.analytics-notice .btn-ghost:active {
   background: transparent;
+  color: var(--color-text-secondary);
+  box-shadow: none;
+}
+
+.analytics-notice .btn-ghost:hover {
   color: var(--color-text-primary);
-  font: inherit;
-  font-size: 14px;
-  cursor: pointer;
+  background: color-mix(in srgb, var(--color-text-primary) 6%, transparent);
 }
 
 .analytics-notice a:focus-visible,
-.analytics-notice button:focus-visible {
+.analytics-notice .btn:focus-visible {
   outline: 2px solid var(--color-text-brand);
   outline-offset: 3px;
 }
 
-@media (max-width: 560px) {
+@media (max-width: 860px) {
   .analytics-notice {
-    left: 12px;
-    right: 12px;
-    bottom: 12px;
+    left: 16px;
+    right: 16px;
+    bottom: 76px;
   }
 
-  .analytics-notice__actions {
-    flex-direction: column;
-  }
-
-  .analytics-notice__actions button {
-    width: 100%;
-  }
 }
