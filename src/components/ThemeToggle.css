@@ -1,28 +1,17 @@
 .site-dock {
-  position: fixed;
-  z-index: 40;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 12px;
-  padding: 12px 20px max(20px, env(safe-area-inset-bottom));
-  pointer-events: none;
-}
-
-.site-dock > * {
-  pointer-events: auto;
+  position: contents;
 }
 
 .corner {
-  position: static;
-  align-self: flex-end;
+  position: fixed;
+  z-index: 40;
+  right: 20px;
+  bottom: max(20px, env(safe-area-inset-bottom));
   display: flex;
   align-items: center;
   gap: 8px;
 }
+
 .theme-toggle {
   flex: none;
   display: inline-flex;
@@ -38,6 +27,7 @@
   transition: background 0.18s ease, border-color 0.18s ease,
     color 0.18s ease, transform 0.08s ease;
 }
+
 .corner__tg {
   flex: none;
   display: inline-flex;
@@ -47,20 +37,52 @@
   overflow: hidden;
   box-shadow: var(--shadow-button);
 }
+
 .corner__tg:hover {
   opacity: 0.88;
 }
+
 .theme-toggle:hover {
   background: var(--color-state-hover);
   border-color: var(--color-border-strong);
 }
+
 .theme-toggle:active {
   background: var(--color-state-pressed);
   transform: translateY(1px);
 }
+
 .theme-toggle__icon {
   transition: transform 0.3s ease;
 }
+
 [data-theme="dark"] .theme-toggle__icon {
   transform: rotate(180deg);
+}
+
+@media (max-width: 560px) {
+  .site-dock {
+    position: fixed;
+    z-index: 40;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 10px 12px max(16px, env(safe-area-inset-bottom));
+    pointer-events: none;
+  }
+
+  .site-dock > * {
+    pointer-events: auto;
+  }
+
+  .corner {
+    position: static;
+    align-self: flex-end;
+    right: auto;
+    bottom: auto;
+  }
 }
